@@ -4,7 +4,7 @@ import React from "react";
 const FormLogin = () => {
   return (
     <div>
-      <p>Bienvenidos a Piggy</p>
+      <p>Bienvenidos a Piggy la aplicación mas divertida</p>
     </div>
   );
 };
