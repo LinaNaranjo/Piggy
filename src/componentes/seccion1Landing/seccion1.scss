@@ -9,6 +9,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .principal {
@@ -42,24 +43,25 @@ body {
       margin-bottom: 4rem;
       font-size: 20px;
     }
-    .btnBanner {
-        display: block; 
-        margin: 0 auto; 
-        padding: 20px 40px;
-        background-color: #FADBD8; 
-        color: $text-color; 
-        border: none; 
-        border-radius: 5px;
-        font-family: "Mooli", sans-serif; 
-        font-weight: bold;
-        font-size: 16px; 
-        cursor: pointer; 
-    
-  
-        &:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
-        }
-    }
   }
   
+  .btnBanner {
+    display: block; 
+    margin: 0 auto; 
+    margin-top: 3rem;
+    padding: 20px 40px;
+    background-color: #FADBD8; 
+    color: $text-color; 
+    border: none; 
+    border-radius: 5px;
+    font-family: "Mooli", sans-serif; 
+    font-weight: bold;
+    font-size: 16px; 
+    cursor: pointer; 
+
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+    }
+}
