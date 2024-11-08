@@ -1,12 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./formLoguin.scss";
-import logo from "../assets/LogoNombre.png";
-import emailIcon from "../assets/Correo.png";
-import paswordIcon from "../assets/Candado.png";
+import logo from "../../assets/LogoNombre.png";
+import emailIcon from "../../assets/Correo.png";
+import paswordIcon from "../../assets/Candado.png";
 
 
 const FormLogin = () => {
+  const navigate = useNavigate();
+
+  const redirecionRegistro = () => {
+    navigate("/registro");
+  };
+
   return (
     <div className="login-container">
       <div className="logo-container">
@@ -41,7 +47,7 @@ const FormLogin = () => {
           </div>
         </form>
         <p className="register">
-          ¿No tienes cuenta? <span>¡Regístrate!</span>
+          ¿No tienes cuenta? <span onClick={redirecionRegistro} >¡Regístrate!</span>
         </p>
       </div>
     </div>
