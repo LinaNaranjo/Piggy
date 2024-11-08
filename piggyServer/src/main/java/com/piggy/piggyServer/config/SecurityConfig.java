@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.Config;
+package com.piggy.piggyServer.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
