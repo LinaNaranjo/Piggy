@@ -1,0 +1,66 @@
+$mint-green: #76D7C4;
+$pink-border: #FADBD8;
+$text-color: #000000;
+
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+.beneficios-container {
+  margin-top: 4rem;
+  background-color: $mint-green;
+  padding: 2rem;
+  font-family: "Mooli", sans-serif;
+  color: $text-color;
+
+  h2 {
+    font-family: "Mochiy Pop One", sans-serif;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: $text-color;
+  }
+
+  .beneficios-content {
+    display: flex;
+    gap: 2rem;
+
+    .left-section, .right-section {
+      flex: 1;
+    }
+
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+
+      .benefit-box {
+        background-color: #ffffff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        color: $text-color;
+        font-family: "Mooli", sans-serif;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .benefit-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+    }
+
+    .right-section {
+      ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        font-size: 16px;
+        line-height: 1.6;
+
+        li {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}

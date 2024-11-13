@@ -12,56 +12,57 @@ body {
   box-sizing: border-box;
 }
 
-.principal {
+.seccion1-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.content {
+  flex: 1;
   h1 {
     color: $text-color;
     font-family: "Mochiy Pop One", sans-serif;
-    text-align: center;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: "Mooli", sans-serif;
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 2rem;
+    color: $text-color;
   }
 }
 
-.principalImage {
-  width: 100%;
-  position: relative;
-
-  .bannerPrincipal {
-    width: 100%;
-    height: auto;
-    display: block;
-    max-width: none;
-  }
-}
-
-.contenido {
-    background-color: $mint-green;
-    padding: 2rem; 
-    p {
-      font-family: "Mooli", sans-serif;
-      text-align: center;
-      margin-bottom: 4rem;
-      font-size: 20px;
-    }
-  }
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
   
-  .btnBanner {
-    display: block; 
-    margin: 0 auto; 
-    margin-top: 3rem;
-    padding: 20px 40px;
-    background-color: #FADBD8; 
-    color: $text-color; 
-    border: none; 
-    border-radius: 5px;
-    font-family: "Mooli", sans-serif; 
-    font-weight: bold;
-    font-size: 16px; 
-    cursor: pointer; 
+  .bannerPrincipal {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+  }
+}
 
+.btnBanner {
+  padding: 10px 20px;
+  background-color: $pink-border;
+  color: $text-color;
+  border: none;
+  border-radius: 5px;
+  font-family: "Mooli", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
 
-    &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
-    }
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
 }

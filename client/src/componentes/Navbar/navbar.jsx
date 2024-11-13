@@ -20,6 +20,7 @@ const Navbar = () => {
       </div>
       <div className="navbar__links">
         <a href="#home">Home</a>
+        <a href="#home">Preguntas Frecuentes</a>
         <a href="#contacto">Contacto</a>
       </div>
       <div className="navbar__buttons">
