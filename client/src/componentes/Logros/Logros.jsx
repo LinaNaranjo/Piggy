@@ -1,4 +1,4 @@
-mport React from "react";
+import React from "react";
 import "./Logros.scss";
 import DivisionBronce from "../../assets/Images/ImagesLandingPage/bronce.png";
 import DivisionPlata from "../../assets/Images/ImagesLandingPage/plata.png";
