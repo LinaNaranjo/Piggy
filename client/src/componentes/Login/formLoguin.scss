@@ -48,6 +48,31 @@ $hover-color: blue;
   }
 }
 
+.ir-atras {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  .boton-regresar {
+    width: 40px; 
+    height: 40px;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      width: 30px;
+      height: 30px;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      color: $hover-color;
+    }
+  }
+}
+
 .form-container {
   flex: 1;
   width: 100%;
@@ -165,8 +190,7 @@ $hover-color: blue;
         background-color: #f5c2d2;
       }
     }
-
-    }
+  }
   .registrarse {
     font-family: "Mooli", sans-serif;
     margin-top: 1.5rem;
@@ -185,3 +209,8 @@ $hover-color: blue;
   }
 }
 
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
