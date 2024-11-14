@@ -40,13 +40,13 @@ public class UserEntity implements UserDetails { //UserDetails: personaliza la i
   @Column(nullable = false)
   private String password;
 
-  RoleUser role;
+  @Enumerated(EnumType.STRING)
+  RoleUser roleUser;
 
-  //-- Methods
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    //Lista que representa los roles del usuario (autoridad)
-    return List.of(new SimpleGrantedAuthority(role.name()));
+    return List.of(new SimpleGrantedAuthority(roleUser.name()));
   }
 
   @Override

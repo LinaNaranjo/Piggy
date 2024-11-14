@@ -1,5 +1,6 @@
 package com.piggy.piggyServer.auth;
 
+import com.piggy.piggyServer.user.RoleUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class RegisterRequest {
   Integer age;
   String email;
   String password;
+  RoleUser roleUser;
 }

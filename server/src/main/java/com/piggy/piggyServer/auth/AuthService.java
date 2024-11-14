@@ -37,10 +37,10 @@ public class AuthService {
         .age(registerRequest.getAge())
         .email(registerRequest.getEmail())
         .password(passwordEncoder.encode(registerRequest.getPassword()))
-        .role(RoleUser.child)
-        .role(RoleUser.parent)
+        .roleUser(registerRequest.getRoleUser())
         .build();
     userRepository.save(userEntity);
     return AuthResponse.builder().token(jwtTokenProviderService.getToken(userEntity)).build();
+
   }
 }
