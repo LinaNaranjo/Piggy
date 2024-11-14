@@ -4,13 +4,22 @@ import { useNavigate } from "react-router-dom";
 import LogoNavbar from "../../assets/Images/ImagesNavbar/LogoNavbar.png";
 
 const Navbar = () => {
-
   const navigate = useNavigate();
+
+  const navegacionHome = () => {
+    navigate("/");
+  };
+
   const navegacionLogin = () => {
     navigate("/login");
   };
+
   const navegacionRegistro = () => {
     navigate("/registro");
+  };
+
+  const navegacionPreguntasFrecuentes = () => {
+    navigate("/preguntas");
   };
 
   return (
@@ -19,9 +28,11 @@ const Navbar = () => {
         <img src={LogoNavbar} alt="Logo" className="logo-image" />
       </div>
       <div className="navbar__links">
-        <a href="#home">Home</a>
-        <a href="#home">Preguntas Frecuentes</a>
-        <a href="#contacto">Contacto</a>
+        <a onClick={navegacionHome} style={{ cursor: "pointer" }}>Home</a>
+        <a onClick={navegacionPreguntasFrecuentes} style={{ cursor: "pointer" }}>
+          Preguntas Frecuentes
+        </a>
+        <a href="#contacto">Contacto</a> 
       </div>
       <div className="navbar__buttons">
         <button onClick={navegacionLogin} className="login-btn">Iniciar sesión</button>
@@ -32,3 +43,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

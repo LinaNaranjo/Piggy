@@ -1,24 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
 $mint-green: #76D7C4;
 $pink-border: #FADBD8;
 $text-color: #000000;
 
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
 
 .logros {
     h2 {
       font-family: "Mochiy Pop One", sans-serif;
-      text-align: center;
+      text-align: left;
       font-size: 2rem;
       margin-bottom: 3rem;
       margin-top: 1rem;
+      margin-left: 2rem;
     }
   
     .descripcion {
       font-family: "Mooli", sans-serif;
-      text-align: center;
+      text-align: left;
       font-size: 1rem;
       margin-bottom: 2rem;
+      margin-left: 2rem;
     }
   
     .contenedor {
@@ -33,6 +36,7 @@ $text-color: #000000;
       align-items: center;
       gap: 1.5rem;
       margin-top: 5rem;
+      margin-bottom: 5rem;
       
       .imagen {
         width: 130px; 
@@ -50,5 +54,16 @@ $text-color: #000000;
         text-align: center;
         font-family: "Mooli", sans-serif;
       }
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem; 
+      margin-bottom: 3rem; 
+    }
+  
+    iframe {
+      border-radius: 8px;
     }
   }

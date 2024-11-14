@@ -3,6 +3,10 @@ import "./seccion1.scss";
 import Banner from "../../assets/Images/ImagesLandingPage/banner.jpg";
 
 const Seccion1 = () => {
+  const handleScroll = () => {
+    document.getElementById("logros").scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="seccion1-container">
       <div className="content">
@@ -12,7 +16,7 @@ const Seccion1 = () => {
           <br />
           ¡Aprende a ahorrar de forma divertida y transforma tus metas en oportunidades!
         </p>
-        <button className="btnBanner">Explora más</button>
+        <button className="btnBanner" onClick={handleScroll}>Explora más</button>
       </div>
       <div className="image-container">
         <img src={Banner} alt="Logo" className="bannerPrincipal" />

@@ -4,21 +4,33 @@ import AhorrarBeneficios from "../../assets/Images/ImagesLandingPage/ahorrarBene
 
 const Beneficios = () => {
   return (
-    <div className="beneficios-container">
-      <h2>Beneficios Clave para Niños y Padres</h2>
-      <div className="beneficios-content">
-        <div className="left-section">
-          <div className="benefit-box">
+    <div className="beneficiosContainer">
+      <h1>Beneficios Clave para Niños y Padres</h1>
+      <div className="beneficiosContent">
+        <div className="leftSection">
+          <div className="benefitBox">
             Fomenta el ahorro responsable y la educación financiera mientras disfrutas momentos divertidos en familia.
           </div>
           <img src={AhorrarBeneficios} alt="Ahorro" className="benefit-image" />
         </div>
-        <div className="right-section">
+        <div className="rightSection">
           <ul>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</li>
-            <li>Sed nisi. Nulla quis sem at nibh elementum imperdiet.</li>
-            <li>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed.</li>
+            <li>
+              <span className="title">Aprendizaje Financiero:</span>
+              <span className="description">Desarrolla habilidades de gestión de dinero desde edad temprana.</span>
+            </li>
+            <li>
+              <span className="title">Metas de Ahorro:</span>
+              <span className="description">Fomenta el trabajo en equipo con objetivos de ahorro conjuntos.</span>
+            </li>
+            <li>
+              <span className="title">Recompensas Divertidas:</span>
+              <span className="description">Gana puntos y sube de nivel a través de un sistema de insignias.</span>
+            </li>
+            <li>
+              <span className="title">Control Familiar:</span>
+              <span className="description">Establece límites de gasto y supervisa el progreso de tus hijos.</span>
+            </li>
           </ul>
         </div>
       </div>
