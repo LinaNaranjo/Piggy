@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -25,8 +26,10 @@ public class UserEntity implements UserDetails { //UserDetails: personaliza la i
 
   @Column(nullable = false)
   private String name;
+
   @Column(nullable = false)
   private String lastName;
+
   @Column(nullable = false)
   Integer age;
 
@@ -37,10 +40,13 @@ public class UserEntity implements UserDetails { //UserDetails: personaliza la i
   @Column(nullable = false)
   private String password;
 
-  //-- Methods
+  @Enumerated(EnumType.STRING)
+  RoleUser roleUser;
+
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of();
+    return List.of(new SimpleGrantedAuthority(roleUser.name()));
   }
 
   @Override
@@ -48,23 +54,24 @@ public class UserEntity implements UserDetails { //UserDetails: personaliza la i
     return "";
   }
 
+
   @Override
   public boolean isAccountNonExpired() {
-    return UserDetails.super.isAccountNonExpired();
+    return true;
   }
 
   @Override
   public boolean isAccountNonLocked() {
-    return UserDetails.super.isAccountNonLocked();
+    return true;
   }
 
   @Override
   public boolean isCredentialsNonExpired() {
-    return UserDetails.super.isCredentialsNonExpired();
+    return true;
   }
 
   @Override
   public boolean isEnabled() {
-    return UserDetails.super.isEnabled();
+    return true;
   }
 }
