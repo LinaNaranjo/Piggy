@@ -1,8 +1,9 @@
-$mint-green: #76D7C4;
-$pink-border: #FADBD8;
-
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+$mint-green: #76D7C4;
+$pink-border: #FADBD8;
+$text-color: #000000;
 
 .navbar {
   background-color: $mint-green;
@@ -18,35 +19,65 @@ $pink-border: #FADBD8;
 
   &__links {
     a {
-      font-family: 'Mooli', sans-serif;
+      font-family: "Mochiy Pop One", sans-serif;
       margin: 0 1rem;
-      color: #444;
+      color: $text-color;
       text-decoration: none;
       font-size: 1rem;
+      padding: 0.4rem 0.8rem; 
 
       &:hover {
-        text-decoration: underline;
+        background-color: $pink-border;  
+        color: #000000;
+        cursor: pointer;
+        border-radius: 8px; 
       }
     }
   }
 
   &__buttons {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
 
     button {
-      font-family: 'Mooli', sans-serif;
+      font-family: "Mochiy Pop One", sans-serif;
       padding: 0.5rem 1rem;
-      border: 2px solid $pink-border;
-      background-color: transparent;
-      color: #444;
+      border:none;
+      border-radius: 5px;
+      background-color:  $pink-border;
+      color: #000000;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+      transition: background-color 0.3s ease, transform 0.2s ease; 
 
       &:hover {
         background-color: $pink-border;
-        color: #fff;
+        transform: scale(1.05);
       }
     }
   }
 }
+
+// navbar-media.scss
+
+@media (max-width: 1200px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+

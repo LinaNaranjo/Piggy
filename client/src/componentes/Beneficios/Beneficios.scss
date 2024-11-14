@@ -1,66 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
 $mint-green: #76D7C4;
 $pink-border: #FADBD8;
 $text-color: #000000;
 
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
-
-.beneficios-container {
-  margin-top: 4rem;
+.beneficiosContainer {
+  margin-top: 5rem;
   background-color: $mint-green;
-  padding: 2rem;
+  padding: 2rem 2rem 0.05rem 2rem;  
   font-family: "Mooli", sans-serif;
   color: $text-color;
 
-  h2 {
+  h1 {
     font-family: "Mochiy Pop One", sans-serif;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
     color: $text-color;
   }
 
-  .beneficios-content {
+  .beneficiosContent {
     display: flex;
     gap: 2rem;
 
-    .left-section, .right-section {
+    .leftSection, .rightSection {
       flex: 1;
     }
 
-    .left-section {
+    .leftSection {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 1.5rem;
 
-      .benefit-box {
+      .benefitBox {
         background-color: #ffffff;
-        padding: 1.5rem;
+        width: 500px;    
+        height: 150px;    
+        padding: 1.8rem;      
         border-radius: 8px;
         color: $text-color;
         font-family: "Mooli", sans-serif;
-        font-size: 16px;
+        font-size: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;  
+        text-align: left;   
       }
 
-      .benefit-image {
+      .benefitImage {
         max-width: 100%;
         height: auto;
         border-radius: 8px;
       }
     }
 
-    .right-section {
+    .rightSection {
       ul {
-        list-style-type: disc;
+        list-style: none;
         padding-left: 1.5rem;
-        font-size: 16px;
+        font-size: 20px;
         line-height: 1.6;
+        margin-top: 5rem;
 
         li {
-          margin-bottom: 0.5rem;
+          margin-bottom: 1.5rem;
+          padding-left: 6rem; 
+          position: relative;
+          font-family: "Mooli", sans-serif;
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            width: 5rem; 
+            height: 5rem;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+
+          &:nth-child(1)::before {
+            background-image: url("../../assets/Images/ImagesLandingPage/1.png");
+          }
+
+          &:nth-child(2)::before {
+            background-image: url("../../assets/Images/ImagesLandingPage/2.png");
+          }
+
+          &:nth-child(3)::before {
+            background-image: url("../../assets/Images/ImagesLandingPage/3.png");
+          }
+
+          &:nth-child(4)::before {
+            background-image: url("../../assets/Images/ImagesLandingPage/4.png");
+          }
+
+       
+          .title {
+            font-size: 20px; 
+            font-weight: bold;
+            display: block; 
+            margin-bottom: 0.25rem;
+          }
+
+          .description {
+            font-size: 16px;
+            color: $text-color;
+          }
         }
       }
     }
+  }
+}
+
+
+
+@media (max-width: 1200px) {
+  .beneficiosContent {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  .beneficiosContent {
+    flex-direction: column;
+    align-items: center;
   }
 }

@@ -6,7 +6,7 @@ import DivisionOro from "../../assets/Images/ImagesLandingPage/oro.png";
 
 const Logros = () => {
   return (
-    <div className="logros">
+    <div  id="logros" className="logros">
       <h2>Logros que cuentan</h2>
       <p className="descripcion">
         Cada vez que tus hijos usan la plataforma ganan puntos concursando en la división Bronce, Plata y Oro.
@@ -32,6 +32,21 @@ const Logros = () => {
             <p>El máximo logro, lo alcanzan los usuarios dedicados.</p>
           </div>
         </div>
+      </div>
+      <h2>¡Hazlo Fácil, Hazlo Divertido!</h2>
+      <p className="descripcion">
+        Aprende a usar la plataforma en pocos pasos y empieza tu camino hacia la educación financiera.
+      </p>
+
+      <div className="video-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/4o-UJTaEBjw"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
       </div>
     </div>
   );

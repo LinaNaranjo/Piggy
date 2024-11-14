@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+$text-color: #000000;
+
+.preguntas-frecuentes {
+  padding: 20px;
+  border-radius: 10px;
+  color: $text-color;
+
+  h1 {
+    font-family: "Mochiy Pop One", sans-serif;
+    font-size: 2em;
+    color: $text-color;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+  }
+
+  .pregunta {
+    margin-bottom: 15px;
+
+    h2 {
+      font-family: "Mooli", sans-serif;
+      font-size: 1.5em;
+      color: $text-color;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-family: "Mooli", sans-serif;
+      font-size: 1em;
+      line-height: 1.5;
+      margin: 0;
+      color: $text-color;
+    }
+  }
+}

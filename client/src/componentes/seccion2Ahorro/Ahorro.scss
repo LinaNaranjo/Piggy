@@ -1,15 +1,15 @@
-$mint-green: #76D7C4;
-$pink-border: #FADBD8;
-
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+$mint-green: #76D7C4;
+$pink-border: #FADBD8;
 
 .containerAhorro {
     width: 100%;
     position: relative;
   
     .AhorroImage {
-      width: 100%;
+      width: 90%;
       height: auto;
       display: block;
       max-width: none;
