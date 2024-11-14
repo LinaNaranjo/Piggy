@@ -1,5 +1,6 @@
 package com.piggy.piggyServer.Jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -10,9 +11,10 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.function.Function;
 
 @Service
-public class JwtTokenProvider {
+public class JwtTokenProviderService {
   private final String secretKey = "QnFybGZMVzJmbkpFclpGQ3NyZzVZSkpINzkwbkVzWTM=";
   public String getToken(UserDetails userDetails){
     return getToken(new HashMap<>(), userDetails);
@@ -34,4 +36,32 @@ public class JwtTokenProvider {
     return Keys.hmacShaKeyFor(keyBytes);
   }
 
+  public String getUsernameFromToken(String token){
+    return getClaim(token, Claims::getSubject);
+  }
+
+  public boolean isTokenValid(String token, UserDetails userDetails) {
+    //verificar que el username que extraemos corresponde al usuario que se encuentra en la base de datos
+    final String username = getUsernameFromToken(token);
+    return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+  }
+
+  private Claims getAllClaims(String token) { //Claims: datos que se guardadn en el token
+    return Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJwt(token).getBody();
+  }
+
+  public <T> T getClaim (String token, Function<Claims, T> claimsResover){
+    final Claims claims = getAllClaims(token); //obtener todos los claims
+    return claimsResover.apply(claims);//aplicar la funcion
+  }
+
+  //Obtener la fecha de expiración
+  private Date getExpiration(String token) {
+    return getClaim(token, Claims::getExpiration);
+  }
+
+  //Verificar si el token ha expirado
+  private boolean isTokenExpired(String token) {
+    return getExpiration(token).before(new Date());
+  }
 }
