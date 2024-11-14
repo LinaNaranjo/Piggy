@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+$text-color: #000000;
+$mint-green: #76d7c4;
+$pink-border: #FADBD8;
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.seccion1-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.content {
+  flex: 1;
+  h1 {
+    color: $text-color;
+    font-family: "Mochiy Pop One", sans-serif;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: "Mooli", sans-serif;
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 2rem;
+    color: $text-color;
+  }
+}
+
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  
+  .bannerPrincipal {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.btnBanner {
+  padding: 10px 20px;
+  background-color: $pink-border;
+  color: $text-color;
+  border: none;
+  border-radius: 5px;
+  font-family: "Mochiy Pop One", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+}

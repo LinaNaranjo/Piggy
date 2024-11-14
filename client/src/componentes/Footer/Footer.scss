@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+
+$mint-green: #76d7c4;
+$pink-border: #fadbd8;
+$text-color: #000000;
+
+.footer {
+  background-color: $mint-green;
+  color: $text-color;
+  font-family: "Mochiy Pop One", sans-serif;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  flex-wrap: wrap;
+
+  .footerColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .footerLogo {
+    width: 150px;
+  }
+
+  .footerLinks {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+      font-weight: bold;
+
+      &:hover {
+        color: #1abc9c;
+        font-size: 1.2rem; 
+        cursor: pointer;
+        transition: font-size 0.3s ease;
+      }
+    }
+  }
+
+  .footerSocialIcons {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+
+    a {
+      display: inline-block;
+    }
+
+    img {
+      width: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    a:hover img {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+  }
+
+  .footerText {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .footer {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 10px;
+  }
+
+  .footerLinks {
+    margin-top: 1rem;
+  }
+
+  .footerSocialIcons {
+    margin-top: 1rem;
+  }
+}
