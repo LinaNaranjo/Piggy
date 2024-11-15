@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+$mint-green: #76d7c4;
+$white: #ffffff;
+$pink-border: #fadbd8;
+$text-color: #000000;
+$hover-color: blue;
+$text-primary: "Mochiy Pop One", sans-serif;
+$text-secundary: "Mooli", sans-serif;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  font-family: $text-secundary;
+  background-color: #fcf7f3;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.modal input {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.modal {
+  .contenedor-close {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    .close-boton {
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      color: black;
+      font-size: 16px;
+      background-color: transparent;
+    }
+  }
+
+  .boton-guardar {
+    color: #000000;
+    font-family: $text-secundary;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    border: none;
+    border-radius: 20px;
+    background-color: $mint-green;
+  }
+}

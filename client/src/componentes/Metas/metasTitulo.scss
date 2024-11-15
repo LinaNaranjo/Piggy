@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+$mint-green: #76d7c4;
+$white: #ffffff;
+$pink-border: #fadbd8;
+$text-color: #000000;
+$hover-color: blue;
+
+.contenedor-titulo {
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+
+  h1 {
+    font-family: "Mochiy Pop One", sans-seri;
+    font-weight: lighter;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      padding: 0;
+    }
+  }
+
+  .boton-agregar {
+    color: #000000;
+    font-family: "Mooli", sans-serif;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    width: 20%;
+    border: none;
+    border-radius: 20px;
+    background-color: $mint-green;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
+      box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+      background-color: $mint-green;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+      width: 30%;
+      padding: 0;
+    }
+  }
+}

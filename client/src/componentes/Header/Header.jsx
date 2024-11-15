@@ -1,18 +1,31 @@
 import React, { useState } from "react";
 import "./header.scss";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/Images/ImagesNavbar/LogoNavbar.png";
 import usuario from "../../assets/Images/ImagesNavbar/usuario.jpg";
 
+const tabs = [
+  { name: "Inicio", path: "/home" },
+  { name: "Mis metas", path: "/metas" },
+  { name: "Mis ingresos", path: "/ingresos" },
+  { name: "Mis gastos", path: "/gastos" },
+  { name: "Mis patrocinadores", path: "/patrocinadores" },
+  { name: "Mis tareas", path: "/tareas" },
+  { name: "Mi nivel", path: "/nivel" },
+];
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [ activeTab, setActiveTab ] = useState("Inicio");
+  const [ activeTab, setActiveTab ] = useState(location.pathname);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleTabClick = (tab) => {
-    setActiveTab(tab);
+    setActiveTab(tab.path);
+    navigate(tab.path);
   };
 
 
@@ -23,13 +36,13 @@ const Header = () => {
       </div>
       <nav className={`header-navbar ${isOpen ? "open" : ""}`}>
       <ul>
-          {["Inicio", "Mis metas", "Mis ingresos", "Mis gastos", "Mis patrocinadores", "Mis tareas", "Mi nivel"].map((tab) => (
+          {tabs.map((tab) => (
             <li
-              key={tab}
-              className={activeTab === tab ? "active" : ""}
+              key={tab.name}
+              className={activeTab === tab.path ? "active" : ""}
               onClick={() => handleTabClick(tab)}
             >
-              {tab}
+              {tab.name}
             </li>
           ))}
           {isOpen && <li className="user-mobile">Mi Cuenta</li>}
