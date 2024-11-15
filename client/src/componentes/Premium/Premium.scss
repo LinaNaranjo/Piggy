@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+$mint-green: #76D7C4;
+$text-color: #000000;
+
+.premiumContainer {
+  font-family: 'Mochiy Pop One', sans-serif;
+  color: $text-color;
+  padding: 0 5rem; 
+  margin-bottom: 4rem;
+
+  .premiumHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+
+    .premiumText {
+      flex: 1;
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .btnVerPlan {
+        background-color: $mint-green;
+        color: #fff;
+        border: none;
+        padding: 12px 30px; 
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 2rem;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.2rem;
+        font-weight: bold;
+        transition: all 0.3s ease; 
+      
+       
+        &:hover {
+          transform: scale(1.1); 
+        }
+    
+        &:hover {
+          background-color: darken($mint-green, 10%); 
+        }
+      }
+    }
+
+    .premiumImageContainer {
+      flex: 0.5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .premiumImage {
+        max-width: 300px;
+        height: auto;
+      }
+    }
+  }
+
+  .premiumComparison {
+    h2 {
+      font-size: 2rem;
+      margin-top: 4rem;
+      margin-bottom: 1rem;
+      text-align: left;
+
+      .highlight {
+        color: $mint-green;
+      }
+    }
+
+    .comparisonTable {
+      display: flex;
+      flex-direction: column;
+      
+      .row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid $text-color;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .descriptionContainer {
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 60px;
+            margin-right: 15px;
+          }
+
+          .description {
+            display: flex;
+            flex-direction: column;
+
+            h3 {
+              font-family: 'Mochiy Pop One', sans-serif;
+              font-size: 1.2rem;
+              margin: 0;
+            }
+
+            p {
+              font-family: 'Mooli', sans-serif;
+              font-size: 1rem;
+              margin-top: 0.5rem;
+            }
+          }
+        }
+
+        .iconColumn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            width: 60px;
+          }
+        }
+      }
+
+      .header {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        text-align: center;
+        font-weight: bold;
+        background-color: transparent;
+
+        .planTitle {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

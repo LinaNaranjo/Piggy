@@ -4,6 +4,7 @@ import Seccion1 from '../../componentes/seccion1Landing/Seccion1';
 import Ahorro from '../../componentes/seccion2Ahorro/Ahorro';
 import Beneficios from '../../componentes/Beneficios/Beneficios';
 import Logros from '../../componentes/Logros/Logros';
+import Premium from '../../componentes/Premium/Premium';
 import Footer from '../../componentes/Footer/Footer';
 
 const LandingPage = () => {
@@ -14,6 +15,7 @@ const LandingPage = () => {
       <Beneficios/>
       <Ahorro/>
       <Logros/>
+      <Premium/>
       <Footer/>
     </div>
   );
