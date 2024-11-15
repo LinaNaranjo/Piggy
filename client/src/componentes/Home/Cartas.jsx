@@ -15,7 +15,7 @@ const Cartas = () => {
     { id: 1, title: "Mis Metas", image: misMetas, path: "/metas" },
     { id: 2, title: "Mis Ingresos", image: misIngresos, path: "/ingresos" },
     { id: 3, title: "Mis Gastos", image: misGastos, path: "/gastos" },
-    { id: 4, title: "Mis Metas", image: misTareas, path: "/tareas" },
+    { id: 4, title: "Mis Tareas", image: misTareas, path: "/tareas" },
     { id: 5, title: "Mis Patrocinadores", image: misPatrocinadores, path: "/patrocinadores"  },
     { id: 6, title: "Mi Nivel", image: miNivel, path: "/nivel" },
   ];
