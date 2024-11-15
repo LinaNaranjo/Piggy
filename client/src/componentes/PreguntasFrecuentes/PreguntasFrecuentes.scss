@@ -4,15 +4,17 @@
 $text-color: #000000;
 
 .preguntas-frecuentes {
-  padding: 20px;
+  padding: 80px;
   border-radius: 10px;
   color: $text-color;
+  width: 75%;
+  
 
   h1 {
     font-family: "Mochiy Pop One", sans-serif;
     font-size: 2em;
     color: $text-color;
-    text-align: center;
+    text-align: left;
     margin-bottom: 3rem;
     margin-top: 2rem;
   }
