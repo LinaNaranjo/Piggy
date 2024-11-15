@@ -18,16 +18,7 @@ public class AuthService {
   private final PasswordEncoder passwordEncoder;
   private final AuthenticationManager authenticationManager;
 
-  public AuthResponse login(LoginRequest loginRequest){
-    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-    UserDetails user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();//busqueda del usario
-    String token = jwtTokenProviderService.getToken(user);//obtención del token
-    return AuthResponse.builder()//patrón de diseño builder para la creación de objetos
-        .token(token)//token
-        .build();
-  }
-
-  public AuthResponse register(RegisterRequest registerRequest) {
+  public String register(RegisterRequest registerRequest) {
     //patrón de diseño builder para la creación de objetos
     UserEntity userEntity = UserEntity.builder()
         .name(registerRequest.getName())
@@ -38,7 +29,25 @@ public class AuthService {
         .roleUser(registerRequest.getRoleUser())
         .build();
     userRepository.save(userEntity);
-    return AuthResponse.builder().token(jwtTokenProviderService.getToken(userEntity)).build();
-
+    //return AuthResponse.builder().token(jwtTokenProviderService.getToken(userEntity)).build();
+    return "Usuario registrado";
   }
+
+/*  public AuthResponse login(LoginRequest loginRequest){
+    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+    UserDetails user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();//busqueda del usario
+    String token = jwtTokenProviderService.getToken(user);//obtención del token
+    return AuthResponse.builder()//patrón de diseño builder para la creación de objetos
+        .token(token)//token
+        .build();
+  }*/
+
+  public String login(LoginRequest loginRequest){
+    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+    UserDetails user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();//busqueda del usario
+    String token = jwtTokenProviderService.getToken(user);//obtención del token
+    return "Bienvenido " + loginRequest.email; //Todo: Traer nombre del usuario
+  }
+
+
 }
