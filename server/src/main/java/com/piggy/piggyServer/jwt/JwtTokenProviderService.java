@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.Jwt;
+package com.piggy.piggyServer.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

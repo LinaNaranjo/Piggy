@@ -1,5 +1,5 @@
 // Este filtro se encarga de verificar la validez del token en cada petición y autenticar al usuario.
-package com.piggy.piggyServer.Jwt;
+package com.piggy.piggyServer.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
