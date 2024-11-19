@@ -1,6 +1,6 @@
 package com.piggy.piggyServer.config;
 
-import com.piggy.piggyServer.Jwt.JwtAuthFilter;
+import com.piggy.piggyServer.jwt.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

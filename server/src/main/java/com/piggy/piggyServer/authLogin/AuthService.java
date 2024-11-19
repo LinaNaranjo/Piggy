@@ -1,6 +1,6 @@
-package com.piggy.piggyServer.auth;
+package com.piggy.piggyServer.authLogin;
 
-import com.piggy.piggyServer.Jwt.JwtTokenProviderService;
+import com.piggy.piggyServer.jwt.JwtTokenProviderService;
 import com.piggy.piggyServer.user.UserEntity;
 import com.piggy.piggyServer.user.UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.auth;
+package com.piggy.piggyServer.authLogin;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
