@@ -10,76 +10,67 @@ $text-primary: "Mochiy Pop One", sans-serif;
 $text-secundary: "Mooli", sans-serif;
 
 .goal-card {
-    background-color: #fcf7f3;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 320px;
+  position: relative;
+  background-color: #fcf7f3;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 320px;
 
-    @media (max-width: 768px) {
-        width: 300px;
-      }
+  @media (max-width: 768px) {
+    width: 300px;
   }
-  
+
+  .top-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+  }
+
   .goal-card h3 {
     font-family: $text-primary;
     margin-bottom: 8px;
     font-size: 1.3rem;
-    font-weight:lighter;
+    font-weight: lighter;
   }
-  
-  .goal-score, .goal-activities {
+
+  .goal-score,
+  .goal-activities {
     font-family: $text-secundary;
     margin: 8px 0;
     font-size: 1rem;
   }
-  
+
   .progress-container {
     margin: 20px 0;
     display: flex;
     justify-content: center;
   }
-  
+
   .circle-progress {
     font-family: $text-secundary;
-    width: 80px; 
+    width: 80px;
     height: 80px;
   }
-  
-  .goal-buttons {
-    display: flex;
-    justify-content:flex-end;
-    margin-top: 15px;
 
-    img {
-        width: 2rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        &:hover {
-          transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
-          box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
-        }
+  .congratulations {
+    text-align: center;
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+    font-size: 1.2rem;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
     }
-
-    button {
-      background-color: transparent;
-      border: none;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-      cursor: pointer;
+    to {
+      opacity: 1;
     }
   }
-  
-  .icon-incomplete {
-    filter: grayscale(100%);
-    opacity: 0.6;
-  }
-  
-  .icon-complete {
-    filter: grayscale(0%);
-    opacity: 1;
-  }
-
-  
+}

@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./modal.scss";
 
-const Modal = ({ onClose, onSave }) => {
+const Modal = ({ goal, onClose, onSave }) => {
   const [goalData, setGoalData] = useState({
     name: "",
     amountSaved: 0,
-    totalAmount: 0,
-    activitiesDone: 0,
-    activitiesTotal: 0,
+    totalAmount: "",
   });
+  const [newAmount, setNewAmount] = useState("");
+
+  useEffect(() => {
+    if (goal) {
+      setGoalData({
+        id: goal.id,
+        name: goal.name,
+        amountSaved: goal.amountSaved,
+        totalAmount: goal.totalAmount,
+      });
+    }
+  }, [goal]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,11 +28,27 @@ const Modal = ({ onClose, onSave }) => {
     }));
   };
 
+  const handleAddAmount = () => {
+    setGoalData((prevState) => ({
+      ...prevState,
+      amountSaved: prevState.amountSaved + parseFloat(newAmount), // Sumar a amountSaved
+    }));
+    setNewAmount("");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!goalData.totalAmount) {
+      alert("El campo 'Valor Total' es obligatorio");
+      return;
+    }
     console.log(goalData);
     onSave(goalData);
-    alert("Meta guardada exitosamente");
+    if (goal) {
+      alert("Meta editada exitosamente");
+    } else {
+      alert("Meta agregada exitosamente");
+    }
     onClose();
   };
 
@@ -30,7 +56,7 @@ const Modal = ({ onClose, onSave }) => {
     <div className="modal-overlay">
       <div className="modal">
         <div className="contenedor-close">
-          <h2>Agregar Nueva Meta</h2>
+          <h2>{goal ? "Editar Meta" : "Agregar Nueva Meta"}</h2>
           <button className="close-boton" onClick={onClose}>
             X
           </button>
@@ -53,30 +79,29 @@ const Modal = ({ onClose, onSave }) => {
             onChange={handleChange}
             required
           />
-          <label>Cantidad Ahorrada:</label>
+          <label>Total Ahorrado:</label>
           <input
             type="number"
             name="amountSaved"
             value={goalData.amountSaved}
             onChange={handleChange}
-            required
+            disabled
           />
-          <label>Actividades Realizadas:</label>
-          <input
-            type="number"
-            name="activitiesDone"
-            value={goalData.activitiesDone}
-            onChange={handleChange}
-            required
-          />
-          <label>Actividades Totales:</label>
-          <input
-            type="number"
-            name="activitiesTotal"
-            value={goalData.activitiesTotal}
-            onChange={handleChange}
-            required
-          />
+          <div className="add-amount">
+            <input
+              type="number"
+              value={newAmount}
+              onChange={(e) => setNewAmount(e.target.value)}
+              placeholder={goal ? "Realizar Aporte" : "Primer Aporte"}
+            />
+            <button
+              type="button"
+              onClick={handleAddAmount}
+              className="boton-agregar-modal"
+            >
+              +
+            </button>
+          </div>
           <button className="boton-guardar" type="submit">
             Guardar
           </button>
