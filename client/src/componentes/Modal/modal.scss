@@ -19,6 +19,7 @@ $text-secundary: "Mooli", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10000; 
 }
 
 .modal {
@@ -48,6 +49,31 @@ $text-secundary: "Mooli", sans-serif;
       color: black;
       font-size: 16px;
       background-color: transparent;
+      &:hover {
+        background-color: $mint-green;
+      }
+    }
+  }
+
+  .add-amount {
+    display: flex;
+    align-items: center;
+
+    input {
+      flex: 1;
+      padding: 8px;
+      margin-right: 10px;
+    }
+    .boton-agregar-modal {
+      padding: 8px 12px;
+      background-color: transparent;
+      color: black;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      &:hover {
+        background-color: $mint-green;
+      }
     }
   }
 
@@ -62,5 +88,11 @@ $text-secundary: "Mooli", sans-serif;
     border: none;
     border-radius: 20px;
     background-color: $mint-green;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
+      box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+      background-color: $mint-green;
+    }
   }
 }

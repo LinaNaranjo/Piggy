@@ -16,11 +16,16 @@ const tabs = [
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [ activeTab, setActiveTab ] = useState(location.pathname);
+  const [activeTab, setActiveTab] = useState(location.pathname);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleTabClick = (tab) => {
@@ -28,6 +33,9 @@ const Header = () => {
     navigate(tab.path);
   };
 
+  const handleLogout = () => {
+    navigate("/");
+  };
 
   return (
     <header className="header">
@@ -35,7 +43,7 @@ const Header = () => {
         <img src={logo} alt="Logo Piggy" />
       </div>
       <nav className={`header-navbar ${isOpen ? "open" : ""}`}>
-      <ul>
+        <ul>
           {tabs.map((tab) => (
             <li
               key={tab.name}
@@ -50,9 +58,17 @@ const Header = () => {
       </nav>
       <div className="header-usuario">
         <img src={usuario} alt="Imagen Usuario" />
-        <span className="user-name">Mi Cuenta</span>
-        <span className="icono-abajo">▼</span>
+        <span className="icono-abajo" onClick={toggleDropdown}>
+          {isDropdownOpen ? "▲" : "▼"}
+        </span>
+        {isDropdownOpen && (
+          <div className={`dropdown-menu ${isDropdownOpen ? "open" : ""}`}>
+            <span>Mi Perfil</span>
+            <span onClick={handleLogout}>Salir</span>
+          </div>
+        )}
       </div>
+
       <button className="menu-toggle" onClick={toggleMenu}>
         ☰
       </button>

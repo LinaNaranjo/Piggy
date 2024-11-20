@@ -2,36 +2,49 @@ import React, { useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import "./metasCard.scss";
-import edit from "../../assets/Images/ImagesInicio/edit.svg";
-import check from "../../assets/Images/ImagesInicio/check.svg";
-import eliminar from "../../assets/Images/ImagesInicio/delete.svg";
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 const MetasCard = ({ goal, onEdit, onDelete, onComplete }) => {
-  const [isCompleted, setIsCompleted] = useState(false);
-
-  const toggleCompletion = () => {
-    setIsCompleted(!isCompleted);
-    onComplete(goal.id, !isCompleted);
-  };
-
   const progress = (goal.amountSaved / goal.totalAmount) * 100;
-  const activitiesProgress = (goal.activitiesDone / goal.activitiesTotal) * 100;
 
   return (
     <div className="goal-card">
+      <div className="top-icons">
+        {progress < 100 && (
+          <>
+            <ModeEditOutlinedIcon
+              sx={{
+                fontSize: 20,
+                color: "gray",
+                "&:hover": {
+                  color: "green",
+                  transform: "scale(1.2)",
+                },
+              }}
+              onClick={() => onEdit(goal.id)}
+            />
+            <DeleteOutlinedIcon
+              sx={{
+                fontSize: 20,
+                color: "grey",
+                "&:hover": {
+                  color: "red",
+                  transform: "scale(1.2)",
+                },
+              }}
+              onClick={() => onDelete(goal.id)}
+            />
+          </>
+        )}
+      </div>
+
       <h3>{goal.name}</h3>
       <div className="goal-score">
         <span>
           {goal.amountSaved} / {goal.totalAmount}
         </span>
       </div>
-
-      <div className="goal-activities">
-        <span>
-          Actividades realizadas: {goal.activitiesDone} / {goal.activitiesTotal}
-        </span>
-      </div>
-
       <div className="progress-container">
         <div className="circle-progress">
           <CircularProgressbar
@@ -40,7 +53,7 @@ const MetasCard = ({ goal, onEdit, onDelete, onComplete }) => {
             styles={{
               path: {
                 stroke: "#76d7c4",
-                strokeWidth: 10, 
+                strokeWidth: 10,
               },
               trail: {
                 stroke: "#F39C12",
@@ -49,22 +62,11 @@ const MetasCard = ({ goal, onEdit, onDelete, onComplete }) => {
           />
         </div>
       </div>
-
-      <div className="goal-buttons">
-        <button onClick={() => onEdit(goal.id)}>
-          <img src={edit} alt="" />
-        </button>
-        <button onClick={() => onDelete(goal.id)}>
-          <img src={eliminar} alt="" />
-        </button>
-        <button onClick={toggleCompletion}>
-          <img
-            src={check}
-            alt="Complete"
-            className={isCompleted ? "icon-complete" : "icon-incomplete"}
-          />
-        </button>
-      </div>
+      {progress >= 100 && (
+        <div className="congratulations">
+          <p>🎉 ¡Felicitaciones! Has completado esta meta. 🎉</p>
+        </div>
+      )}
     </div>
   );
 };
