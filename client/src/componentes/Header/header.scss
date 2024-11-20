@@ -74,7 +74,7 @@ $text-secundary: "Mooli", sans-serif;
       flex-direction: column;
       gap: 10px;
       transform: translateY(-15px); 
-      transition: transform 0.3s ease, opacity 0.3s ease; /* Suaviza la aparición */
+      transition: transform 0.3s ease, opacity 0.3s ease;
 
       span {
         background: none;

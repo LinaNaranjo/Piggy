@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+$mint-green: #76d7c4;
+$white: #ffffff;
+$pink-border: #fadbd8;
+$text-color: #000000;
+$hover-color: blue;
+$text-primary: "Mochiy Pop One", sans-serif;
+$text-secundary: "Mooli", sans-serif;
+
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+  
+    button {
+    font-family: $text-secundary;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s, transform 0.2s;
+  
+      &:hover {
+        background-color: $mint-green;
+        transform: scale(1.05);
+      }
+  
+      &:active {
+        background-color: $mint-green;
+        color: white;
+      }
+    }
+  }
+  
