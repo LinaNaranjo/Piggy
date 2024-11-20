@@ -59,10 +59,12 @@ $text-secundary: "Mooli", sans-serif;
   .congratulations {
     text-align: center;
     margin-top: 10px;
-    color: green;
     font-weight: bold;
     font-size: 1.2rem;
     animation: fadeIn 0.5s ease-in-out;
+    p {
+      color: green;
+    }
   }
 
   @keyframes fadeIn {

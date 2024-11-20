@@ -14,7 +14,7 @@ const tabs = [
   { name: "Mi nivel", path: "/nivel" },
 ];
 
-const Header = () => {
+const Header = ({ onMenuToggle }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(location.pathname);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -22,6 +22,7 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    onMenuToggle(!isOpen);
   };
 
   const toggleDropdown = () => {

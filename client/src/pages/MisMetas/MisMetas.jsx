@@ -4,6 +4,7 @@ import Header from "../../componentes/Header/Header";
 import MetasTitulo from "../../componentes/Metas/MetasTitulo";
 import MetasCard from "../../componentes/Metas/MetasCard";
 import Modal from "../../componentes/Modal/Modal";
+import FiltrosMetas from "../../componentes/FiltrosMetas/FiltrosMetas";
 
 const MisMetas = () => {
   const [goals, setGoals] = useState([
@@ -32,8 +33,14 @@ const MisMetas = () => {
       amountSaved: 110000,
     },
   ]);
+  const [filteredGoals, setFilteredGoals] = useState(goals);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleMenuToggle = (isOpen) => {
+    setIsMenuOpen(isOpen);
+  };
 
   const handleEdit = (id) => {
     const goalToEdit = goals.find((goal) => goal.id === id);
@@ -46,7 +53,9 @@ const MisMetas = () => {
       "¿Estás seguro de que quieres eliminar esta meta?"
     );
     if (isConfirmed) {
-      setGoals(goals.filter((goal) => goal.id !== id));
+      const updatedGoals = goals.filter((goal) => goal.id !== id);
+      setGoals(updatedGoals);
+      setFilteredGoals(updatedGoals);
     }
   };
 
@@ -56,16 +65,17 @@ const MisMetas = () => {
 
   const handleAddGoal = (newGoal) => {
     const newGoalWithId = { ...newGoal, id: goals.length + 1 };
-    setGoals([...goals, newGoalWithId]);
+    const updatedGoals = [...goals, newGoalWithId];
+    setGoals(updatedGoals);
+    setFilteredGoals(updatedGoals);
   };
 
   const handleSave = (updatedGoal) => {
-    console.log("Meta actualizada:", updatedGoal);
-    setGoals((prevGoals) =>
-      prevGoals.map((goal) =>
-        goal.id === updatedGoal.id ? { ...goal, ...updatedGoal } : goal
-      )
+    const updatedGoals = goals.map((goal) =>
+      goal.id === updatedGoal.id ? { ...goal, ...updatedGoal } : goal
     );
+    setGoals(updatedGoals);
+    setFilteredGoals(updatedGoals);
   };
 
   const handleCloseModal = () => {
@@ -75,26 +85,32 @@ const MisMetas = () => {
 
   return (
     <>
-      <Header />
-      <MetasTitulo onAddGoal={handleAddGoal} />
-      <div className="goal-list">
-        {goals.map((goal) => (
-          <MetasCard
-            key={goal.id}
-            goal={goal} 
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            onComplete={handleComplete}
+      <Header onMenuToggle={handleMenuToggle} />
+      <div
+        className="content"
+        style={{ marginTop: isMenuOpen ? "30rem" : "0" }}
+      >
+        <MetasTitulo onAddGoal={handleAddGoal} />
+        <FiltrosMetas goals={goals} setFilteredGoals={setFilteredGoals} />
+        <div className="goal-list">
+          {filteredGoals.map((goal) => (
+            <MetasCard
+              key={goal.id}
+              goal={goal}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onComplete={handleComplete}
+            />
+          ))}
+        </div>
+        {isModalOpen && (
+          <Modal
+            goal={selectedGoal}
+            onClose={handleCloseModal}
+            onSave={handleSave}
           />
-        ))}
+        )}
       </div>
-      {isModalOpen && (
-        <Modal
-          goal={selectedGoal}
-          onClose={handleCloseModal}
-          onSave={handleSave}
-        />
-      )}
     </>
   );
 };
