@@ -79,6 +79,22 @@ const Modal = ({ goal, onClose, onSave }) => {
             onChange={handleChange}
             required
           />
+          <label>Ingresar Aporte:</label>
+          <div className="add-amount">
+            <input
+              type="number"
+              value={newAmount}
+              onChange={(e) => setNewAmount(e.target.value)}
+              placeholder={goal ? "0" : "Primer Aporte"}
+            />
+            <button
+              type="button"
+              onClick={handleAddAmount}
+              className="boton-agregar-modal"
+            >
+              Agregar
+            </button>
+          </div>
           <label>Total Ahorrado:</label>
           <input
             type="number"
@@ -87,21 +103,6 @@ const Modal = ({ goal, onClose, onSave }) => {
             onChange={handleChange}
             disabled
           />
-          <div className="add-amount">
-            <input
-              type="number"
-              value={newAmount}
-              onChange={(e) => setNewAmount(e.target.value)}
-              placeholder={goal ? "Realizar Aporte" : "Primer Aporte"}
-            />
-            <button
-              type="button"
-              onClick={handleAddAmount}
-              className="boton-agregar-modal"
-            >
-              +
-            </button>
-          </div>
           <button className="boton-guardar" type="submit">
             Guardar
           </button>
