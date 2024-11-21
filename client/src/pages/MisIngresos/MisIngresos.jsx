@@ -1,14 +1,13 @@
 import React from "react";
 import Header from "../../componentes/Header/Header";
-import IngresosTitulo from "../../componentes/Ingresos/IngresosTitulo";
-import IngresosList from "../../componentes/Ingresos/IngresosList";
+import Transacciones from "../../componentes/Ingresos/Transacciones";
 
 const MisIngresos = () => {
   return (
     <>
       <Header />
-      <IngresosTitulo />
-      <IngresosList />
+      <Transacciones type="ingresos" />
+ 
     </>
   );
 };
