@@ -35,6 +35,10 @@ $text-secundary: "Mooli", sans-serif;
   padding: 20px;
   border-radius: 8px;
   width: 400px;
+  
+  @media (max-width: 768px) {
+    width: 350px;
+  }
   .contenedor-close {
     display: flex;
     justify-content: space-between;

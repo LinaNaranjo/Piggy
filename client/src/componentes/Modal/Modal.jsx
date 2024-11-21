@@ -85,7 +85,7 @@ const Modal = ({ goal, onClose, onSave }) => {
               type="number"
               value={newAmount}
               onChange={(e) => setNewAmount(e.target.value)}
-              placeholder={goal ? "0" : "Primer Aporte"}
+              placeholder={goal ? "0" : "0"}
             />
             <button
               type="button"
