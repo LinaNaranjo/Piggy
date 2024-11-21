@@ -39,7 +39,7 @@ const MetasCard = ({ goal, onEdit, onDelete, onComplete }) => {
         )}
       </div>
 
-      <h3>{goal.name}</h3>
+      <h3 className="nombre-card">{goal.name}</h3>
       <div className="goal-score">
         <span>
           {goal.amountSaved} / {goal.totalAmount}
