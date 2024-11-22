@@ -7,12 +7,12 @@ import usuario from "../../assets/Images/ImagesNavbar/usuario.jpg";
 const tabs = [
   { name: "Inicio", path: "/home" },
   { name: "Tutoriales", path: "/home", isDropdown: true },
-  { name: "Mis metas", path: "/metas" },
-  { name: "Mis ingresos", path: "/ingresos" },
-  { name: "Mis gastos", path: "/gastos" },
-  { name: "Mis patrocinadores", path: "/patrocinadores" },
-  { name: "Mis tareas", path: "/tareas" },
-  { name: "Mi nivel", path: "/nivel" },
+  { name: "Metas", path: "/metas" },
+  { name: "Ingresos", path: "/ingresos" },
+  { name: "Gastos", path: "/gastos" },
+  { name: "Patrocinadores", path: "/patrocinadores" },
+  { name: "Tareas", path: "/tareas" },
+  { name: "Nivel", path: "/nivel" },
 ];
 
 const Header = ({ onMenuToggle }) => {
