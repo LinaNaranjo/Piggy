@@ -12,12 +12,12 @@ import miNivel from "../../assets/Images/ImagesInicio/miNivel.png"
 const Cartas = () => {
   const navigate = useNavigate();
   const cardData = [
-    { id: 1, title: "Mis Metas", image: misMetas, path: "/metas" },
-    { id: 2, title: "Mis Ingresos", image: misIngresos, path: "/ingresos" },
-    { id: 3, title: "Mis Gastos", image: misGastos, path: "/gastos" },
-    { id: 4, title: "Mis Tareas", image: misTareas, path: "/tareas" },
-    { id: 5, title: "Mis Patrocinadores", image: misPatrocinadores, path: "/patrocinadores"  },
-    { id: 6, title: "Mi Nivel", image: miNivel, path: "/nivel" },
+    { id: 1, title: "Metas", image: misMetas, path: "/metas" },
+    { id: 2, title: "Ingresos", image: misIngresos, path: "/ingresos" },
+    { id: 3, title: "Gastos", image: misGastos, path: "/gastos" },
+    { id: 4, title: "Tareas", image: misTareas, path: "/tareas" },
+    { id: 5, title: "Patrocinadores", image: misPatrocinadores, path: "/patrocinadores"  },
+    { id: 6, title: "Nivel", image: miNivel, path: "/nivel" },
   ];
 
   const handleCardClick = (path) => {

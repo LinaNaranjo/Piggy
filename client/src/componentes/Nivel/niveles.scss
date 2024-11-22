@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+$mint-green: #76d7c4;
+$white: #ffffff;
+$pink-border: #fadbd8;
+$text-color: #000000;
+$hover-color: blue;
+$text-primary: "Mochiy Pop One", sans-serif;
+$text-secundary: "Mooli", sans-serif;
+
+.contenedor-principal {
+    h1 {
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+  .contenedor-insignias {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+
+    @media (max-width: 768px) {
+        justify-content: center;
+        display: inline-block;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+  .insignia{
+    display: flex;
+
+    @media (max-width: 768px) {
+        padding-bottom: 1.2rem;
+    }
+
+    & section {
+        margin-left: 1rem;
+    }
+  }
+  h3 {
+    font-family: $text-secundary;
+    margin-bottom: 1rem;
+    @media (max-width: 768px) {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+    }
+  }
+  span {
+    font-family: $text-secundary;
+    @media (max-width: 768px) {
+        font-size: 0.8rem;
+    }
+  }
+
+  .titulo-nivel-barras {
+    padding: 3rem;
+    font-family: $text-primary;
+    font-weight: lighter;
+    text-align: center;
+    @media (max-width: 768px) {
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+  }
+}
