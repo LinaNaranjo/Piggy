@@ -61,3 +61,13 @@ Antes de comenzar, asegúrate de tener las siguientes herramientas instaladas en
 
      ```bash
       npm install sass
+ ###
+  5. **Instala librería React Circular Progressbar**
+      Si al clonar el proyecto aparece error por librería React Circular Progressbar Abre tu terminal en la raíz del proyecto y ejecuta:
+
+     ```bash
+      npm install react-circular-progressbar
+
+ 
+
+     
