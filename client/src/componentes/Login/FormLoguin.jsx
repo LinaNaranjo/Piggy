@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./formLoguin.scss";
 import logo from "../../assets/LogoNombre.png";
@@ -6,10 +7,12 @@ import emailIcon from "../../assets/Correo.png";
 import paswordIcon from "../../assets/Candado.png";
 import atrasIcon from "../../assets/Images/ImagesNavbar/atras.png"
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const FormLogin = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("Mateito@gmail.com");
+  const [password, setPassword] = useState("AccenturLoMejor");
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -39,14 +42,39 @@ const FormLogin = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Datos del formulario:", { email, password });
-      setEmail("");
-      setPassword("");
-      setErrors({ email: "", password: "" });
-      navigate("/home");
+      try {
+        const response = await axios.post(`${BASE_URL}/login`, {
+          email,
+          password,
+        });
+
+        // Muestra el contenido completo de la respuesta
+      console.log("Contenido de response.data:", response.data);
+
+      // Accede a los datos del usuario (si la respuesta es correcta)
+      const user = response.data;
+
+      // Verifica si los datos del usuario están presentes
+      if (user) {
+        console.log("Datos del usuario logueado:", user);
+        // Mostrar mensaje en la consola con el correo del usuario (o cualquier otro dato que quieras)
+        console.log("Bienvenido", user.email);  // En tu caso, el email es 'Mateito@gmail.com'
+      } else {
+        console.error("No se encontraron datos de usuario en la respuesta.");
+      }
+
+        // Navega a la página de inicio si el login es exitoso
+        navigate("/home");
+      } catch (error) {
+        console.error("Error al iniciar sesión:", error.response?.data || error.message);
+        setErrors((prev) => ({
+          ...prev,
+          email: "Credenciales inválidas.",
+        }));
+      }
     }
   };
 

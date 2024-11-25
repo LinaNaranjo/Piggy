@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import "./Registro.scss";
+import axios from "axios";
 import logo from "../../assets/LogoNombre.png";
-import atrasIcon from "../../assets/Images/ImagesNavbar/atras.png"
+import atrasIcon from "../../assets/Images/ImagesNavbar/atras.png";
 import { useNavigate } from "react-router-dom";
+
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const FormularioRegistro = () => {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
-    nombre: "",
-    apellido: "",
-    edad: "",
-    rol: "",
-    correo: "",
-    contraseña: "",
+    name: "",
+    lastName: "",
+    age: "",
+    roleUser: "",
+    email: "",
+    password: "",
   });
+
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
 
@@ -25,42 +29,65 @@ const FormularioRegistro = () => {
   const validate = () => {
     let validationErrors = {};
 
-    if (!formValues.nombre) validationErrors.nombre = "El nombre es requerido";
-    if (!formValues.apellido)
-      validationErrors.apellido = "El apellido es requerido";
-    if (!formValues.edad || isNaN(formValues.edad) || formValues.edad <= 0)
-      validationErrors.edad = "Ingresa una edad válida";
-    if (!formValues.rol) validationErrors.rol = "Selecciona un rol";
+    if (!formValues.name) validationErrors.name = "El nombre es requerido.";
+    if (!formValues.lastName)
+      validationErrors.lastName = "El apellido es requerido.";
+    if (!formValues.age || isNaN(formValues.age) || formValues.age <= 0)
+      validationErrors.age = "Ingresa una edad válida.";
+    if (!formValues.roleUser) validationErrors.roleUser = "Selecciona un rol.";
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formValues.correo || !emailRegex.test(formValues.correo))
-      validationErrors.correo = "Ingresa un correo válido";
+    if (!formValues.email || !emailRegex.test(formValues.email))
+      validationErrors.email = "Ingresa un correo válido.";
 
-    if (!formValues.contraseña || formValues.contraseña.length < 6)
-      validationErrors.contraseña =
-        "La contraseña debe tener al menos 6 caracteres";
+    if (!formValues.password || formValues.password.length < 6)
+      validationErrors.password =
+        "La contraseña debe tener al menos 6 caracteres.";
 
     setErrors(validationErrors);
     return Object.keys(validationErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validate()) {
-      console.log("Formulario enviado con éxito:", formValues);
-      setFormValues({
-        nombre: "",
-        apellido: "",
-        edad: "",
-        rol: "",
-        correo: "",
-        contraseña: "",
-      });
-      setTimeout(() => {
-        setShowAlert(false);
-        navigate("/home");
-      }, 2000);
-      
+      const payload = {
+        name: formValues.name, // Corregido
+        lastName: formValues.lastName, // Corregido
+        age: parseInt(formValues.age, 10), // Corregido
+        email: formValues.email, // Corregido
+        password: formValues.password, // Corregido
+        roleUser: formValues.roleUser, // Enviar directamente
+      };
+
+      try {
+        const response = await axios.post(`${BASE_URL}/register`, payload);
+        console.log("Usuario registrado con éxito:", response.data);
+        setShowAlert(true);
+        setFormValues({
+          name: "",
+          lastName: "",
+          age: "",
+          roleUser: "",
+          email: "",
+          password: "",
+        });
+
+        setTimeout(() => {
+          setShowAlert(false);
+          navigate("/home");
+        }, 2000);
+      } catch (error) {
+        console.error(
+          "Error al registrar usuario:",
+          error.response?.data || error.message
+        );
+        setErrors((prev) => ({
+          ...prev,
+          general: "No se pudo completar el registro. Intenta de nuevo.",
+        }));
+      }
     }
   };
 
@@ -73,7 +100,7 @@ const FormularioRegistro = () => {
       <div className="logo-contenedor">
         <img src={logo} alt="Logo" className="logo-imagen" />
         <button onClick={irAtras} className="ir-atras">
-        <img className="boton-regresar" src={atrasIcon} alt="regresar" />
+          <img className="boton-regresar" src={atrasIcon} alt="regresar" />
         </button>
       </div>
       {showAlert && <div className="alerta-exito">Registro exitoso</div>}
@@ -81,81 +108,68 @@ const FormularioRegistro = () => {
         <h1>Crear Cuenta</h1>
         <form className="formulario" onSubmit={handleSubmit}>
           <section className="seccion-input">
-            <label htmlFor="nombre">Nombre Completo</label>
-            <div className="input-con-icono">
-              <input
-                type="text"
-                id="nombre"
-                value={formValues.nombre}
-                onChange={handleChange}
-                placeholder=""
-              />
-              {errors.nombre && <p className="error">{errors.nombre}</p>}
-            </div>
+            <label htmlFor="name">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              value={formValues.name}
+              onChange={handleChange}
+            />
+            {errors.name && <p className="error">{errors.name}</p>}
           </section>
           <section className="seccion-input">
-            <label htmlFor="apellido">Apellidos</label>
-            <div className="input-con-icono">
-              <input
-                type="text"
-                id="apellido"
-                value={formValues.apellido}
-                onChange={handleChange}
-                placeholder=""
-              />
-              {errors.apellido && <p className="error">{errors.apellido}</p>}
-            </div>
+            <label htmlFor="lastName">Apellido</label>
+            <input
+              type="text"
+              id="lastName"
+              value={formValues.lastName}
+              onChange={handleChange}
+            />
+            {errors.lastName && <p className="error">{errors.lastName}</p>}
           </section>
           <section className="seccion-input">
-            <label htmlFor="edad">Edad</label>
-            <div className="input-con-icono">
-              <input
-                type="number"
-                id="edad"
-                value={formValues.edad}
-                onChange={handleChange}
-                placeholder=""
-              />
-              {errors.edad && <p className="error">{errors.edad}</p>}
-            </div>
+            <label htmlFor="age">Edad</label>
+            <input
+              type="number"
+              id="age"
+              value={formValues.age}
+              onChange={handleChange}
+            />
+            {errors.age && <p className="error">{errors.age}</p>}
           </section>
           <section className="seccion-input">
-            <label htmlFor="rol">Rol</label>
-            <select id="rol" value={formValues.rol} onChange={handleChange}>
+            <label htmlFor="roleUser">Rol</label>
+            <select
+              id="roleUser"
+              value={formValues.roleUser}
+              onChange={handleChange}
+            >
               <option value="">Elige una opción</option>
-              <option value="padre">Padre</option>
-              <option value="hijo">Hijo</option>
-              <option value="familiar">Familiar</option>
+              <option value="parent">Padre</option>
+              <option value="child">Hijo</option>
+              <option value="relative">Familiar</option>
             </select>
-            {errors.rol && <p className="error">{errors.rol}</p>}
+            {errors.roleUser && <p className="error">{errors.roleUser}</p>}
           </section>
           <section className="seccion-input">
-            <label htmlFor="correo">Correo Electronico</label>
-            <div className="input-con-icono">
-              <input
-                type="email"
-                id="correo"
-                value={formValues.correo}
-                onChange={handleChange}
-                placeholder="example@example.com"
-              />
-              {errors.correo && <p className="error">{errors.correo}</p>}
-            </div>
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              value={formValues.email}
+              onChange={handleChange}
+            />
+            {errors.email && <p className="error">{errors.email}</p>}
           </section>
           <section className="seccion-input">
             <label htmlFor="password">Contraseña</label>
-            <div className="input-con-icono">
-              <input
-                type="password"
-                id="contraseña"
-                value={formValues.contraseña}
-                onChange={handleChange}
-                placeholder="******"
-              />
-              {errors.contraseña && (
-                <p className="error">{errors.contraseña}</p>
-              )}
-            </div>
+            <input
+              type="password"
+              id="password"
+              value={formValues.password}
+              onChange={handleChange}
+            />
+            {errors.password && <p className="error">{errors.password}</p>}
           </section>
           <div className="opciones">
             <button type="submit" className="registro-boton">
@@ -163,6 +177,7 @@ const FormularioRegistro = () => {
             </button>
           </div>
         </form>
+        {errors.general && <p className="error-general">{errors.general}</p>}
       </div>
     </div>
   );
