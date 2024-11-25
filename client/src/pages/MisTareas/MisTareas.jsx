@@ -1,14 +1,13 @@
 import React from "react";
 import Header from "../../componentes/Header/Header";
-import TareasTitulo from "../../componentes/Tareas/TareasTitulo";
-import TareasList from "../../componentes/Tareas/TareasList";
+import Tareas from "../../componentes/Tareas/Tareas";
 
 const MisTareas = () => {
   return (
     <>
       <Header />
-      <TareasTitulo />
-      <TareasList />
+      <Tareas />
+     
     </>
   );
 };

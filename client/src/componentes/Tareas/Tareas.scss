@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+$mintGreen: #76d7c4;
+$white: #ffffff;
+$pinkBorder: #fadbd8;
+$textColor: #000000;
+$modalBg: #fcf7f3;
+
+.tareas {
+  .tareasHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem;
+
+    h2 {
+      font-size: 2rem;
+      font-family: "Mochiy Pop One", sans-serif;
+    }
+
+    .btnAgregar {
+      padding: 10px 20px;
+      background-color: $mintGreen;
+      border: none;
+      border-radius: 5px;
+      font-family: "Mochiy Pop One", sans-serif;
+      color: $textColor;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($mintGreen, 10%);
+      }
+    }
+  }
+
+  .tareasList {
+    margin: 2rem;
+
+    .tareaCard {
+      background-color: $modalBg;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      width: 48rem;
+
+      .checkbox {
+        width: 25px;
+        height: 25px;
+        accent-color: $mintGreen;
+        margin-right: 10px;
+      }
+
+      .tareaInfo {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        font-family: "Mooli", sans-serif;
+
+        .tareaTexto,
+        .tareaFecha {
+          font-size: 1rem;
+        }
+      }
+
+      .tareaIcons {
+        display: flex;
+        gap: 10px;
+
+        .iconEdit,
+        .iconDelete {
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+
+        .iconEdit:hover {
+          color: $mintGreen;
+        }
+
+        .iconDelete:hover {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+
+    .modalContent {
+      position: relative;
+      background-color: $modalBg;
+      padding: 30px;
+      border-radius: 8px;
+      width: 350px;
+      text-align: left;
+      font-family: "Mooli", sans-serif;
+
+      .closeBtn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        color: $mintGreen;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+          color: darken($mintGreen, 10%);
+        }
+      }
+
+      h3 {
+        font-family: "Mooli", sans-serif;
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      .modalForm {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label {
+          font-size: 1rem;
+        }
+
+        input {
+          padding: 10px;
+          border: 1px solid lighten($mintGreen, 40%);
+          border-radius: 5px;
+          font-size: 1rem;
+        }
+      }
+
+      .btnGuardar {
+        width: 100%;
+        padding: 10px;
+        background-color: $mintGreen;
+        color: $textColor;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($mintGreen, 10%);
+        }
+      }
+    }
+  }
+}
