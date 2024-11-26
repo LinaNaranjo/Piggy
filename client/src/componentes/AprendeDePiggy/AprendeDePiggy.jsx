@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './aprendeConPiggy.scss';
+import './aprendeDePiggy.scss';
 
-const AprendeConPiggy = ({ videos }) => {
+const AprendeDePiggy = ({ videos }) => {
   const [modalVideo, setModalVideo] = useState(null);
 
   const openModal = (url) => {
@@ -13,8 +13,8 @@ const AprendeConPiggy = ({ videos }) => {
   };
 
   return (
-    <div className="aprendeConPiggy">
-      <h1 className="componentTitle">¡Aprende con Piggy!</h1>
+    <div className="aprendeDePiggy">
+      <h1 className="componentTitle">¡Aprende de Piggy!</h1>
       <div className="cardsContainer">
         {videos.map((video, index) => (
           <div
@@ -54,4 +54,4 @@ const AprendeConPiggy = ({ videos }) => {
   );
 };
 
-export default AprendeConPiggy;
+export default AprendeDePiggy;

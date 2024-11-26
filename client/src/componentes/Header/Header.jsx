@@ -67,8 +67,8 @@ const Header = ({ onMenuToggle }) => {
                     activeDropdown === tab.name ? "open" : ""
                   }`}
                 >
-                  <li onClick={() => navigate("/aprende-con-Piggy")}>Aprende de Piggy</li>
-                  <li onClick={() => navigate("/aprende-con-Piggy")}>Aprende con Piggy</li>
+                  <li onClick={() => navigate("/tutoriales2")}>Aprende de Piggy</li>
+                  <li onClick={() => navigate("/tutoriales")}>Aprende con Piggy</li>
                 </ul>
               )}
             </li>
