@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./header.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Images/ImagesNavbar/LogoNavbar.png";
 import usuario from "../../assets/Images/ImagesNavbar/usuario.jpg";
 
@@ -31,8 +31,6 @@ const Header = ({ onMenuToggle }) => {
     setActiveDropdown((prev) => (prev === dropdownName ? null : dropdownName));
   };
 
-  
-
   const handleTabClick = (tab) => {
     if (tab.isDropdown) {
       toggleDropdown(tab.name);
@@ -50,14 +48,18 @@ const Header = ({ onMenuToggle }) => {
   return (
     <header className="header">
       <div className="header-logo">
-        <img src={logo} alt="Logo Piggy" />
+        <Link to="/home">
+          <img src={logo} alt="Logo Piggy" />
+        </Link>
       </div>
       <nav className={`header-navbar ${isOpen ? "open" : ""}`}>
         <ul>
           {tabs.map((tab) => (
             <li
               key={tab.name}
-              className={activeTab === tab.path && !tab.isDropdown ? "active" : ""}
+              className={
+                activeTab === tab.path && !tab.isDropdown ? "active" : ""
+              }
               onClick={() => handleTabClick(tab)}
             >
               {tab.name}
@@ -67,18 +69,22 @@ const Header = ({ onMenuToggle }) => {
                     activeDropdown === tab.name ? "open" : ""
                   }`}
                 >
+
                   <li onClick={() => navigate("/tutoriales2")}>Aprende de Piggy</li>
                   <li onClick={() => navigate("/tutoriales")}>Aprende con Piggy</li>
                 </ul>
               )}
             </li>
           ))}
-          {isOpen && <li className="user-mobile" >Mi Cuenta</li>}
+          {isOpen && <li className="user-mobile">Mi Cuenta</li>}
         </ul>
       </nav>
       <div className="header-usuario">
         <img src={usuario} alt="Imagen Usuario" />
-        <span className="icono-abajo" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+        <span
+          className="icono-abajo"
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
           {isDropdownOpen ? "▲" : "▼"}
         </span>
         {isDropdownOpen && (

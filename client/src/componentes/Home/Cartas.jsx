@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./cartas.scss";
 import { useNavigate } from "react-router-dom";
 import misMetas from "../../assets/Images/ImagesInicio/circulo.png"
@@ -11,6 +12,7 @@ import miNivel from "../../assets/Images/ImagesInicio/miNivel.png"
 
 const Cartas = () => {
   const navigate = useNavigate();
+  const { name } = useSelector((state) => state.user); // Obtiene el nombre del usuario
   const cardData = [
     { id: 1, title: "Metas", image: misMetas, path: "/metas" },
     { id: 2, title: "Ingresos", image: misIngresos, path: "/ingresos" },
@@ -26,7 +28,7 @@ const Cartas = () => {
 
   return (
     <div className="contenedor-principal">
-      <h1>Bienvenido Juan Esteban</h1>
+      <h1>Bienvenido {name || "Usuario"}</h1>
       <div className="cards-container">
         {cardData.map((card) => (
           <div key={card.id} className="card" onClick={() => handleCardClick(card.path)}>
