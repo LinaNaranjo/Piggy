@@ -8,3 +8,9 @@
   .content {
     transition: margin-top 0.1s ease;
   }
+
+  .skeleton-container {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+  }

@@ -1,0 +1,58 @@
+.skeleton-card {
+    width: 250px;
+    height: 300px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    // animation: pulse 1.5s infinite;
+  }
+  
+  .skeleton-top-icons,
+  .skeleton-title,
+  .skeleton-score,
+  .skeleton-progress {
+    background: #ddd;
+    border-radius: 5px;
+  }
+  
+  .skeleton-top-icons {
+    height: 20px;
+    width: 60px;
+    margin: auto;
+  }
+  
+  .skeleton-title {
+    height: 20px;
+    width: 80%;
+    margin: auto;
+  }
+  
+  .skeleton-score {
+    height: 15px;
+    width: 60%;
+    margin: auto;
+  }
+  
+  .skeleton-progress {
+    height: 100px;
+    width: 100%;
+    border-radius: 50%;
+    margin: auto;
+  }
+  
+//   @keyframes pulse {
+//     0% {
+//       background-color: #f0f0f0;
+//     }
+//     50% {
+//       background-color: #e0e0e0;
+//     }
+//     100% {
+//       background-color: #f0f0f0;
+//     }
+//   }
+  
