@@ -12,6 +12,7 @@ import MisPatrocinadores from "./pages/MisPatrocinadores/MisPatrocinadores";
 import MisTareas from "./pages/MisTareas/MisTareas";
 import MiNivel from "./pages/MiNivel/MiNivel";
 import Tutoriales from "./pages/Tutoriales/Tutoriales";
+import Tutoriales2 from "./pages/Tutoriales2/Tutoriales2";
 function App() {
   return (
     <Router>
@@ -21,13 +22,14 @@ function App() {
         <Route path="/login" element={<FormLogin />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/aprende-con-piggy" element={<Tutoriales />} />
         <Route path="/metas" element={<MisMetas />} />
         <Route path="/ingresos" element={<MisIngresos />} />
         <Route path="/gastos" element={<MisGastos />} />
         <Route path="/patrocinadores" element={<MisPatrocinadores />} />
         <Route path="/tareas" element={<MisTareas />} />
         <Route path="/nivel" element={<MiNivel />} />
+        <Route path="/tutoriales" element={<Tutoriales />} />
+        <Route path="/tutoriales2" element={<Tutoriales2 />} />
       </Routes>
     </Router>
   );
