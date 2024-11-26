@@ -9,61 +9,61 @@ $hover-color: blue;
 $text-primary: "Mochiy Pop One", sans-serif;
 $text-secundary: "Mooli", sans-serif;
 
-
 .barra-de-progreso-container {
-    margin: 20px;
+  position: relative;
+  padding: 10px 40px;
+  width: 100%;
 
-    h3 {
-        font-family: $text-secundary;
-    }
+  h3 {
+    font-family: $text-secundary;
   }
-  
-  .barra-de-progreso {
-    position: relative;
-    width: 100%;
-    height: 30px;
-    background-color: #e0e0e0;
+}
+
+.barra-de-progreso {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #e0e0e0;
+  border-radius: 15px;
+
+  .progreso {
+    height: 100%;
     border-radius: 15px;
-  
-    .progreso {
-      height: 100%;
-      border-radius: 15px;
-      transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .progreso-texto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-family: $text-secundary;
+    font-weight: bold;
+  }
+}
+
+.insignias {
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+
+  img {
+    width: 50px;
+    height: 50px;
+    opacity: 0.3;
+
+    &.bronce {
+      opacity: 1 !important;
     }
-  
-    .progreso-texto {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: black;
-      font-family: $text-secundary;
-      font-weight: bold;
+
+    &.plata {
+      opacity: 1 !important;
+    }
+
+    &.oro {
+      opacity: 1 !important;
     }
   }
-  
-  .insignias {
-    text-align: center;
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-around;
-  
-    img {
-      width: 50px;
-      height: 50px;
-      opacity: 0.3;
-  
-      &.bronce {
-        opacity: 1 !important;
-      }
-  
-      &.plata {
-        opacity: 1 !important;
-      }
-  
-      &.oro {
-        opacity: 1 !important;
-      }
-    }
-  }
-  
+}

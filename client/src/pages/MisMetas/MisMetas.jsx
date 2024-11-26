@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./misMetas.scss";
 import Header from "../../componentes/Header/Header";
 import MetasTitulo from "../../componentes/Metas/MetasTitulo";
 import MetasCard from "../../componentes/Metas/MetasCard";
+import Boceto from "../../componentes/Boceto/Boceto"; // SkeletonCard
 import Modal from "../../componentes/Modal/Modal";
-import FiltrosMetas from "../../componentes/FiltrosMetas/FiltrosMetas";
 
 const MisMetas = () => {
   const [goals, setGoals] = useState([
@@ -90,18 +90,29 @@ const MisMetas = () => {
         className="content"
         style={{ marginTop: isMenuOpen ? "30rem" : "0" }}
       >
-        <MetasTitulo onAddGoal={handleAddGoal} />
-        <FiltrosMetas goals={goals} setFilteredGoals={setFilteredGoals} />
+        <MetasTitulo
+          goals={goals}
+          setFilteredGoals={setFilteredGoals}
+          onAddGoal={handleAddGoal}
+        />
         <div className="goal-list">
-          {filteredGoals.map((goal) => (
-            <MetasCard
-              key={goal.id}
-              goal={goal}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-              onComplete={handleComplete}
-            />
-          ))}
+          {filteredGoals.length > 0 ? (
+            filteredGoals.map((goal) => (
+              <MetasCard
+                key={goal.id}
+                goal={goal}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                onComplete={handleComplete}
+              />
+            ))
+          ) : (
+            <div className="skeleton-container">
+              {[1, 2, 3].map((_, index) => (
+                <Boceto key={index} />
+              ))}
+            </div>
+          )}
         </div>
         {isModalOpen && (
           <Modal
@@ -114,4 +125,5 @@ const MisMetas = () => {
     </>
   );
 };
+
 export default MisMetas;
