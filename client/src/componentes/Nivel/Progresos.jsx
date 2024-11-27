@@ -29,9 +29,9 @@ const BarraDeProgreso = ({ progreso, tipo, total }) => {
             backgroundColor: color,
           }}
         />
-        <span className="progreso-texto">
+        {/* <span className="progreso-texto">
           {progreso}/{total}
-        </span>
+        </span> */}
       </div>
       <div className="insignias">
         <img

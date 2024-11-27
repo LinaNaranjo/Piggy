@@ -1,5 +1,7 @@
 package com.piggy.piggyServer.authLogin;
 
+import com.piggy.piggyServer.dto.LoginDto;
+import com.piggy.piggyServer.dto.RegisterDto;
 import com.piggy.piggyServer.jwt.JwtTokenProviderService;
 import com.piggy.piggyServer.user.UserEntity;
 import com.piggy.piggyServer.user.UserRepository;
@@ -18,7 +20,7 @@ public class AuthService {
   private final PasswordEncoder passwordEncoder;
   private final AuthenticationManager authenticationManager;
 
-  public String register(RegisterRequest registerRequest) {
+  public RegisterDto register(RegisterRequest registerRequest) {
     //patrón de diseño builder para la creación de objetos
     UserEntity userEntity = UserEntity.builder()
         .name(registerRequest.getName())
@@ -30,7 +32,7 @@ public class AuthService {
         .build();
     userRepository.save(userEntity);
     //return AuthResponse.builder().token(jwtTokenProviderService.getToken(userEntity)).build();
-    return "Usuario registrado";
+    return new RegisterDto(userEntity.getName(), userEntity.getLastName(), userEntity.getAge(), userEntity.getEmail(), userEntity.getRoleUser());
   }
 
 /*  public AuthResponse login(LoginRequest loginRequest){
@@ -42,11 +44,12 @@ public class AuthService {
         .build();
   }*/
 
-  public String login(LoginRequest loginRequest){
+  public LoginDto login(LoginRequest loginRequest){
     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-    UserDetails user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();//busqueda del usario
-    String token = jwtTokenProviderService.getToken(user);//obtención del token
-    return "Bienvenido " + loginRequest.email; //Todo: Traer nombre del usuario
+    //UserDetails user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();//busqueda del usario
+    UserEntity userEntity = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow(() -> new RuntimeException("User not found "));
+    String token = jwtTokenProviderService.getToken(userEntity);//obtención del token
+    return new LoginDto(userEntity.getName(), userEntity.getLastName(), userEntity.getAge(), userEntity.getEmail(), userEntity.getRoleUser(), token);
   }
 
 
