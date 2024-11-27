@@ -37,7 +37,7 @@ const Premium = () => {
           <div className="row header">
             <div></div>
             <div className="planTitle">Básico</div>
-            <div className="planTitle">Premium</div>
+            <div className="highlight">Premium</div>
           </div>
           
           <div className="row">

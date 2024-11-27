@@ -7,6 +7,7 @@ import DivisionOro from "../../assets/Images/ImagesLandingPage/oro.png";
 const Logros = () => {
   return (
     <div  id="logros" className="logros">
+      <h1>¡Diviértete Ahorrando!</h1>
       <h2>Logros que cuentan</h2>
       <p className="descripcion">
         Cada vez que tus hijos usan la plataforma ganan puntos concursando en la división Bronce, Plata y Oro.

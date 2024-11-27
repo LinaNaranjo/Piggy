@@ -3,6 +3,7 @@
 
 $mint-green: #76D7C4;
 $text-color: #000000;
+$premium-bg: rgba(118, 215, 196, 0.2);
 
 .premiumContainer {
   font-family: 'Mochiy Pop One', sans-serif;
@@ -23,6 +24,7 @@ $text-color: #000000;
         font-size: 2.5rem;
         margin-bottom: 10px;
         text-align: center;
+        color: $text-color;
       }
 
       .btnVerPlan {
@@ -39,14 +41,10 @@ $text-color: #000000;
         font-size: 1.2rem;
         font-weight: bold;
         transition: all 0.3s ease; 
-      
+        font-family: "Mooli", sans-serif;
        
         &:hover {
           transform: scale(1.1); 
-        }
-    
-        &:hover {
-          background-color: darken($mint-green, 10%); 
         }
       }
     }
@@ -79,13 +77,29 @@ $text-color: #000000;
     .comparisonTable {
       display: flex;
       flex-direction: column;
-      
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 25%; 
+        height: 100%;
+        background-color: $premium-bg;
+        z-index: 0;
+        border-top-left-radius: 14px; 
+        border-top-right-radius: 14px;
+      }
+
       .row {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr;
         align-items: center;
         padding: 15px 0;
         border-bottom: 1px solid $text-color;
+        position: relative;
+        z-index: 1;
 
         &:last-child {
           border-bottom: none;
@@ -135,10 +149,23 @@ $text-color: #000000;
         text-align: center;
         font-weight: bold;
         background-color: transparent;
+        position: relative;
+        z-index: 1;
 
         .planTitle {
           font-size: 1.2rem;
+
+          &:nth-child(3) {
+            color: $text-color; 
+          }
         }
+        .highlight {
+          font-size: 1.2rem;
+          color: $mint-green; 
+          font-weight: bold; 
+        }
+        
+
       }
     }
   }

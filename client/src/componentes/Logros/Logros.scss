@@ -1,70 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
 
-$mint-green: #76D7C4;
-$pink-border: #FADBD8;
+$mint-green: #76d7c4;
+$pink-border: #fadbd8;
 $text-color: #000000;
 
-
 .logros {
-    h2 {
-      font-family: "Mochiy Pop One", sans-serif;
-      text-align: left;
-      font-size: 2rem;
-      margin-bottom: 3rem;
-      margin-top: 1rem;
-      margin-left: 2rem;
-    }
-  
-    .descripcion {
-      font-family: "Mooli", sans-serif;
-      text-align: left;
-      font-size: 20px;
-      margin-bottom: 2rem;
-      margin-left: 2rem;
-    }
-  
-    .contenedor {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-  
-    .columna {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      margin-top: 5rem;
-      margin-bottom: 5rem;
-      
-      .imagen {
-        width: 130px; 
-        height: auto;
-      }
-  
-      h3 {
-        font-family: "Mochiy Pop One", sans-serif;
-        font-weight: bold;
-        text-align: left;
-        margin-bottom: 1rem;
-      }
-  
-      p {
-        text-align: center;
-        font-family: "Mooli", sans-serif;
-        font-size: 18px;
-      }
+  h1 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-family: "Mochiy Pop One", sans-serif;
+    text-align: center;
+  }
+  h2 {
+    font-family: "Mochiy Pop One", sans-serif;
+    text-align: left;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+    margin-left: 2rem;
+  }
+
+  .descripcion {
+    font-family: "Mooli", sans-serif;
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+  }
+
+  .contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .columna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    .imagen {
+      width: 130px;
+      height: auto;
     }
 
-    .video-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 2rem; 
-      margin-bottom: 3rem; 
+    h3 {
+      font-family: "Mochiy Pop One", sans-serif;
+      font-weight: bold;
+      text-align: left;
+      margin-bottom: 1rem;
     }
-  
-    iframe {
-      border-radius: 8px;
+
+    p {
+      text-align: center;
+      font-family: "Mooli", sans-serif;
+      font-size: 18px;
     }
   }
+
+  .video-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  iframe {
+    border-radius: 8px;
+  }
+}
