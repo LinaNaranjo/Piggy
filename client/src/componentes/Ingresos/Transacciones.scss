@@ -40,16 +40,9 @@ $cardBackground: #fcf7f3;
   transition: background-color 0.3s ease;
 }
 
-.transaccionesAgregar:hover {
-  background-color: darken($mintGreen, 10%);
-}
 
 .transaccionesAgregarGastos {
   background-color: $redColor;
-}
-
-.transaccionesAgregarGastos:hover {
-  background-color: darken($redColor, 10%);
 }
 
 .transaccionesLista {
@@ -162,14 +155,5 @@ $cardBackground: #fcf7f3;
   margin: 5px;
 }
 
-.modalBoton:hover {
-  background-color: darken($mintGreen, 10%);
-}
 
-.modalCancelar {
-  background-color: $redColor;
-}
 
-.modalCancelar:hover {
-  background-color: darken($redColor, 10%);
-}

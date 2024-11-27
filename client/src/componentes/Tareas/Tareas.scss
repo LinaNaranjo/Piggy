@@ -27,10 +27,6 @@ $modalBg: #fcf7f3;
       font-family: "Mochiy Pop One", sans-serif;
       color: $textColor;
       cursor: pointer;
-
-      &:hover {
-        background-color: darken($mintGreen, 10%);
-      }
     }
   }
 
@@ -119,10 +115,6 @@ $modalBg: #fcf7f3;
         font-size: 1.5rem;
         font-weight: bold;
         cursor: pointer;
-
-        &:hover {
-          color: darken($mintGreen, 10%);
-        }
       }
 
       h3 {
@@ -143,7 +135,6 @@ $modalBg: #fcf7f3;
 
         input {
           padding: 10px;
-          border: 1px solid lighten($mintGreen, 40%);
           border-radius: 5px;
           font-size: 1rem;
         }
@@ -157,10 +148,6 @@ $modalBg: #fcf7f3;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-
-        &:hover {
-          background-color: darken($mintGreen, 10%);
-        }
       }
     }
   }
