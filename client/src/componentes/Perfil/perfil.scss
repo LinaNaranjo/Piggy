@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+$mint-green: #76d7c4;
+$white: #ffffff;
+$pink-border: #fadbd8;
+$text-color: #000000;
+$hover-color: blue;
+$text-primary: "Mochiy Pop One", sans-serif;
+$text-secundary: "Mooli", sans-serif;
+
+.perfil-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  .perfil-header {
+    text-align: center;
+    margin-bottom: 20px;
+
+    .perfil-foto {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .edit-image {
+      margin-top: 10px;
+
+      .btn-upload {
+        display: inline-block;
+        font-family: $text-secundary;
+        padding: 8px 16px;
+        background-color: $mint-green;
+        color: #fff;
+        border-radius: 5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        text-align: center;
+        &:hover {
+          transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
+          box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+    }
+
+    h1 {
+      font-family: $text-secundary;
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+
+    p {
+      font-family: $text-secundary;
+      margin: 5px 0;
+      font-size: 14px;
+      color: #777;
+    }
+  }
+
+  .perfil-body {
+    margin-top: 20px;
+
+    .perfil-section {
+      margin-bottom: 20px;
+
+      h2 {
+        font-family: $text-secundary;
+        font-size: 20px;
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-family: $text-secundary;
+        margin: 5px 0;
+        font-size: 16px;
+        color: #555;
+      }
+    }
+  }
+}

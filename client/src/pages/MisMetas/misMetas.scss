@@ -1,16 +1,26 @@
+$text-primary: "Mochiy Pop One", sans-serif;
+$text-secundary: "Mooli", sans-serif;
+
 .goal-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; 
-    justify-content: center; 
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
 
-  .content {
-    transition: margin-top 0.1s ease;
-  }
+.content {
+  transition: margin-top 0.1s ease;
+}
 
-  .skeleton-container {
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-  }
+.skeleton-container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.total-points {
+  font-size: 0.9rem;
+  font-family: $text-secundary;
+  padding-left: 2.5rem;
+  padding-top: 1.5rem;
+}

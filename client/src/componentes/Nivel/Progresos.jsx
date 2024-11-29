@@ -6,63 +6,72 @@ import "./progresos.scss";
 
 const BarraDeProgreso = ({ progreso, tipo, total }) => {
   const porcentaje = (progreso / total) * 100;
-  let imagenInsignia = Bronce;
 
-  let color = "#76D7C4";
+  const obtenerInsignia = () => {
+    if (progreso >= 500) return Oro;
+    if (progreso >= 200) return Plata;
+    if (progreso >= 100) return Bronce;
+    return null; 
+    };
 
-  if (progreso >= 100) {
-    imagenInsignia = Oro; // Insignia de Oro si el progreso es 100 o más
-  } else if (progreso >= 50) {
-    imagenInsignia = Plata; // Insignia de Plata si el progreso está entre 50 y 99
-  } else {
-    imagenInsignia = Bronce; // Insignia de Bronce si el progreso es menor que 50
-  }
+  const imagenInsignia = obtenerInsignia();
 
   return (
     <div className="barra-de-progreso-container">
       <h3>{tipo}</h3>
-      <div className="barra-de-progreso">
-        <div
-          className="progreso"
-          style={{
-            width: `${porcentaje}%`,
-            backgroundColor: color,
-          }}
-        />
-        {/* <span className="progreso-texto">
-          {progreso}/{total}
-        </span> */}
-      </div>
-      <div className="insignias">
+      <div className="progreso-contenedor">
+        <div className="barra-de-progreso">
+          <div
+            className="progreso"
+            style={{
+              width: `${porcentaje}%`,
+            }}
+          />
+        </div>
         <img
           src={Bronce}
           alt="Bronce"
-          className={progreso < 50 ? "bronce" : ""}
+          className="insignia-derecha"
+          style={{
+            opacity: progreso >= 100 ? 1 : 0.3, 
+          }}
         />
         <img
           src={Plata}
           alt="Plata"
-          className={progreso >= 50 && progreso < 100 ? "plata" : ""}
+          className="insignia-derecha"
+          style={{
+            opacity: progreso >= 200 ? 1 : 0.3, 
+          }}
         />
-        <img src={Oro} alt="Oro" className={progreso >= 100 ? "oro" : ""} />
+        <img
+          src={Oro}
+          alt="Oro"
+          className="insignia-derecha"
+          style={{
+            opacity: progreso >= 500 ? 1 : 0.3, 
+          }}
+        />
+      </div>
+      <div className="puntos-acumulados">
+        {progreso} / {total} puntos
       </div>
     </div>
   );
 };
 
-const Progresos = () => {
-  // Simulación de progreso para metas, ahorros y tareas con el total de cada una
-  const progresoMetas = 49; 
-  const totalMetas = 100;
-  const progresoAhorros = 99;
-  const totalAhorros = 100;
-  const progresoTareas = 100;
-  const totalTareas = 100;
+const Progresos = ({ totalPoints }) => {
+  //const progresoMetas = totalPoints ;
+  const totalMetas = 500;
+  const progresoAhorros = 150;
+  const totalAhorros = 500;
+  const progresoTareas = 300;
+  const totalTareas = 500;
 
   return (
     <div>
       <BarraDeProgreso
-        progreso={progresoMetas}
+        progreso={totalPoints}
         total={totalMetas}
         tipo="Metas"
       />
