@@ -69,7 +69,7 @@ const Progresos = ({ totalPoints }) => {
   const totalTareas = 500;
 
   return (
-    <div>
+    <div className="contenedor-principal-barras">
       <BarraDeProgreso
         progreso={totalPoints}
         total={totalMetas}

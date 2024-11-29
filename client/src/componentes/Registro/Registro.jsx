@@ -53,12 +53,12 @@ const FormularioRegistro = () => {
 
     if (validate()) {
       const payload = {
-        name: formValues.name, // Corregido
-        lastName: formValues.lastName, // Corregido
-        age: parseInt(formValues.age, 10), // Corregido
-        email: formValues.email, // Corregido
-        password: formValues.password, // Corregido
-        roleUser: formValues.roleUser, // Enviar directamente
+        name: formValues.name, 
+        lastName: formValues.lastName,
+        age: parseInt(formValues.age, 10), 
+        email: formValues.email, 
+        password: formValues.password, 
+        roleUser: formValues.roleUser, 
       };
 
       try {
