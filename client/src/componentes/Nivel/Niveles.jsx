@@ -14,21 +14,21 @@ const Niveles = () => {
             <img src={Bronce} alt="Insignia Bronce" />
             <section>
               <h3>Bronce</h3>
-              <span>1 a 49 Completadas</span>
+              <span>100 puntos</span>
             </section>
           </div>
           <div className="insignia">
             <img src={Plata} alt="Insignia Plata" />
             <section>
               <h3>Plata</h3>
-              <span>50 a 99 Completadas</span>
+              <span>200 puntos</span>
             </section>
           </div>
           <div className="insignia">
             <img src={Oro} alt="Insignia Oro" />
             <section>
               <h3>Oro</h3>
-              <span>100 Completadas</span>
+              <span>500 puntos</span>
             </section>
           </div>
         </div>

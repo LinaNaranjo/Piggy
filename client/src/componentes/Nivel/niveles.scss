@@ -23,7 +23,6 @@ $text-secundary: "Mooli", sans-serif;
 
     @media (max-width: 768px) {
         justify-content: center;
-        display: inline-block;
         padding-left: 1rem;
         padding-right: 1rem;
       }
@@ -31,6 +30,12 @@ $text-secundary: "Mooli", sans-serif;
 
   .insignia{
     display: flex;
+    img {
+      @media (max-width: 768px) {
+        width: 40px;
+        height: 40px;
+    }
+    }
 
     @media (max-width: 768px) {
         padding-bottom: 1.2rem;
@@ -38,13 +43,16 @@ $text-secundary: "Mooli", sans-serif;
 
     & section {
         margin-left: 1rem;
+        @media (max-width: 768px) {
+          margin-left: 0.5rem;
+      }
     }
   }
   h3 {
     font-family: $text-secundary;
     margin-bottom: 1rem;
     @media (max-width: 768px) {
-        font-size: 0.8rem;
+        font-size: 1rem;
         margin-bottom: 0;
     }
   }

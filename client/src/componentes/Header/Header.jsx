@@ -89,7 +89,7 @@ const Header = ({ onMenuToggle }) => {
         </span>
         {isDropdownOpen && (
           <div className="dropdown-menu">
-            <span>Mi Perfil</span>
+            <span onClick={() => navigate("/perfil")}>Mi Perfil</span>
             <span onClick={handleLogout}>Salir</span>
           </div>
         )}

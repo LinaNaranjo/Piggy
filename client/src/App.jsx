@@ -13,6 +13,7 @@ import MisTareas from "./pages/MisTareas/MisTareas";
 import MiNivel from "./pages/MiNivel/MiNivel";
 import Tutoriales from "./pages/Tutoriales/Tutoriales";
 import Tutoriales2 from "./pages/Tutoriales2/Tutoriales2";
+import MiPerfil from "./pages/MiPerfil/MiPerfil";
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
         <Route path="/nivel" element={<MiNivel />} />
         <Route path="/tutoriales" element={<Tutoriales />} />
         <Route path="/tutoriales2" element={<Tutoriales2 />} />
+        <Route path="/perfil" element={<MiPerfil />} />
       </Routes>
     </Router>
   );

@@ -62,10 +62,23 @@ const MetasCard = ({ goal, onEdit, onDelete, onComplete }) => {
           />
         </div>
       </div>
-      {progress >= 100 && (
-        <div className="congratulations">
-          <p>🎉 ¡Felicitaciones! Has completado esta meta. 🎉</p>
+      {progress < 100 ? (
+        <div className="contenedor-points-message">
+          <p className="points-message">
+            Obtén 10 puntos al completar esta meta.
+          </p>
         </div>
+      ) : (
+        <>
+          <div className="congratulations">
+            <p className="congratulations-texto">
+              🎉 ¡Felicitaciones! Has completado esta meta. 🎉
+            </p>
+          </div>
+          <div className="contenedor-congratulations-points">
+            <p className="congratulations-points">¡Ganaste 10 puntos!</p>
+          </div>
+        </>
       )}
     </div>
   );

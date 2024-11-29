@@ -3,9 +3,11 @@ import "./modal.scss";
 
 const Modal = ({ goal, onClose, onSave }) => {
   const [goalData, setGoalData] = useState({
+    id: "",
     name: "",
     amountSaved: 0,
     totalAmount: "",
+    points: 0,
   });
   const [newAmount, setNewAmount] = useState("");
 
@@ -16,9 +18,26 @@ const Modal = ({ goal, onClose, onSave }) => {
         name: goal.name,
         amountSaved: goal.amountSaved,
         totalAmount: goal.totalAmount,
+        points: goal.points,
       });
+      updatePoints(goal.amountSaved, goal.totalAmount); // Recalcular puntos al editar
     }
   }, [goal]);
+
+  // Función para actualizar los puntos al modificar la cantidad ahorrada
+  const updatePoints = (amountSaved, totalAmount) => {
+    if (amountSaved >= totalAmount) {
+      setGoalData((prevState) => ({
+        ...prevState,
+        points: 10, // Asignar 10 puntos si la meta se completó
+      }));
+    } else {
+      setGoalData((prevState) => ({
+        ...prevState,
+        points: 0, // Si no está completada, no asignar puntos
+      }));
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,14 +45,19 @@ const Modal = ({ goal, onClose, onSave }) => {
       ...prevState,
       [name]: value,
     }));
+    if (name === "amountSaved" || name === "totalAmount") {
+      updatePoints(goalData.amountSaved, goalData.totalAmount); // Recalcular puntos si se cambia amountSaved o totalAmount
+    }
   };
 
   const handleAddAmount = () => {
+    const newAmountValue = parseFloat(newAmount);
     setGoalData((prevState) => ({
       ...prevState,
-      amountSaved: prevState.amountSaved + parseFloat(newAmount), // Sumar a amountSaved
+      amountSaved: prevState.amountSaved + newAmountValue, // Sumar a amountSaved
     }));
     setNewAmount("");
+    updatePoints(goalData.amountSaved + newAmountValue, goalData.totalAmount); // Recalcular los puntos con el nuevo monto ahorrado
   };
 
   const handleSubmit = (e) => {
