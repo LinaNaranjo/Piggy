@@ -6,11 +6,14 @@ import logo from "../../assets/LogoNombre.png";
 import emailIcon from "../../assets/Correo.png";
 import paswordIcon from "../../assets/Candado.png";
 import atrasIcon from "../../assets/Images/ImagesNavbar/atras.png"
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/userSlice";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 const FormLogin = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("Mateito@gmail.com");
   const [password, setPassword] = useState("AccenturLoMejor");
   const [errors, setErrors] = useState({
@@ -46,28 +49,18 @@ const FormLogin = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        const response = await axios.post(`${BASE_URL}/login`, {
-          email,
-          password,
-        });
-
-        // Muestra el contenido completo de la respuesta
-      console.log("Contenido de response.data:", response.data);
-
-      // Accede a los datos del usuario (si la respuesta es correcta)
-      const user = response.data;
-
-      // Verifica si los datos del usuario están presentes
-      if (user) {
+        const response = await axios.post(`${BASE_URL}/login`, { email, password });
+        const user = response.data;
         console.log("Datos del usuario logueado:", user);
-        // Mostrar mensaje en la consola con el correo del usuario (o cualquier otro dato que quieras)
-        console.log("Bienvenido", user.email);  // En tu caso, el email es 'Mateito@gmail.com'
-      } else {
-        console.error("No se encontraron datos de usuario en la respuesta.");
-      }
-
-        // Navega a la página de inicio si el login es exitoso
-        navigate("/home");
+  
+        if (user) {
+          console.log("Bienvenido", user.email);
+          // Llamar a la acción login para guardar el nombre en el estado de Redux
+          dispatch(login({ name: user.name, email: user.email }));
+          navigate("/home");
+        } else {
+          console.error("No se encontraron datos de usuario en la respuesta.");
+        }
       } catch (error) {
         console.error("Error al iniciar sesión:", error.response?.data || error.message);
         setErrors((prev) => ({
