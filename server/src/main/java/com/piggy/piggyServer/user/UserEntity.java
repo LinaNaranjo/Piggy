@@ -20,6 +20,7 @@ import java.util.List;
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})//
 public class UserEntity implements UserDetails { //UserDetails: personaliza la información para gestionar inicio de secion
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Integer id;
@@ -51,7 +52,7 @@ public class UserEntity implements UserDetails { //UserDetails: personaliza la i
 
   @Override
   public String getUsername() {
-    return "";
+    return email;
   }
 
 

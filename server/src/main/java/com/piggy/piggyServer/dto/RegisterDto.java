@@ -13,5 +13,6 @@ public class RegisterDto {
   private int age;
   private String email;
   private RoleUser roleUser;
+  private String token;
 
 }

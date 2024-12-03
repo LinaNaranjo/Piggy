@@ -46,9 +46,14 @@ public class JwtTokenProviderService {
     return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
   }
 
-  private Claims getAllClaims(String token) { //Claims: datos que se guardadn en el token
-    return Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJwt(token).getBody();
+  private Claims getAllClaims(String token) {
+    return Jwts.parserBuilder()
+        .setSigningKey(getKey()) // Clave secreta para validar el token
+        .build()
+        .parseClaimsJws(token) // Aquí se procesa un token firmado (JWS)
+        .getBody();
   }
+
 
   public <T> T getClaim (String token, Function<Claims, T> claimsResover){
     final Claims claims = getAllClaims(token); //obtener todos los claims
