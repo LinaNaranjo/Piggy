@@ -19,6 +19,9 @@ public class GoalService {
 
   //Crear Goal
   public GoalsEntity createGoal(GoalsEntity goals) {
+    if (goals.getUser()== null || goals.getUser().getId() == null){
+      throw new IllegalArgumentException("User not found");
+    }
     return goalRepository.save(goals);
   }
 

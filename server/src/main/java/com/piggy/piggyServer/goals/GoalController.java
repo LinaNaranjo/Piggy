@@ -25,10 +25,17 @@ public class GoalController {
   //Crear Goal
   @PostMapping("/new")
   public ResponseEntity<GoalsEntity> createGoal(@AuthenticationPrincipal UserEntity user, @RequestBody GoalsEntity goals) {
-    UserEntity refUser = new UserEntity();
-    goals.setUser(user); // Asocia la meta con el usuario autenticado.
-    goalService.createGoal(goals); // Guarda la meta.
-    return ResponseEntity.ok(goals);
+    if (user == null) {
+      return ResponseEntity.status(403).body(null); // Asegúrate de que el usuario esté autenticado
+    }
+
+    // Asociar la meta al usuario
+    goals.setUser(user);
+
+    // Guardar la meta
+    GoalsEntity savedGoal = goalService.createGoal(goals);
+
+    return ResponseEntity.ok(savedGoal);
   }
 
   private boolean userPermission(UserEntity user, Integer id){
@@ -43,7 +50,7 @@ public class GoalController {
 
   //Obtener goal por id
   @GetMapping("/{id}")
-  public GoalsEntity getGoalById(Long id) {
+  public GoalsEntity getGoalById(@PathVariable Long id) {
     return goalService.getGoalById(id);
   }
 
