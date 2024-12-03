@@ -24,12 +24,13 @@ public class SecurityConfig {
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(authorizeRequests ->
             authorizeRequests
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/**").permitAll()//pueden ingresar usarios sin autenticar
+                .requestMatchers("/goal/**").authenticated()//solo pueden ingresar usuarios autenticados
                 .anyRequest().authenticated()
         )
         //.formLogin(withDefaults()) autenticación de spring security
         // Autenticación basada en JWT...
-        .sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))//politica de creación de sesiones y no las usa
+        .sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // Sin sesiones
         .authenticationProvider(authenticationProvider)
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
         .build();

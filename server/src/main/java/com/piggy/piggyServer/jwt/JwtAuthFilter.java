@@ -22,41 +22,45 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-  private JwtTokenProviderService jwtTokenProviderService;
-  private UserDetailsService userDetailsService;
+  private final JwtTokenProviderService jwtTokenProviderService;
+  private final UserDetailsService userDetailsService;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-    final String token = getTokenFromRequiest(request);
+    final String token = getTokenFromRequest(request);
     final String username;
 
-    if (token == null){
+    if (token == null) {
       filterChain.doFilter(request, response);
       return;
     }
-    username = jwtTokenProviderService.getUsernameFromToken(token);
-    /*Valida
-    1. que el usuario no sea nulo
-    2. que no haya una autenticación previa
-    */
-    if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
-      UserDetails userDetails = userDetailsService.loadUserByUsername(username);//cargar los detalles del usuario por su username para autenticar
-      if(jwtTokenProviderService.isTokenValid(token, userDetails)){ //verifica si el token JWT es válido para el usuario proporcionado (userDetails).
-        //Creación del objeto de autenticación
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        //Establecimiento de detalles adicionales de autenticación
+
+    try {
+      username = jwtTokenProviderService.getUsernameFromToken(token);
+    } catch (Exception ex) {
+      logger.error("Error al obtener el usuario del token: " + ex.getMessage(), ex);
+      filterChain.doFilter(request, response);
+      return;
+    }
+
+
+    if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+      UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+      if (jwtTokenProviderService.isTokenValid(token, userDetails)) {
+        UsernamePasswordAuthenticationToken authToken =
+            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        //Configuración del contexto de seguridad
         SecurityContextHolder.getContext().setAuthentication(authToken);
       }
     }
+
+    filterChain.doFilter(request, response);
   }
 
-  //Obtener el encabezado de autorización
-  //Bearrer: prefijo que indica que el token es de tipo jwt
-  private String getTokenFromRequiest(HttpServletRequest request){
-    final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION); //obtener el header de autorizacion
-    if(StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer")){
+  private String getTokenFromRequest(HttpServletRequest request) {
+    final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+    if (StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")) {
       return authHeader.substring(7);
     }
     return null;
