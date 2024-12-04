@@ -1,5 +1,6 @@
 package com.piggy.piggyServer.income;
 
+import com.piggy.piggyServer.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,14 @@ public class IncomeService {
   private IncomeRepository incomeRepository;
   private IncomeEntity income;
 
-  public IncomeEntity createIncome(IncomeEntity income) {
+  public IncomeEntity createIncome(IncomeEntity income, UserEntity user) {
+    if (income.getName() == null || income.getName().isEmpty()){
+      throw new IllegalArgumentException("Income name cannot be null or empty");
+    }
+    if(income.getAmount() == null || income.getAmount() <= 0){
+      throw new IllegalArgumentException("Goal amount must be greater than 0");
+    }
+    income.setUser(user);
     return incomeRepository.save(income);
   }
 

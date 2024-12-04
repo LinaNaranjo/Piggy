@@ -27,7 +27,7 @@ public class IncomeController {
       return ResponseEntity.status(403).body(Map.of("error", "User not authenticated"));
     }
     income.setUser(user);
-    IncomeEntity savedIncome = incomeService.createIncome(income);
+    IncomeEntity savedIncome = incomeService.createIncome(income, user);
     return ResponseEntity.ok(savedIncome);
   }
 
