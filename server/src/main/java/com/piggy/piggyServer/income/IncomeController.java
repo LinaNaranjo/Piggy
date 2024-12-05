@@ -31,8 +31,10 @@ public class IncomeController {
     return ResponseEntity.ok(savedIncome);
   }
 
+  @GetMapping("/{incomeId}")
   public ResponseEntity<?> getIncomeById(@PathVariable Long id){
     return incomeService.getIncomeById(id);
+    //todo 403
   }
 
   @DeleteMapping("{incomeId}")

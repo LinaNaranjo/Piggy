@@ -36,8 +36,8 @@ public class GoalService {
           "Message", "Goal with ID" + goalId + "does not exist"
       ));
     }
-    goalRepository.findById(goalId);
-    return ResponseEntity.ok(goalId);
+    GoalsEntity goal = goalRepository.findById(goalId).orElseThrow(null);
+    return ResponseEntity.ok(goal);
   }
 
   public List<GoalsEntity> getGoalsByUserId(Long userId) {

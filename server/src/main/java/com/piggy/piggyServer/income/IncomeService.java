@@ -37,7 +37,7 @@ public class IncomeService {
           "Message", "Income with ID " + incomeId + "does not exist"
       ));
     }
-    incomeRepository.findById(incomeId);
+    IncomeEntity income = incomeRepository.findById(incomeId).orElseThrow(null);
     return ResponseEntity.ok(incomeId);
   }
 

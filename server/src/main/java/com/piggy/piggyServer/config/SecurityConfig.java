@@ -26,6 +26,7 @@ public class SecurityConfig {
             authorizeRequests
                 .requestMatchers("/auth/**").permitAll()//pueden ingresar usarios sin autenticar
                 .requestMatchers("/goal/**").authenticated()//solo pueden ingresar usuarios autenticados
+                .requestMatchers("/income/**").authenticated()
                 .anyRequest().authenticated()
         )
         //.formLogin(withDefaults()) autenticación de spring security
