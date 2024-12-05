@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,53 +21,56 @@ public class GoalController {
   @Autowired
   private GoalService goalService;
 
-
-
-  //Crear Goal
   @PostMapping("/new")
-  public ResponseEntity<GoalsEntity> createGoal(@AuthenticationPrincipal UserEntity user, @RequestBody GoalsEntity goals) {
-    if (user == null) {
-      return ResponseEntity.status(403).body(null); // Asegúrate de que el usuario esté autenticado
+  public ResponseEntity<?> createGoal(@AuthenticationPrincipal UserEntity user, @RequestBody GoalsEntity goal) {
+    if (user == null){
+      return ResponseEntity.status(403).body(Map.of(
+          "error:", "Forbidden",
+          "message", "User is not authenticated"
+      ));
+
     }
+    try{
+      GoalsEntity createGoal = goalService.createGoal(goal, user);
+      return ResponseEntity.status(201).body(Map.of(
+          "message", "Goal created successfully",
+          "goal", createGoal
+      ));
 
-    // Asociar la meta al usuario
-    goals.setUser(user);
-
-    // Guardar la meta
-    GoalsEntity savedGoal = goalService.createGoal(goals);
-
-    return ResponseEntity.ok(savedGoal);
+    }catch (IllegalArgumentException e){
+      return ResponseEntity.badRequest().body(Map.of(
+          "error", "Validation error",
+          "message", e.getMessage()
+      ));
+    }catch (Exception e){
+      return ResponseEntity.status(500).body(Map.of(
+          "error", "Internal server error",
+          "message", "unexpected error"
+      ));
+    }
   }
 
-  private boolean userPermission(UserEntity user, Integer id){
-    return user.getId().equals(id);
-  }
 
-  //Obeneter goals por usario
   @GetMapping("/user/{userId}")
   public List<GoalsEntity> getGoalsByUserId(Long userId) {
     return goalService.getGoalsByUserId(userId);
   }
 
-  //Obtener goal por id
   @GetMapping("/{id}")
-  public GoalsEntity getGoalById(@PathVariable Long id) {
+  public ResponseEntity<?> getGoalById(@PathVariable Long id) {
     return goalService.getGoalById(id);
   }
 
-  //actualizar meta
   @PutMapping("/{goalId}")
   public GoalsEntity updateGoal(@PathVariable Long goalId, @RequestBody GoalsEntity updateGoal) {
     return goalService.updateGoal(goalId, updateGoal);
   }
 
-  //eliminar meta por id
   @DeleteMapping("/{goalId}")
-  public void deleteGoalById(@PathVariable Long goalId) {
-    goalService.deleteGoalById(goalId);
+  public ResponseEntity<?> deleteGoalById(@PathVariable Long goalId) {
+    return goalService.deleteGoalById(goalId);
   }
 
-  //eliminar meta por nombre
   @DeleteMapping("/name/{goalName}")
   public void deleteGoalByName(@PathVariable String goalName) {
     goalService.deleteGoalByName(goalName);
