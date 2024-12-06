@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import "./metasCard.scss";
+import formatoTexto from "../../componentes/FormatoTexto/FormatoTexto";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
@@ -39,7 +40,7 @@ const MetasCard = ({ goal, onEdit, onDelete, onComplete }) => {
         )}
       </div>
 
-      <h3 className="nombre-card">{goal.name}</h3>
+      <h3 className="nombre-card">{formatoTexto(goal.name)}</h3>
       <div className="goal-score">
         <span>
           {goal.amountSaved} / {goal.totalAmount}

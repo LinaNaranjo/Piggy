@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./perfil.scss";
 import usuario from "../../assets/Images/ImagesNavbar/usuario.jpg";
 
 const Perfil = () => {
+  const { name, lastName, email, age, phone, birthdate, address, nivel, metasActivas, ingresosTotales, gastosTotales, ahorrosActuales, lastLogin, profilePicture } = useSelector((state) => state.user);
+
   const [userData, setUserData] = useState({
-    name: "Juan Pérez",
-    email: "juan.perez@example.com",
-    phone: "3125428564",
-    birthdate: "1995-06-15",
-    address: "Barrio Ventura",
-    nivel: "Bronce",
-    metasActivas: 3,
-    ingresosTotales: "$12,500",
-    gastosTotales: "$8,300",
-    ahorrosActuales: "$4,200",
-    lastLogin: "2024-11-26",
-    profilePicture: usuario,
+    name: name,
+    lastName: lastName,
+    email: email,
+    age: age,
+    phone: phone,
+    birthdate: birthdate,
+    address: address,
+    nivel: nivel,
+    metasActivas: metasActivas,
+    ingresosTotales: ingresosTotales,
+    gastosTotales: gastosTotales,
+    ahorrosActuales: ahorrosActuales,
+    lastLogin: lastLogin,
+    profilePicture: profilePicture || usuario,
   });
 
   const handleImageChange = (e) => {
@@ -32,6 +37,25 @@ const Perfil = () => {
     }
   };
 
+  useEffect(() => {
+    setUserData({
+      name,
+      lastName,
+      email,
+      age,
+      phone,
+      birthdate,
+      address,
+      nivel,
+      metasActivas,
+      ingresosTotales,
+      gastosTotales,
+      ahorrosActuales,
+      lastLogin,
+      profilePicture: profilePicture || usuario,
+    });
+  }, [name, lastName, email, age, phone, birthdate, address, nivel, metasActivas, ingresosTotales, gastosTotales, ahorrosActuales, lastLogin, profilePicture]);
+
   return (
     <div className="perfil-container">
       <div className="perfil-header">
@@ -40,7 +64,7 @@ const Perfil = () => {
           alt="Usuario"
           className="perfil-foto"
         />
-        <h1>{userData.name}</h1>
+        <h1>{userData.name} {userData.lastName}</h1>
         <p>{userData.email}</p>
         <div className="edit-image">
           <label htmlFor="upload-photo" className="btn-upload">
@@ -59,7 +83,7 @@ const Perfil = () => {
         <div className="perfil-section">
           <h2>Información Personal</h2>
           <p>
-            <strong>Teléfono:</strong> {userData.phone}
+            <strong>Edad:</strong> {userData.age}
           </p>
           <p>
             <strong>Fecha de Nacimiento:</strong> {userData.birthdate}
@@ -98,3 +122,4 @@ const Perfil = () => {
 };
 
 export default Perfil;
+

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import formatoTexto from "../../componentes/FormatoTexto/FormatoTexto";
 import "./modal.scss";
 
 const Modal = ({ goal, onClose, onSave }) => {
@@ -15,7 +16,7 @@ const Modal = ({ goal, onClose, onSave }) => {
     if (goal) {
       setGoalData({
         id: goal.id,
-        name: goal.name,
+        name: formatoTexto (goal.name),
         amountSaved: goal.amountSaved,
         totalAmount: goal.totalAmount,
         points: goal.points,
