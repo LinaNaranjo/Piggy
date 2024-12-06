@@ -14,24 +14,30 @@ import MiNivel from "./pages/MiNivel/MiNivel";
 import Tutoriales from "./pages/Tutoriales/Tutoriales";
 import Tutoriales2 from "./pages/Tutoriales2/Tutoriales2";
 import MiPerfil from "./pages/MiPerfil/MiPerfil";
+import PrivateRoutes from "./router/PrivateRoutes";
 function App() {
   return (
     <Router>
       <Routes>
+        {/* Rutas públicas */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/preguntas" element={<PreguntasF />} />
         <Route path="/login" element={<FormLogin />} />
         <Route path="/registro" element={<Registro />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/metas" element={<MisMetas />} />
-        <Route path="/ingresos" element={<MisIngresos />} />
-        <Route path="/gastos" element={<MisGastos />} />
-        <Route path="/patrocinadores" element={<MisPatrocinadores />} />
-        <Route path="/tareas" element={<MisTareas />} />
-        <Route path="/nivel" element={<MiNivel />} />
-        <Route path="/tutoriales" element={<Tutoriales />} />
-        <Route path="/tutoriales2" element={<Tutoriales2 />} />
-        <Route path="/perfil" element={<MiPerfil />} />
+
+        {/* Rutas privadas */}
+        <Route element={<PrivateRoutes />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/metas" element={<MisMetas />} />
+          <Route path="/ingresos" element={<MisIngresos />} />
+          <Route path="/gastos" element={<MisGastos />} />
+          <Route path="/patrocinadores" element={<MisPatrocinadores />} />
+          <Route path="/tareas" element={<MisTareas />} />
+          <Route path="/nivel" element={<MiNivel />} />
+          <Route path="/tutoriales" element={<Tutoriales />} />
+          <Route path="/tutoriales2" element={<Tutoriales2 />} />
+          <Route path="/perfil" element={<MiPerfil />} />
+        </Route>
       </Routes>
     </Router>
   );

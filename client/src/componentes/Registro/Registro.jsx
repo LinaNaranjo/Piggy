@@ -4,11 +4,14 @@ import axios from "axios";
 import logo from "../../assets/LogoNombre.png";
 import atrasIcon from "../../assets/Images/ImagesNavbar/atras.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/userSlice";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 const FormularioRegistro = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formValues, setFormValues] = useState({
     name: "",
     lastName: "",
@@ -64,6 +67,12 @@ const FormularioRegistro = () => {
       try {
         const response = await axios.post(`${BASE_URL}/register`, payload);
         console.log("Usuario registrado con éxito:", response.data);
+        dispatch(
+          login({
+            name: formValues.name,
+            email: formValues.email,
+          })
+        );
         setShowAlert(true);
         setFormValues({
           name: "",

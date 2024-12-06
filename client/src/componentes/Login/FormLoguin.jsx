@@ -5,7 +5,7 @@ import "./formLoguin.scss";
 import logo from "../../assets/LogoNombre.png";
 import emailIcon from "../../assets/Correo.png";
 import paswordIcon from "../../assets/Candado.png";
-import atrasIcon from "../../assets/Images/ImagesNavbar/atras.png"
+import atrasIcon from "../../assets/Images/ImagesNavbar/atras.png";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/userSlice";
 
@@ -49,20 +49,35 @@ const FormLogin = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        const response = await axios.post(`${BASE_URL}/login`, { email, password });
+        const response = await axios.post(`${BASE_URL}/login`, {
+          email,
+          password,
+        });
         const user = response.data;
-        console.log("Datos del usuario logueado:", user);
-  
+
         if (user) {
-          console.log("Bienvenido", user.email);
-          // Llamar a la acción login para guardar el nombre en el estado de Redux
-          dispatch(login({ name: user.name, email: user.email }));
+          console.log("Datos del usuario logueado:", user);
+          dispatch(
+            login({
+              name: user.name,
+              lastName: user.lastName,
+              email: user.email,
+              age: user.age,
+              phone: user.phone,
+              birthdate: user.birthdate,
+              address: user.address,
+              nivel: user.nivel,
+              metasActivas: user.metasActivas,
+              ingresosTotales: user.ingresosTotales,
+              gastosTotales: user.gastosTotales,
+              ahorrosActuales: user.ahorrosActuales,
+              lastLogin: user.lastLogin,
+              profilePicture: user.profilePicture,
+            })
+          );
           navigate("/home");
-        } else {
-          console.error("No se encontraron datos de usuario en la respuesta.");
         }
       } catch (error) {
-        console.error("Error al iniciar sesión:", error.response?.data || error.message);
         setErrors((prev) => ({
           ...prev,
           email: "Credenciales inválidas.",
@@ -85,7 +100,6 @@ const FormLogin = () => {
         <img src={logo} alt="Logo" className="logo-image" />
         <button onClick={irAtras} className="ir-atras">
           <img className="boton-regresar" src={atrasIcon} alt="regresar" />
-          {/* <span className="boton-regresar">Regresar</span> */}
         </button>
       </div>
       <div className="form-container">

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./header.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/userSlice";
 import logo from "../../assets/Images/ImagesNavbar/LogoNavbar.png";
 import usuario from "../../assets/Images/ImagesNavbar/usuario.jpg";
 
@@ -20,11 +22,15 @@ const Header = ({ onMenuToggle }) => {
   const [activeTab, setActiveTab] = useState(location.pathname);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const user = useSelector((state) => state.user); // Obtener datos del usuario desde Redux
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    onMenuToggle(!isOpen);
+    if (onMenuToggle) {
+      onMenuToggle(!isOpen);
+    }
   };
 
   const toggleDropdown = (dropdownName) => {
@@ -42,6 +48,7 @@ const Header = ({ onMenuToggle }) => {
   };
 
   const handleLogout = () => {
+    dispatch(logout());
     navigate("/");
   };
 
@@ -69,14 +76,26 @@ const Header = ({ onMenuToggle }) => {
                     activeDropdown === tab.name ? "open" : ""
                   }`}
                 >
-
-                  <li onClick={() => navigate("/tutoriales2")}>Aprende de Piggy</li>
-                  <li onClick={() => navigate("/tutoriales")}>Aprende con Piggy</li>
+                  <li onClick={() => navigate("/tutoriales2")}>
+                    Aprende de Piggy
+                  </li>
+                  <li onClick={() => navigate("/tutoriales")}>
+                    Aprende con Piggy
+                  </li>
                 </ul>
               )}
             </li>
           ))}
-          {isOpen && <li className="user-mobile">Mi Cuenta</li>}
+          {isOpen && (
+            <ul>
+              <li className="user-mobile-item">
+                <span onClick={() => navigate("/perfil")}>Perfil</span>
+              </li>
+              <li className="user-mobile-item">
+                <span onClick={handleLogout}>Salir</span>
+              </li>
+            </ul>
+          )}
         </ul>
       </nav>
       <div className="header-usuario">
@@ -89,7 +108,7 @@ const Header = ({ onMenuToggle }) => {
         </span>
         {isDropdownOpen && (
           <div className="dropdown-menu">
-            <span onClick={() => navigate("/perfil")}>Mi Perfil</span>
+            <span onClick={() => navigate("/perfil")}>Perfil</span>
             <span onClick={handleLogout}>Salir</span>
           </div>
         )}
