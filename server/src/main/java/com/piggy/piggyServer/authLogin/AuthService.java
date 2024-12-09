@@ -32,7 +32,7 @@ public class AuthService {
         .build();
     userRepository.save(userEntity);
     //return AuthResponse.builder().token(jwtTokenProviderService.getToken(userEntity)).build();
-    return new RegisterDto(userEntity.getName(), userEntity.getLastName(), userEntity.getAge(), userEntity.getEmail(), userEntity.getRoleUser(), jwtTokenProviderService.getToken(userEntity));
+    return new RegisterDto(userEntity.getName(), userEntity.getLastName(), userEntity.getAge(), userEntity.getEmail(), userEntity.getRoleUser());
   }
 
 /*  public AuthResponse login(LoginRequest loginRequest){

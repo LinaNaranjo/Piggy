@@ -1,16 +1,12 @@
 package com.piggy.piggyServer.goals;
-
-
 import com.piggy.piggyServer.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -50,16 +46,16 @@ public class GoalController {
     }
   }
 
-
-  @GetMapping("/user/{userId}")
-  public List<GoalsEntity> getGoalsByUserId(Long userId) {
-    return goalService.getGoalsByUserId(userId);
-  }
-
   @GetMapping("/{id}")
   public ResponseEntity<?> getGoalById(@PathVariable Long id) {
     return goalService.getGoalById(id);
   }
+
+  @GetMapping("/user/{userId}")
+  public ResponseEntity<?> getGoalsByUserId(@PathVariable Long userId) {
+    return goalService.getGoalsByUserId(userId);
+  }
+
 
   @PutMapping("/{goalId}")
   public GoalsEntity updateGoal(@PathVariable Long goalId, @RequestBody GoalsEntity updateGoal) {

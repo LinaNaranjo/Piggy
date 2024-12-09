@@ -1,6 +1,5 @@
 package com.piggy.piggyServer.income;
 
-import com.piggy.piggyServer.goals.GoalsEntity;
 import com.piggy.piggyServer.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 
 @AllArgsConstructor
@@ -23,18 +21,42 @@ public class IncomeController {
 
   @PostMapping("/new")
   public ResponseEntity<?> createIncome(@AuthenticationPrincipal UserEntity user, @RequestBody IncomeEntity income){
-    if(user == null){
-      return ResponseEntity.status(403).body(Map.of("error", "User not authenticated"));
+    if (user == null) {
+      return ResponseEntity.status(403).body(Map.of(
+          "error:", "Forbidden",
+          "message", "User is not authenticated"
+      ));
+
     }
-    income.setUser(user);
-    IncomeEntity savedIncome = incomeService.createIncome(income, user);
-    return ResponseEntity.ok(savedIncome);
+    try {
+      IncomeEntity createIncome = incomeService.createIncome(income, user);
+      return ResponseEntity.status(201).body(Map.of(
+          "message", "Income created successfully",
+          "goal", createIncome
+      ));
+
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.badRequest().body(Map.of(
+          "error", "Validation error",
+          "message", e.getMessage()
+      ));
+    } catch (Exception e) {
+      return ResponseEntity.status(500).body(Map.of(
+          "error", "Internal server error",
+          "message", "unexpected error"
+      ));
+    }
   }
 
   @GetMapping("/{incomeId}")
   public ResponseEntity<?> getIncomeById(@PathVariable Long id){
     return incomeService.getIncomeById(id);
     //todo 403
+  }
+
+  @GetMapping("/user/{userId}")
+  public ResponseEntity<?> getIncomesByUserId(@PathVariable Long userId) {
+    return incomeService.getIncomesByUserId(userId);
   }
 
   @DeleteMapping("{incomeId}")

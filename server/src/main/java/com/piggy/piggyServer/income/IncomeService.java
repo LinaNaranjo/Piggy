@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -24,7 +25,7 @@ public class IncomeService {
       throw new IllegalArgumentException("Income name cannot be null or empty");
     }
     if(income.getAmount() == null || income.getAmount() <= 0){
-      throw new IllegalArgumentException("Goal amount must be greater than 0");
+      throw new IllegalArgumentException("Expense amount must be greater than 0");
     }
     income.setUser(user);
     return incomeRepository.save(income);
@@ -39,6 +40,17 @@ public class IncomeService {
     }
     IncomeEntity income = incomeRepository.findById(incomeId).orElseThrow(null);
     return ResponseEntity.ok(incomeId);
+  }
+
+  public ResponseEntity<?> getIncomesByUserId(Long userId) {
+    List<IncomeEntity> userIncomes = incomeRepository.findByUserId(userId);
+    if (userIncomes.isEmpty()) {
+      return ResponseEntity.status(404).body(Map.of(
+          "error", "Not found",
+          "Message", "No goals found for the user with ID" + userId
+      ));
+    }
+    return ResponseEntity.ok(userIncomes);
   }
 
   //"?": tipo de respuesta flexible, puede ser cualquiera

@@ -40,9 +40,17 @@ public class GoalService {
     return ResponseEntity.ok(goal);
   }
 
-  public List<GoalsEntity> getGoalsByUserId(Long userId) {
-    return goalRepository.findByUserId(userId);
+  public ResponseEntity<?> getGoalsByUserId(Long userId) {
+    List<GoalsEntity> userGoals = goalRepository.findByUserId(userId);
+    if (userGoals.isEmpty()){
+      return ResponseEntity.status(404).body(Map.of(
+         "error", "Not found",
+          "Message", "No goals found for the user with ID" + userId
+      ));
+    }
+    return ResponseEntity.ok(userGoals);
   }
+
 
   public GoalsEntity updateGoal(Long goalId, GoalsEntity updatedGoal) {
     GoalsEntity existingGoal = goalRepository.findById(goalId)

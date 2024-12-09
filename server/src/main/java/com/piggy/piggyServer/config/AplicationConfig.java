@@ -35,7 +35,7 @@ public class AplicationConfig {
   }
 
   @Bean
-  public UserDetailsService userDetailsService(){//TODO VALIDAR USERNAME O EMAIL
+  public UserDetailsService userDetailsService(){
     return username -> userRepository.findByEmail(username)//Busca user name
         .orElseThrow(() -> new UsernameNotFoundException("Username no found"));//manejo de excepciones
   }
