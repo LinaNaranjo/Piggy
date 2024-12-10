@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const storedUser = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
+  id: storedUser?.id,
   name: storedUser?.name,
   lastName: storedUser?.lastName,
   email: storedUser?.email,
@@ -26,6 +27,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
+      state.id = action.payload.id;
       state.name = action.payload.name;
       state.lastName = action.payload.lastName;
       state.email = action.payload.email;

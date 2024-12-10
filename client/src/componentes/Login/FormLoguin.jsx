@@ -59,6 +59,7 @@ const FormLogin = () => {
           console.log("Datos del usuario logueado:", user);
           dispatch(
             login({
+              id: user.id,
               name: user.name,
               lastName: user.lastName,
               email: user.email,
