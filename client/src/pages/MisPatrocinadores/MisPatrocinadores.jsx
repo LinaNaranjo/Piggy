@@ -1,14 +1,12 @@
 import React from "react";
 import Header from "../../componentes/Header/Header";
-import PatrocinadoresTitulo from "../../componentes/Patrocinadores/PatrocinadoresTitulo";
-import PatrocinadoresList from "../../componentes/Patrocinadores/PatrocinadoresList";
+import Patrocinadores from "../../componentes/Patrocinadores/Patrocinadores";
 
 const MisPatrocinadores = () => {
   return (
     <>
       <Header />
-      <PatrocinadoresTitulo />
-      <PatrocinadoresList />
+      <Patrocinadores />
     </>
   );
 };
