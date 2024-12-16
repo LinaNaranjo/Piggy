@@ -1,5 +1,7 @@
 package com.piggy.piggyServer.goals;
 import com.piggy.piggyServer.user.UserEntity;
+import com.piggy.piggyServer.user.UserRepository;
+import com.piggy.piggyServer.user.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,8 @@ public class GoalController {
       GoalsEntity createGoal = goalService.createGoal(goal, user);
       return ResponseEntity.status(201).body(Map.of(
           "message", "Goal created successfully",
-          "goal", createGoal
+          "goal", createGoal,
+          "points",user.getPoints()
       ));
 
     }catch (IllegalArgumentException e){
