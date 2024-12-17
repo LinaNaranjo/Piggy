@@ -32,8 +32,7 @@ public class GoalController {
       GoalsEntity createGoal = goalService.createGoal(goal, user);
       return ResponseEntity.status(201).body(Map.of(
           "message", "Goal created successfully",
-          "goal", createGoal,
-          "points",user.getPoints()
+          "goal", createGoal
       ));
 
     }catch (IllegalArgumentException e){

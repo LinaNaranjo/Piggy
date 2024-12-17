@@ -34,9 +34,9 @@ public class IncomeService {
     if(income.getAmount() == null || income.getAmount() <= 0){
       throw new IllegalArgumentException("Expense amount must be greater than 0");
     }
+
     income.setUser(user);
     IncomeEntity savedIncome = incomeRepository.save(income);
-
     userService.addPointsUser(user.getId(), 10);
 
     UserEntity updatedUser = userRepository.findById(user.getId())
