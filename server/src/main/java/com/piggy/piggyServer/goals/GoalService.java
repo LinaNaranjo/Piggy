@@ -1,6 +1,8 @@
 package com.piggy.piggyServer.goals;
 
 import com.piggy.piggyServer.user.UserEntity;
+import com.piggy.piggyServer.user.UserRepository;
+import com.piggy.piggyServer.user.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,10 @@ public class GoalService {
 
   @Autowired
   private GoalRepository goalRepository;
+  @Autowired
+  private UserService userService;
+  @Autowired
+  private UserRepository userRepository;
 
   public GoalsEntity createGoal(GoalsEntity goal, UserEntity user){
     if (goal.getGoalName() == null || goal.getGoalName().isEmpty()){
@@ -25,8 +31,17 @@ public class GoalService {
     if(goal.getGoalAmount() == null || goal.getGoalAmount() <= 0){
       throw new IllegalArgumentException("Goal amount must be greater than 0");
     }
+
     goal.setUser(user);
-    return goalRepository.save(goal);
+    GoalsEntity savedGoal = goalRepository.save(goal);
+    userService.addPointsUser(user.getId(), 10);
+
+    UserEntity updatedUser = userRepository.findById(user.getId())
+        .orElseThrow(() -> new IllegalArgumentException("User not found after update"));
+
+    // Actualizar la referencia del usuario en la meta
+    goal.setUser(updatedUser);
+    return savedGoal;
   }
 
   public ResponseEntity<?> getGoalById(Long goalId) {

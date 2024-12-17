@@ -2,6 +2,8 @@ package com.piggy.piggyServer.expenses;
 
 import com.piggy.piggyServer.income.IncomeEntity;
 import com.piggy.piggyServer.user.UserEntity;
+import com.piggy.piggyServer.user.UserRepository;
+import com.piggy.piggyServer.user.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,10 @@ public class ExpensesService {
 
   @Autowired
   private ExpensesRepository expensesRepository;
+  @Autowired
+  private UserService userService;
+  @Autowired
+  private UserRepository userRepository;
 
   public ExpensesEntity createExpense(ExpensesEntity expenses, UserEntity user) {
     if (expenses.getName() == null || expenses.getName().isEmpty()){
@@ -29,7 +35,13 @@ public class ExpensesService {
       throw new IllegalArgumentException("Expense amount must be greater than 0");
     }
     expenses.setUser(user);
-    return expensesRepository.save(expenses);
+    ExpensesEntity savedExpense = expensesRepository.save(expenses);
+    userService.addPointsUser(user.getId(), 10);
+
+    UserEntity updatedUser = userRepository.findById(user.getId())
+        .orElseThrow(() -> new IllegalArgumentException("User not found after update"));
+    expenses.setUser(updatedUser);
+    return savedExpense;
   }
 
   public ResponseEntity<?> getExpenseById(Long expenseId) {

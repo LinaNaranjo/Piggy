@@ -51,7 +51,6 @@ public class IncomeController {
   @GetMapping("/{incomeId}")
   public ResponseEntity<?> getIncomeById(@PathVariable Long id){
     return incomeService.getIncomeById(id);
-    //todo 403
   }
 
   @GetMapping("/user/{userId}")

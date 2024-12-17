@@ -41,9 +41,13 @@ public class UserEntity implements UserDetails { //UserDetails: personaliza la i
   @Column(nullable = false)
   private String password;
 
+  @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+  private Integer points = 0;
+
+
+
   @Enumerated(EnumType.STRING)
   RoleUser roleUser;
-
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

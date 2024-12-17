@@ -53,7 +53,6 @@ public class ExpensesController {
   @GetMapping("/{expenseId}")
   public ResponseEntity<?> getExpenseById(@PathVariable Long id){
     return expensesService.getExpenseById(id);
-    //todo 403
   }
 
   @GetMapping("/user/{userId}")

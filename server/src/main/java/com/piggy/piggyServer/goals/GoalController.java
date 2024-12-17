@@ -1,5 +1,7 @@
 package com.piggy.piggyServer.goals;
 import com.piggy.piggyServer.user.UserEntity;
+import com.piggy.piggyServer.user.UserRepository;
+import com.piggy.piggyServer.user.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
