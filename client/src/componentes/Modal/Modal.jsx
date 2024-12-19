@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import formatoTexto from "../../componentes/FormatoTexto/FormatoTexto";
 import "./modal.scss";
+import Swal from 'sweetalert2';
 
 const Modal = ({ goal, onClose, onSave }) => {
   const [goalData, setGoalData] = useState({
@@ -64,15 +65,33 @@ const Modal = ({ goal, onClose, onSave }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!goalData.totalAmount) {
-      alert("El campo 'Valor Total' es obligatorio");
+      Swal.fire({
+        title: 'Error',
+        text: 'El campo "Valor Total" es obligatorio',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#ff5733', 
+      });
       return;
     }
     console.log(goalData);
     onSave(goalData);
     if (goal) {
-      alert("Meta editada exitosamente");
+      Swal.fire({
+        title: 'Éxito',
+        text: 'Meta editada exitosamente',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#76d7c4', 
+      });
     } else {
-      alert("Meta agregada exitosamente");
+      Swal.fire({
+        title: 'Éxito',
+        text: 'Meta agregada exitosamente',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#76d7c4',
+      });
     }
     onClose();
   };
