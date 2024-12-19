@@ -49,7 +49,7 @@ const FormLogin = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        const response = await axios.post(`${BASE_URL}/login`, {
+        const response = await axios.post(`${BASE_URL}/auth/login`, {
           email,
           password,
         });

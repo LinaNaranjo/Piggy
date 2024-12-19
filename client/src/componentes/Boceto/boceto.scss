@@ -8,7 +8,7 @@
     flex-direction: column;
     gap: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    // animation: pulse 1.5s infinite;
+    animation: pulse 1.5s infinite;
   }
   
   .skeleton-top-icons,
@@ -44,15 +44,15 @@
     margin: auto;
   }
   
-//   @keyframes pulse {
-//     0% {
-//       background-color: #f0f0f0;
-//     }
-//     50% {
-//       background-color: #e0e0e0;
-//     }
-//     100% {
-//       background-color: #f0f0f0;
-//     }
-//   }
+  @keyframes pulse {
+    0% {
+      background-color: #f0f0f0;
+    }
+    50% {
+      background-color: #e0e0e0;
+    }
+    100% {
+      background-color: #f0f0f0;
+    }
+  }
   
