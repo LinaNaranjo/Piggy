@@ -19,7 +19,6 @@ public class IncomeEntity {
   private Long id;
 
   private String name;
-  private String description;
   @Column(name = "date_created")
   private Date date;
   private Double amount;
