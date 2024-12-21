@@ -1,6 +1,6 @@
-package com.piggy.piggyServer.authLogin;
+package com.piggy.piggyServer.Login.authLogin;
 
-import com.piggy.piggyServer.user.RoleUser;
+import com.piggy.piggyServer.Cruds.user.RoleUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,8 +1,8 @@
-package com.piggy.piggyServer.goals;
+package com.piggy.piggyServer.Cruds.goals;
 
-import com.piggy.piggyServer.user.UserEntity;
-import com.piggy.piggyServer.user.UserRepository;
-import com.piggy.piggyServer.user.UserService;
+import com.piggy.piggyServer.Cruds.user.UserEntity;
+import com.piggy.piggyServer.Cruds.user.UserRepository;
+import com.piggy.piggyServer.Cruds.user.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

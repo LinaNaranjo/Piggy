@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.user;
+package com.piggy.piggyServer.Cruds.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.authLogin;
+package com.piggy.piggyServer.Login.authLogin;
 //Respuesta independiente de la solicitud de inicio de sesion
 import lombok.AllArgsConstructor;
 import lombok.Builder;

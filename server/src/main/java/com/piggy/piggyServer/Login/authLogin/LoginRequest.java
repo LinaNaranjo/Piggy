@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.authLogin;
+package com.piggy.piggyServer.Login.authLogin;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.piggy.piggyServer.config;
 
-import com.piggy.piggyServer.user.UserRepository;
+import com.piggy.piggyServer.Cruds.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

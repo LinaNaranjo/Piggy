@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.user;
+package com.piggy.piggyServer.Cruds.user;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

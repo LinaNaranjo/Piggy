@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.authLogin;
+package com.piggy.piggyServer.Login.authLogin;
 
 import com.piggy.piggyServer.dto.LoginDto;
 import com.piggy.piggyServer.dto.RegisterDto;

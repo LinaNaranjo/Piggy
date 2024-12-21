@@ -1,9 +1,8 @@
-package com.piggy.piggyServer.expenses;
+package com.piggy.piggyServer.Cruds.income;
 
-import com.piggy.piggyServer.income.IncomeEntity;
-import com.piggy.piggyServer.user.UserEntity;
-import com.piggy.piggyServer.user.UserRepository;
-import com.piggy.piggyServer.user.UserService;
+import com.piggy.piggyServer.Cruds.user.UserEntity;
+import com.piggy.piggyServer.Cruds.user.UserRepository;
+import com.piggy.piggyServer.Cruds.user.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,45 +17,48 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @Service
-public class ExpensesService {
-
+public class IncomeService {
   @Autowired
-  private ExpensesRepository expensesRepository;
+  private IncomeRepository incomeRepository;
+  private IncomeEntity income;
+
   @Autowired
   private UserService userService;
   @Autowired
   private UserRepository userRepository;
 
-  public ExpensesEntity createExpense(ExpensesEntity expenses, UserEntity user) {
-    if (expenses.getName() == null || expenses.getName().isEmpty()){
+  public IncomeEntity createIncome(IncomeEntity income, UserEntity user) {
+    if (income.getName() == null || income.getName().isEmpty()){
       throw new IllegalArgumentException("Income name cannot be null or empty");
     }
-    if(expenses.getAmount() == null || expenses.getAmount() <= 0){
+    if(income.getAmount() == null || income.getAmount() <= 0){
       throw new IllegalArgumentException("Expense amount must be greater than 0");
     }
-    expenses.setUser(user);
-    ExpensesEntity savedExpense = expensesRepository.save(expenses);
+
+    income.setUser(user);
+    IncomeEntity savedIncome = incomeRepository.save(income);
     userService.addPointsUser(user.getId(), 10);
 
     UserEntity updatedUser = userRepository.findById(user.getId())
         .orElseThrow(() -> new IllegalArgumentException("User not found after update"));
-    expenses.setUser(updatedUser);
-    return savedExpense;
+    income.setUser(updatedUser);
+    return savedIncome;
+
   }
 
-  public ResponseEntity<?> getExpenseById(Long expenseId) {
-    if (!expensesRepository.existsById(expenseId)) {
+  public ResponseEntity<?> getIncomeById(Long incomeId) {
+    if (!incomeRepository.existsById(incomeId)) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not Found",
-          "Message", "Income with ID " + expenseId + "does not exist"
+          "Message", "Income with ID " + incomeId + "does not exist"
       ));
     }
-    ExpensesEntity expenses = expensesRepository.findById(expenseId).orElseThrow(null);
-    return ResponseEntity.ok(expenseId);
+    IncomeEntity income = incomeRepository.findById(incomeId).orElseThrow(null);
+    return ResponseEntity.ok(incomeId);
   }
 
   public ResponseEntity<?> getIncomesByUserId(Long userId) {
-    List<ExpensesEntity> userIncomes = expensesRepository.findByUserId(userId);
+    List<IncomeEntity> userIncomes = incomeRepository.findByUserId(userId);
     if (userIncomes.isEmpty()) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not found",
@@ -66,14 +68,16 @@ public class ExpensesService {
     return ResponseEntity.ok(userIncomes);
   }
 
-  public ResponseEntity<?> deleteExpenseById(Long incomeId) {
-    if (!expensesRepository.existsById(incomeId)) {
+  //"?": tipo de respuesta flexible, puede ser cualquiera
+  public ResponseEntity<?> deleteIncomeById(Long incomeId) {
+    if (!incomeRepository.existsById(incomeId)) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not Found",
           "Message", "Income with ID" + incomeId + "does not exist"));
     }
-    expensesRepository.deleteById(incomeId);
+    incomeRepository.deleteById(incomeId);
     return ResponseEntity.ok(Map.of(
         "Message", "Income with ID" + incomeId + "has been successfully deleted"));
   }
 }
+//git
