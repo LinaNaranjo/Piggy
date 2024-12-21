@@ -1,30 +1,30 @@
-package com.piggy.piggyServer.Cruds.expenses;
+package com.piggy.piggyServer.Cruds.sponsors;
 
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "Expenses")
-public class ExpensesEntity {
+@Table(name = "sponsors")
+public class SponsorsEntity {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
   private String name;
-  @Column(name = "date_created")
-  private Date date;
-  private Double amount;
-
-  @ManyToOne //Muchos gastos pueden estar relacionado a un usario
+  private Integer contributions;
+  @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
   private UserEntity user;
+
+
+
+
 }
