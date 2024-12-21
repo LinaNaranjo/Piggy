@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.jwt;
+package com.piggy.piggyServer.Login.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

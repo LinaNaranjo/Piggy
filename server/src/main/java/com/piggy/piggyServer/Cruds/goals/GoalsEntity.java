@@ -1,6 +1,6 @@
-package com.piggy.piggyServer.goals;
+package com.piggy.piggyServer.Cruds.goals;
 
-import com.piggy.piggyServer.user.UserEntity;
+import com.piggy.piggyServer.Cruds.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

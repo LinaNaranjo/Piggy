@@ -1,16 +1,13 @@
-package com.piggy.piggyServer.authLogin;
+package com.piggy.piggyServer.Login.authLogin;
 
 import com.piggy.piggyServer.dto.LoginDto;
 import com.piggy.piggyServer.dto.RegisterDto;
-import com.piggy.piggyServer.jwt.JwtTokenProviderService;
-import com.piggy.piggyServer.user.UserEntity;
-import com.piggy.piggyServer.user.UserRepository;
-import com.piggy.piggyServer.user.UserService;
+import com.piggy.piggyServer.Login.jwt.JwtTokenProviderService;
+import com.piggy.piggyServer.Cruds.user.UserEntity;
+import com.piggy.piggyServer.Cruds.user.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
-package com.piggy.piggyServer.expenses;
+package com.piggy.piggyServer.Cruds.expenses;
 
-import com.piggy.piggyServer.income.IncomeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

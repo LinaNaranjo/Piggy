@@ -1,4 +1,4 @@
-package com.piggy.piggyServer.user;
+package com.piggy.piggyServer.Cruds.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -1,6 +1,6 @@
 package com.piggy.piggyServer.dto;
 
-import com.piggy.piggyServer.user.RoleUser;
+import com.piggy.piggyServer.Cruds.user.RoleUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

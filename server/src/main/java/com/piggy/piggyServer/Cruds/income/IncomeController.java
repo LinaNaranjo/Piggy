@@ -1,6 +1,6 @@
-package com.piggy.piggyServer.income;
+package com.piggy.piggyServer.Cruds.income;
 
-import com.piggy.piggyServer.user.UserEntity;
+import com.piggy.piggyServer.Cruds.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

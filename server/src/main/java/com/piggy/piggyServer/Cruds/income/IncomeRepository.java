@@ -1,6 +1,5 @@
-package com.piggy.piggyServer.income;
+package com.piggy.piggyServer.Cruds.income;
 
-import com.piggy.piggyServer.goals.GoalsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
