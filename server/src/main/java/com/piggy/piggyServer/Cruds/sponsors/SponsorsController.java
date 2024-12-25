@@ -34,7 +34,7 @@ public class SponsorsController {
       SponsorsEntity createSponsor = sponsorsService.createSponsor(sponsor, user);
       return ResponseEntity.status(201).body(Map.of(
           "message", "Expense created successfully",
-          "goal", createSponsor
+          "Sponsor", createSponsor
       ));
 
     } catch (IllegalArgumentException e) {

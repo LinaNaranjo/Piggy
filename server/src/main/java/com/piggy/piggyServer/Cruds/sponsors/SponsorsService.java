@@ -1,6 +1,5 @@
 package com.piggy.piggyServer.Cruds.sponsors;
 
-import com.piggy.piggyServer.Cruds.expenses.ExpensesEntity;
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import com.piggy.piggyServer.Cruds.user.UserRepository;
 import com.piggy.piggyServer.Cruds.user.UserService;
@@ -28,10 +27,7 @@ public class SponsorsService {
 
   public SponsorsEntity createSponsor(SponsorsEntity sponsors, UserEntity user) {
     if (sponsors.getName() == null || sponsors.getName().isEmpty()){
-      throw new IllegalArgumentException("Income name cannot be null or empty");
-    }
-    if(sponsors.getId() == null){
-      throw new IllegalArgumentException("Expense amount must be greater than 0");
+      throw new IllegalArgumentException("Sponsor name cannot be null or empty");
     }
     sponsors.setUser(user);
     SponsorsEntity savedSponsor = sponsorsRepository.save(sponsors);
