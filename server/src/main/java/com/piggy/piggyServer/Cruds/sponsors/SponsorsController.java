@@ -1,6 +1,5 @@
 package com.piggy.piggyServer.Cruds.sponsors;
 
-import com.piggy.piggyServer.Cruds.expenses.ExpensesEntity;
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +32,7 @@ public class SponsorsController {
     try {
       SponsorsEntity createSponsor = sponsorsService.createSponsor(sponsor, user);
       return ResponseEntity.status(201).body(Map.of(
-          "message", "Expense created successfully",
+          "message", "Sponsor created successfully",
           "Sponsor", createSponsor
       ));
 
@@ -60,7 +59,7 @@ public class SponsorsController {
     return sponsorsService.getSponsorByUserId(userId);
   }
   @DeleteMapping("{SponsorId}")
-  public ResponseEntity<?> deleteByExpenseId(@PathVariable Long incomeId){
-    return sponsorsService.deleteSponsorById(incomeId);
+  public ResponseEntity<?> deleteBySponsorId(@PathVariable Long sponsorId){
+    return sponsorsService.deleteSponsorById(sponsorId);
   }
 }

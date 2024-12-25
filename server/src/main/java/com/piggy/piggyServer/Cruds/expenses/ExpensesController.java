@@ -22,7 +22,7 @@ public class ExpensesController {
   public ExpensesService expensesService;
 
   @PostMapping("/new")
-  public ResponseEntity<?> createExpense(@AuthenticationPrincipal UserEntity user, @RequestBody ExpensesEntity income) {
+  public ResponseEntity<?> createExpense(@AuthenticationPrincipal UserEntity user, @RequestBody ExpensesEntity expense) {
     if (user == null) {
       return ResponseEntity.status(403).body(Map.of(
           "error:", "Forbidden",
@@ -31,10 +31,10 @@ public class ExpensesController {
 
     }
     try {
-      ExpensesEntity createExpense = expensesService.createExpense(income, user);
+      ExpensesEntity createExpense = expensesService.createExpense(expense, user);
       return ResponseEntity.status(201).body(Map.of(
           "message", "Expense created successfully",
-          "goal", createExpense
+          "expense", createExpense
       ));
 
     } catch (IllegalArgumentException e) {
@@ -57,10 +57,10 @@ public class ExpensesController {
 
   @GetMapping("/user/{userId}")
   public ResponseEntity<?> getExpenseByUserId(@PathVariable Long userId) {
-    return expensesService.getIncomesByUserId(userId);
+    return expensesService.getExpensesByUserId(userId);
   }
-  @DeleteMapping("{incomeId}")
-  public ResponseEntity<?> deleteByExpenseId(@PathVariable Long incomeId){
-    return expensesService.deleteExpenseById(incomeId);
+  @DeleteMapping("{expenseId}")
+  public ResponseEntity<?> deleteByExpenseId(@PathVariable Long expenseId){
+    return expensesService.deleteExpenseById(expenseId);
   }
 }

@@ -28,7 +28,7 @@ public class ExpensesService {
 
   public ExpensesEntity createExpense(ExpensesEntity expenses, UserEntity user) {
     if (expenses.getName() == null || expenses.getName().isEmpty()){
-      throw new IllegalArgumentException("Income name cannot be null or empty");
+      throw new IllegalArgumentException("Expense name cannot be null or empty");
     }
     if(expenses.getAmount() == null || expenses.getAmount() <= 0){
       throw new IllegalArgumentException("Expense amount must be greater than 0");
@@ -47,32 +47,32 @@ public class ExpensesService {
     if (!expensesRepository.existsById(expenseId)) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not Found",
-          "Message", "Income with ID " + expenseId + "does not exist"
+          "Message", "Expense with ID " + expenseId + "does not exist"
       ));
     }
     ExpensesEntity expenses = expensesRepository.findById(expenseId).orElseThrow(null);
     return ResponseEntity.ok(expenseId);
   }
 
-  public ResponseEntity<?> getIncomesByUserId(Long userId) {
-    List<ExpensesEntity> userIncomes = expensesRepository.findByUserId(userId);
-    if (userIncomes.isEmpty()) {
+  public ResponseEntity<?> getExpensesByUserId(Long userId) {
+    List<ExpensesEntity> userExpense = expensesRepository.findByUserId(userId);
+    if (userExpense.isEmpty()) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not found",
-          "Message", "No goals found for the user with ID" + userId
+          "Message", "No expense found for the user with ID" + userId
       ));
     }
-    return ResponseEntity.ok(userIncomes);
+    return ResponseEntity.ok(userExpense);
   }
 
-  public ResponseEntity<?> deleteExpenseById(Long incomeId) {
-    if (!expensesRepository.existsById(incomeId)) {
+  public ResponseEntity<?> deleteExpenseById(Long expenseId) {
+    if (!expensesRepository.existsById(expenseId)) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not Found",
-          "Message", "Income with ID" + incomeId + "does not exist"));
+          "Message", "Expense with ID" + expenseId + "does not exist"));
     }
-    expensesRepository.deleteById(incomeId);
+    expensesRepository.deleteById(expenseId);
     return ResponseEntity.ok(Map.of(
-        "Message", "Income with ID" + incomeId + "has been successfully deleted"));
+        "Message", "Expense with ID" + expenseId + "has been successfully deleted"));
   }
 }

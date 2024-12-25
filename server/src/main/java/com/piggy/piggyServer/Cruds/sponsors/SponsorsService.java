@@ -43,7 +43,7 @@ public class SponsorsService {
     if (!sponsorsRepository.existsById(sponsorId)) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not Found",
-          "Message", "Income with ID " + sponsorId + "does not exist"
+          "Message", "Sponsor with ID " + sponsorId + "does not exist"
       ));
     }
     SponsorsEntity sponsor = sponsorsRepository.findById(sponsorId).orElseThrow(null);
@@ -55,7 +55,7 @@ public class SponsorsService {
     if (userSponsor.isEmpty()) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not found",
-          "Message", "No goals found for the user with ID" + userId
+          "Message", "No sponsor found for the user with ID" + userId
       ));
     }
     return ResponseEntity.ok(userSponsor);
@@ -65,10 +65,10 @@ public class SponsorsService {
     if (!sponsorsRepository.existsById(sponsorId)) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not Found",
-          "Message", "Income with ID" + sponsorId + "does not exist"));
+          "Message", "Sponsor with ID" + sponsorId + "does not exist"));
     }
     sponsorsRepository.deleteById(sponsorId);
     return ResponseEntity.ok(Map.of(
-        "Message", "Income with ID" + sponsorId + "has been successfully deleted"));
+        "Message", "Sponsor with ID" + sponsorId + "has been successfully deleted"));
   }
 }

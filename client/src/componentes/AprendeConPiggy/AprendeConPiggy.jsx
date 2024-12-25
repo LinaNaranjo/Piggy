@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './aprendeConPiggy.scss';
+import './AprendeConPiggy.scss';
 
 const AprendeConPiggy = ({ videos }) => {
   const [modalVideo, setModalVideo] = useState(null);
