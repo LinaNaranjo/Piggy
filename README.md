@@ -14,19 +14,24 @@
 Los niños pueden registrar tanto el dinero que reciben de sus patrocinadores, como padres, familiares o amigos, como los ingresos obtenidos por tareas realizadas u otras actividades. Así, cada niño tiene la oportunidad de visualizar de dónde proviene su dinero y cómo lo utiliza. Piggy también permite a los padres o tutores monitorear los registros y ofrecer orientación en su aprendizaje financiero.<br><br>
 Piggy está aquí para ayudar a los más pequeños a desarrollar habilidades financieras desde temprano, fomentando hábitos de ahorro y consumo consciente que les servirán toda la vida.
 
-###
-
 ## Características
 
-- Registro de ingresos y gastos de forma sencilla.
-- Opción de asignar patrocinadores para cada ingreso, ayudando a los niños a entender quién les apoya económicamente.
-- Herramientas visuales para que los niños vean su progreso en ahorro y gasto.
-- Funcionalidades educativas que enseñan sobre la administración de dinero de manera divertida y didáctica.
+- **Gestión de Metas Financieras:** Los usuarios pueden crear metas financieras personalizadas con un nombre, monto y objetivo.
+- **Registro de Ingresos y Gastos:** Los usuarios pueden registrar ingresos y gastos fácilmente.
+- **Sistema de Recompensas con Puntos:** Por cada acción como agregar una meta, registrar un ingreso o un gasto, los usuarios ganan puntos, para así mantener una interacción activa con los usarios.
+- **Panel de Usuario Intuitivo:** Herramientas visuales para que los niños vean su progreso en ahorro y gasto.
+- **Educativo:** Funcionalidades educativas que enseñan sobre la administración de dinero de manera divertida y didáctica.
+- **Seguridad y Privacidad:** Protección de datos mediante autenticación segura y uso de roles para gestionar accesos y permisos.
 
-###
+## Tecnologias utilizadas
+- React
+- Java/Spring Boot
+- JWT
+- Mysql
+
 ## Instalación
 
-## Requisitos previos
+### Requisitos previos
 
 Antes de comenzar, asegúrate de tener las siguientes herramientas instaladas en tu sistema:
 
@@ -67,7 +72,7 @@ Antes de comenzar, asegúrate de tener las siguientes herramientas instaladas en
 
      ```bash
       npm install react-circular-progressbar
-
+---
  
 
      
