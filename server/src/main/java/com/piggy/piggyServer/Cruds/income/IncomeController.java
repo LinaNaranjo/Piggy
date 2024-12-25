@@ -32,7 +32,7 @@ public class IncomeController {
       IncomeEntity createIncome = incomeService.createIncome(income, user);
       return ResponseEntity.status(201).body(Map.of(
           "message", "Income created successfully",
-          "goal", createIncome
+          "Income", createIncome
       ));
 
     } catch (IllegalArgumentException e) {

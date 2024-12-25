@@ -32,7 +32,7 @@ public class IncomeService {
       throw new IllegalArgumentException("Income name cannot be null or empty");
     }
     if(income.getAmount() == null || income.getAmount() <= 0){
-      throw new IllegalArgumentException("Expense amount must be greater than 0");
+      throw new IllegalArgumentException("Income amount must be greater than 0");
     }
 
     income.setUser(user);
@@ -62,7 +62,7 @@ public class IncomeService {
     if (userIncomes.isEmpty()) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not found",
-          "Message", "No goals found for the user with ID" + userId
+          "Message", "No income found for the user with ID" + userId
       ));
     }
     return ResponseEntity.ok(userIncomes);

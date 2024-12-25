@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})//
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 public class UserEntity implements UserDetails { //UserDetails: personaliza la información para gestionar inicio de secion
 
   @Id

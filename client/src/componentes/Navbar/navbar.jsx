@@ -2,7 +2,6 @@ import React from "react";
 import "./navbar.scss";
 import { useNavigate } from "react-router-dom";
 import LogoNavbar from "../../assets/Images/ImagesNavbar/LogoNavbar.png";
-
 const Navbar = () => {
   const navigate = useNavigate();
 

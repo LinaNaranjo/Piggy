@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "Incomes")
 public class IncomeEntity {
 
   @Id
@@ -19,7 +20,6 @@ public class IncomeEntity {
   private Long id;
 
   private String name;
-  private String description;
   @Column(name = "date_created")
   private Date date;
   private Double amount;

@@ -1,5 +1,4 @@
-package com.piggy.piggyServer.Cruds.expenses;
-
+package com.piggy.piggyServer.Cruds.sponsors;
 
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import lombok.AllArgsConstructor;
@@ -16,13 +15,13 @@ import java.util.Map;
 @NoArgsConstructor
 @Data
 @RestController
-@RequestMapping("expense")
-public class ExpensesController {
+@RequestMapping("sponsors")
+public class SponsorsController {
   @Autowired
-  public ExpensesService expensesService;
+  public SponsorsService sponsorsService;
 
   @PostMapping("/new")
-  public ResponseEntity<?> createExpense(@AuthenticationPrincipal UserEntity user, @RequestBody ExpensesEntity expense) {
+  public ResponseEntity<?> createSponsor(@AuthenticationPrincipal UserEntity user, @RequestBody SponsorsEntity sponsor) {
     if (user == null) {
       return ResponseEntity.status(403).body(Map.of(
           "error:", "Forbidden",
@@ -31,10 +30,10 @@ public class ExpensesController {
 
     }
     try {
-      ExpensesEntity createExpense = expensesService.createExpense(expense, user);
+      SponsorsEntity createSponsor = sponsorsService.createSponsor(sponsor, user);
       return ResponseEntity.status(201).body(Map.of(
-          "message", "Expense created successfully",
-          "expense", createExpense
+          "message", "Sponsor created successfully",
+          "Sponsor", createSponsor
       ));
 
     } catch (IllegalArgumentException e) {
@@ -50,17 +49,17 @@ public class ExpensesController {
     }
   }
 
-  @GetMapping("/{expenseId}")
-  public ResponseEntity<?> getExpenseById(@PathVariable Long id){
-    return expensesService.getExpenseById(id);
+  @GetMapping("/{sponsorId}")
+  public ResponseEntity<?> getSponsorById(@PathVariable Long id){
+    return sponsorsService.getSponsorById(id);
   }
 
   @GetMapping("/user/{userId}")
-  public ResponseEntity<?> getExpenseByUserId(@PathVariable Long userId) {
-    return expensesService.getExpensesByUserId(userId);
+  public ResponseEntity<?> getSponsorByUserId(@PathVariable Long userId) {
+    return sponsorsService.getSponsorByUserId(userId);
   }
-  @DeleteMapping("{expenseId}")
-  public ResponseEntity<?> deleteByExpenseId(@PathVariable Long expenseId){
-    return expensesService.deleteExpenseById(expenseId);
+  @DeleteMapping("{SponsorId}")
+  public ResponseEntity<?> deleteBySponsorId(@PathVariable Long sponsorId){
+    return sponsorsService.deleteSponsorById(sponsorId);
   }
 }
