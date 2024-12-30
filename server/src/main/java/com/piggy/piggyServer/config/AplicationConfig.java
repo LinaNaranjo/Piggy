@@ -19,29 +19,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AplicationConfig {
   private final UserRepository userRepository;
 
-  /* se encarga de gestionar los intentos de autenticación. Spring Security utiliza este AuthenticationManager para verificar las credenciales de usuario en cada inicio de sesión.*/
   @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-    //throws exception si no se encuentra el manager
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception
+  {
     return config.getAuthenticationManager();
   }
 
   @Bean
-  public AuthenticationProvider authenticationProvider(){
-    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-    authenticationProvider.setUserDetailsService(userDetailsService());
+  public AuthenticationProvider authenticationProvider()
+  {
+    DaoAuthenticationProvider authenticationProvider= new DaoAuthenticationProvider();
+    authenticationProvider.setUserDetailsService(userDetailService());
     authenticationProvider.setPasswordEncoder(passwordEncoder());
     return authenticationProvider;
   }
 
   @Bean
-  public UserDetailsService userDetailsService(){
-    return username -> userRepository.findByEmail(username)//Busca user name
-        .orElseThrow(() -> new UsernameNotFoundException("Username no found"));//manejo de excepciones
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
   }
 
   @Bean
-  public PasswordEncoder passwordEncoder(){
-    return new BCryptPasswordEncoder();
+  public UserDetailsService userDetailService() {
+    return username -> userRepository.findByEmail(username)
+        .orElseThrow(()-> new UsernameNotFoundException("User not fournd"));
   }
 }

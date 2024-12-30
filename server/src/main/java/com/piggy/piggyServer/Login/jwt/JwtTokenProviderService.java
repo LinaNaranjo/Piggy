@@ -14,76 +14,66 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 @Service
 public class JwtTokenProviderService {
-  private final String secretKey = "QnFybGZMVzJmbkpFclpGQ3NyZzVZSkpINzkwbkVzWTM=";
-  public String getToken(UserDetails userDetails){
-    return getToken(new HashMap<>(), userDetails);
+  private static final String SECRET_KEY="586E3272357538782F413F4428472B4B6250655368566B597033733676397924";
+
+  public String getToken(UserDetails user) {
+    return getToken(new HashMap<>(), user);
   }
 
-  //Generar jwt token
-  private String getToken(HashMap<String, Object> extraClaims, UserDetails userDetails){
-    ZonedDateTime now = ZonedDateTime.now(ZoneId.of("America/Bogota"));
-    return Jwts.builder()
+  private String getToken(Map<String,Object> extraClaims, UserDetails user) {
+    return Jwts
+        .builder()
         .setClaims(extraClaims)
-        .setSubject(userDetails.getUsername()) // El usuario asociado al token
-        .setIssuedAt(Date.from(now.toInstant())) // Fecha de emisión
-        .setExpiration(Date.from(now.plusHours(10).toInstant())) // Fecha de expiración (+10 horas)
-        .signWith(getKey(), SignatureAlgorithm.HS256) // Clave de firma y algoritmo
+        .setSubject(user.getUsername())
+        .setIssuedAt(new Date(System.currentTimeMillis()))
+        .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
+        .signWith(getKey(), SignatureAlgorithm.HS256)
         .compact();
   }
 
   private Key getKey() {
-    byte[]keyBytes = Decoders.BASE64.decode(secretKey);
+    byte[] keyBytes=Decoders.BASE64.decode(SECRET_KEY);
     return Keys.hmacShaKeyFor(keyBytes);
   }
 
   public String getUsernameFromToken(String token) {
-    try {
-      return Jwts.parserBuilder()
-          .setAllowedClockSkewSeconds(60) // 60 segundos de tolerancia
-          .setSigningKey(getKey())
-          .build()
-          .parseClaimsJws(token)
-          .getBody()
-          .getSubject();
-    } catch (ExpiredJwtException ex) {
-      throw new IllegalStateException("El token JWT ha expirado. " + ex.getMessage(), ex);
-    } catch (Exception ex) {
-      throw new IllegalStateException("Error al procesar el token JWT. " + ex.getMessage(), ex);
-    }
+    return getClaim(token, Claims::getSubject);
   }
-
 
   public boolean isTokenValid(String token, UserDetails userDetails) {
-    //verificar que el username que extraemos corresponde al usuario que se encuentra en la base de datos
-    final String username = getUsernameFromToken(token);
-    return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    final String username=getUsernameFromToken(token);
+    return (username.equals(userDetails.getUsername())&& !isTokenExpired(token));
   }
 
-  private Claims getAllClaims(String token) {
-    return Jwts.parserBuilder()
-        .setSigningKey(getKey()) // Clave secreta para validar el token
+  private Claims getAllClaims(String token)
+  {
+    return Jwts
+        .parserBuilder()
+        .setSigningKey(getKey())
         .build()
-        .parseClaimsJws(token) // Aquí se procesa un token firmado (JWS)
+        .parseClaimsJws(token)
         .getBody();
   }
 
-
-  public <T> T getClaim (String token, Function<Claims, T> claimsResover){
-    final Claims claims = getAllClaims(token); //obtener todos los claims
-    return claimsResover.apply(claims);//aplicar la funcion
+  public <T> T getClaim(String token, Function<Claims,T> claimsResolver)
+  {
+    final Claims claims=getAllClaims(token);
+    return claimsResolver.apply(claims);
   }
 
-  //Obtener la fecha de expiración
-  private Date getExpiration(String token) {
+  private Date getExpiration(String token)
+  {
     return getClaim(token, Claims::getExpiration);
   }
 
-  //Verificar si el token ha expirado
-  private boolean isTokenExpired(String token) {
+  private boolean isTokenExpired(String token)
+  {
     return getExpiration(token).before(new Date());
   }
 }
+
