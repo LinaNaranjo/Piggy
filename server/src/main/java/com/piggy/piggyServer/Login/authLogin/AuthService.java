@@ -44,6 +44,4 @@ public class AuthService {
     String token = jwtTokenProviderService.getToken(userEntity);//obtención del token
     return new LoginDto(userEntity.getId(), userEntity.getName(), userEntity.getLastName(), userEntity.getAge(), userEntity.getEmail(), userEntity.getRoleUser(), token);
   }
-
-
 }

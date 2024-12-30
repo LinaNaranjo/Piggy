@@ -1,6 +1,7 @@
 // Este filtro se encarga de verificar la validez del token en cada petición y autenticar al usuario.
 package com.piggy.piggyServer.Login.jwt;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,39 +31,43 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     final String token = getTokenFromRequest(request);
     final String username;
 
-    if (token == null) {
+    if (token==null)
+    {
       filterChain.doFilter(request, response);
       return;
     }
 
-    try {
-      username = jwtTokenProviderService.getUsernameFromToken(token);
-    } catch (Exception ex) {
-      logger.error("Error al obtener el usuario del token: " + ex.getMessage(), ex);
-      filterChain.doFilter(request, response);
-      return;
-    }
+    username= jwtTokenProviderService.getUsernameFromToken(token);
 
+    if (username!=null && SecurityContextHolder.getContext().getAuthentication()==null)
+    {
+      UserDetails userDetails=userDetailsService.loadUserByUsername(username);
 
-    if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-      UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+      if (jwtTokenProviderService.isTokenValid(token, userDetails))
+      {
+        UsernamePasswordAuthenticationToken authToken= new UsernamePasswordAuthenticationToken(
+            userDetails,
+            null,
+            userDetails.getAuthorities());
 
-      if (jwtTokenProviderService.isTokenValid(token, userDetails)) {
-        UsernamePasswordAuthenticationToken authToken =
-            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
         SecurityContextHolder.getContext().setAuthentication(authToken);
       }
+
     }
 
     filterChain.doFilter(request, response);
   }
 
   private String getTokenFromRequest(HttpServletRequest request) {
-    final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-    if (StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")) {
+    final String authHeader=request.getHeader(HttpHeaders.AUTHORIZATION);
+
+    if(StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer "))
+    {
       return authHeader.substring(7);
     }
     return null;
   }
+
 }
