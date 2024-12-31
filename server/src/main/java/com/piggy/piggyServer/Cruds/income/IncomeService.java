@@ -68,6 +68,15 @@ public class IncomeService {
     return ResponseEntity.ok(userIncomes);
   }
 
+  public IncomeEntity updateIncome(Long incomeId, IncomeEntity updateIncome){
+    IncomeEntity income = incomeRepository.findById(incomeId).orElseThrow(() -> new IllegalArgumentException("Income not found"));
+    income.setName(updateIncome.getName());
+    income.setDate(updateIncome.getDate());
+    income.setAmount(updateIncome.getAmount());
+
+    return incomeRepository.save(income);
+  }
+
   //"?": tipo de respuesta flexible, puede ser cualquiera
   public ResponseEntity<?> deleteIncomeById(Long incomeId) {
     if (!incomeRepository.existsById(incomeId)) {

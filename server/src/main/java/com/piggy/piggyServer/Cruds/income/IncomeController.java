@@ -58,6 +58,11 @@ public class IncomeController {
     return incomeService.getIncomesByUserId(userId);
   }
 
+  @PutMapping("/{incomeId}")
+  public IncomeEntity updateIncome(@PathVariable Long incomeId, @RequestBody IncomeEntity updateIncome){
+    return incomeService.updateIncome(incomeId, updateIncome);
+  }
+
   @DeleteMapping("{incomeId}")
   public ResponseEntity<?> deleteByIncomeId(@PathVariable Long incomeId){
     return incomeService.deleteIncomeById(incomeId);

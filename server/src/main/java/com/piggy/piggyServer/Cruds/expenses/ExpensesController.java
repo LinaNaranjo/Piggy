@@ -1,6 +1,7 @@
 package com.piggy.piggyServer.Cruds.expenses;
 
 
+import com.piggy.piggyServer.Cruds.income.IncomeEntity;
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -59,6 +60,12 @@ public class ExpensesController {
   public ResponseEntity<?> getExpenseByUserId(@PathVariable Long userId) {
     return expensesService.getExpensesByUserId(userId);
   }
+
+  @PutMapping("/{incomeId}")
+  public ExpensesEntity updateExpense(@PathVariable Long expenseId, @RequestBody ExpensesEntity updateExpense){
+    return expensesService.updateExpense(expenseId, updateExpense);
+  }
+
   @DeleteMapping("{expenseId}")
   public ResponseEntity<?> deleteByExpenseId(@PathVariable Long expenseId){
     return expensesService.deleteExpenseById(expenseId);
