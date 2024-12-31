@@ -68,6 +68,22 @@ public class IncomeService {
     return ResponseEntity.ok(userIncomes);
   }
 
+  public IncomeEntity updateIncome(Long incomeId, IncomeEntity updateIncome){
+    IncomeEntity income = incomeRepository.findById(incomeId).orElseThrow(() -> new IllegalArgumentException("Expense not found"));
+
+    if (updateIncome.getName() != null && !updateIncome.getName().isEmpty()) {
+      income.setName(updateIncome.getName());
+    }
+    if (updateIncome.getDate() != null) {
+      income.setDate(updateIncome.getDate());
+    }
+    if (updateIncome.getAmount() != null && updateIncome.getAmount() > 0) {
+      income.setAmount(updateIncome.getAmount());
+    }
+
+    return incomeRepository.save(income);
+  }
+
   //"?": tipo de respuesta flexible, puede ser cualquiera
   public ResponseEntity<?> deleteIncomeById(Long incomeId) {
     if (!incomeRepository.existsById(incomeId)) {

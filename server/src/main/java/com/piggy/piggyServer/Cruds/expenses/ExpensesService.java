@@ -1,5 +1,6 @@
 package com.piggy.piggyServer.Cruds.expenses;
 
+import com.piggy.piggyServer.Cruds.income.IncomeEntity;
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import com.piggy.piggyServer.Cruds.user.UserRepository;
 import com.piggy.piggyServer.Cruds.user.UserService;
@@ -63,6 +64,23 @@ public class ExpensesService {
       ));
     }
     return ResponseEntity.ok(userExpense);
+  }
+
+  public ExpensesEntity updateExpense(Long expenseId, ExpensesEntity updateExpense) {
+    ExpensesEntity expense = expensesRepository.findById(expenseId)
+        .orElseThrow(() -> new IllegalArgumentException("Income not found"));
+
+    if (updateExpense.getName() != null && !updateExpense.getName().isEmpty()) {
+      expense.setName(updateExpense.getName());
+    }
+    if (updateExpense.getDate() != null) {
+      expense.setDate(updateExpense.getDate());
+    }
+    if (updateExpense.getAmount() != null && updateExpense.getAmount() > 0) {
+      expense.setAmount(updateExpense.getAmount());
+    }
+
+    return expensesRepository.save(expense);
   }
 
   public ResponseEntity<?> deleteExpenseById(Long expenseId) {

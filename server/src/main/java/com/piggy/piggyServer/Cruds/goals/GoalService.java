@@ -69,7 +69,7 @@ public class GoalService {
 
   public GoalsEntity updateGoal(Long goalId, GoalsEntity updatedGoal) {
     GoalsEntity existingGoal = goalRepository.findById(goalId)
-        .orElseThrow(() -> new RuntimeException("Goal not found"));
+        .orElseThrow(() -> new IllegalArgumentException("Goal not found"));
     existingGoal.setGoalName(updatedGoal.getGoalName());
     existingGoal.setSavedAmount(updatedGoal.getSavedAmount());
     existingGoal.setGoalAmount(updatedGoal.getGoalAmount());
