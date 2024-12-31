@@ -66,11 +66,19 @@ public class ExpensesService {
     return ResponseEntity.ok(userExpense);
   }
 
-  public ExpensesEntity updateExpense(Long expenseId, ExpensesEntity updateExpense){
-    ExpensesEntity expense = expensesRepository.findById(expenseId).orElseThrow(() -> new IllegalArgumentException("Income not found"));
-    expense.setName(updateExpense.getName());
-    expense.setDate(updateExpense.getDate());
-    expense.setAmount(updateExpense.getAmount());
+  public ExpensesEntity updateExpense(Long expenseId, ExpensesEntity updateExpense) {
+    ExpensesEntity expense = expensesRepository.findById(expenseId)
+        .orElseThrow(() -> new IllegalArgumentException("Income not found"));
+
+    if (updateExpense.getName() != null && !updateExpense.getName().isEmpty()) {
+      expense.setName(updateExpense.getName());
+    }
+    if (updateExpense.getDate() != null) {
+      expense.setDate(updateExpense.getDate());
+    }
+    if (updateExpense.getAmount() != null && updateExpense.getAmount() > 0) {
+      expense.setAmount(updateExpense.getAmount());
+    }
 
     return expensesRepository.save(expense);
   }

@@ -69,10 +69,17 @@ public class IncomeService {
   }
 
   public IncomeEntity updateIncome(Long incomeId, IncomeEntity updateIncome){
-    IncomeEntity income = incomeRepository.findById(incomeId).orElseThrow(() -> new IllegalArgumentException("Income not found"));
-    income.setName(updateIncome.getName());
-    income.setDate(updateIncome.getDate());
-    income.setAmount(updateIncome.getAmount());
+    IncomeEntity income = incomeRepository.findById(incomeId).orElseThrow(() -> new IllegalArgumentException("Expense not found"));
+
+    if (updateIncome.getName() != null && !updateIncome.getName().isEmpty()) {
+      income.setName(updateIncome.getName());
+    }
+    if (updateIncome.getDate() != null) {
+      income.setDate(updateIncome.getDate());
+    }
+    if (updateIncome.getAmount() != null && updateIncome.getAmount() > 0) {
+      income.setAmount(updateIncome.getAmount());
+    }
 
     return incomeRepository.save(income);
   }
