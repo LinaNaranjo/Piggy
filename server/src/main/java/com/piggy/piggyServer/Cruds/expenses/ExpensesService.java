@@ -1,6 +1,5 @@
 package com.piggy.piggyServer.Cruds.expenses;
 
-import com.piggy.piggyServer.Cruds.income.IncomeEntity;
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import com.piggy.piggyServer.Cruds.user.UserRepository;
 import com.piggy.piggyServer.Cruds.user.UserService;
@@ -27,7 +26,7 @@ public class ExpensesService {
   @Autowired
   private UserRepository userRepository;
 
-  public ExpensesEntity createExpense(ExpensesEntity expenses, UserEntity user) {
+  public SponsorEntity createExpense(SponsorEntity expenses, UserEntity user) {
     if (expenses.getName() == null || expenses.getName().isEmpty()){
       throw new IllegalArgumentException("Expense name cannot be null or empty");
     }
@@ -35,7 +34,7 @@ public class ExpensesService {
       throw new IllegalArgumentException("Expense amount must be greater than 0");
     }
     expenses.setUser(user);
-    ExpensesEntity savedExpense = expensesRepository.save(expenses);
+    SponsorEntity savedExpense = expensesRepository.save(expenses);
     userService.addPointsUser(user.getId(), 10);
 
     UserEntity updatedUser = userRepository.findById(user.getId())
@@ -51,12 +50,12 @@ public class ExpensesService {
           "Message", "Expense with ID " + expenseId + "does not exist"
       ));
     }
-    ExpensesEntity expenses = expensesRepository.findById(expenseId).orElseThrow(null);
+    SponsorEntity expenses = expensesRepository.findById(expenseId).orElseThrow(null);
     return ResponseEntity.ok(expenseId);
   }
 
   public ResponseEntity<?> getExpensesByUserId(Long userId) {
-    List<ExpensesEntity> userExpense = expensesRepository.findByUserId(userId);
+    List<SponsorEntity> userExpense = expensesRepository.findByUserId(userId);
     if (userExpense.isEmpty()) {
       return ResponseEntity.status(404).body(Map.of(
           "error", "Not found",
@@ -66,8 +65,8 @@ public class ExpensesService {
     return ResponseEntity.ok(userExpense);
   }
 
-  public ExpensesEntity updateExpense(Long expenseId, ExpensesEntity updateExpense) {
-    ExpensesEntity expense = expensesRepository.findById(expenseId)
+  public SponsorEntity updateExpense(Long expenseId, SponsorEntity updateExpense) {
+    SponsorEntity expense = expensesRepository.findById(expenseId)
         .orElseThrow(() -> new IllegalArgumentException("Income not found"));
 
     if (updateExpense.getName() != null && !updateExpense.getName().isEmpty()) {

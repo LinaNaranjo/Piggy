@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "Expenses")
-public class ExpensesEntity {
+public class SponsorEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

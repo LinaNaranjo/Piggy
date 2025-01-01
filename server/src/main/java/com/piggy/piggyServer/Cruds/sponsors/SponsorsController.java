@@ -1,5 +1,6 @@
 package com.piggy.piggyServer.Cruds.sponsors;
 
+
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -58,6 +59,12 @@ public class SponsorsController {
   public ResponseEntity<?> getSponsorByUserId(@PathVariable Long userId) {
     return sponsorsService.getSponsorByUserId(userId);
   }
+
+  @PutMapping("/{SponsorId}")
+  public SponsorsEntity updateIncome(@PathVariable Long sponsorId, @RequestBody SponsorsEntity updateSponsor){
+    return sponsorsService.updateSponsor(sponsorId, updateSponsor);
+  }
+
   @DeleteMapping("{SponsorId}")
   public ResponseEntity<?> deleteBySponsorId(@PathVariable Long sponsorId){
     return sponsorsService.deleteSponsorById(sponsorId);

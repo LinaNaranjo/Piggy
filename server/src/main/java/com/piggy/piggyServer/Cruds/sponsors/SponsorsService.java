@@ -1,5 +1,6 @@
 package com.piggy.piggyServer.Cruds.sponsors;
 
+import com.piggy.piggyServer.Cruds.expenses.SponsorEntity;
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import com.piggy.piggyServer.Cruds.user.UserRepository;
 import com.piggy.piggyServer.Cruds.user.UserService;
@@ -59,6 +60,23 @@ public class SponsorsService {
       ));
     }
     return ResponseEntity.ok(userSponsor);
+  }
+
+  public SponsorsEntity updateSponsor(Long expenseId, SponsorsEntity updateSponsor) {
+    SponsorsEntity expense = sponsorsRepository.findById(expenseId)
+        .orElseThrow(() -> new IllegalArgumentException("Sponsor not found"));
+
+    if (updateSponsor.getName() != null && !updateSponsor.getName().isEmpty()) {
+      expense.setName(updateSponsor.getName());
+    }
+    if (updateSponsor.getUser() != null) {
+      expense.setUser(updateSponsor.getUser());
+    }
+    if (updateSponsor.getContributions() != null && updateSponsor.getContributions() > 0) {
+      expense.setContributions(updateSponsor.getContributions());
+    }
+
+    return sponsorsRepository.save(expense);
   }
 
   public ResponseEntity<?> deleteSponsorById(Long sponsorId) {

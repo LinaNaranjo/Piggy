@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface ExpensesRepository extends JpaRepository<ExpensesEntity, Long> {
-  List<ExpensesEntity> findByUserId(Long userId);
+public interface ExpensesRepository extends JpaRepository<SponsorEntity, Long> {
+  List<SponsorEntity> findByUserId(Long userId);
 }

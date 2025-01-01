@@ -1,7 +1,6 @@
 package com.piggy.piggyServer.Cruds.expenses;
 
 
-import com.piggy.piggyServer.Cruds.income.IncomeEntity;
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +22,7 @@ public class ExpensesController {
   public ExpensesService expensesService;
 
   @PostMapping("/new")
-  public ResponseEntity<?> createExpense(@AuthenticationPrincipal UserEntity user, @RequestBody ExpensesEntity expense) {
+  public ResponseEntity<?> createExpense(@AuthenticationPrincipal UserEntity user, @RequestBody SponsorEntity expense) {
     if (user == null) {
       return ResponseEntity.status(403).body(Map.of(
           "error:", "Forbidden",
@@ -32,7 +31,7 @@ public class ExpensesController {
 
     }
     try {
-      ExpensesEntity createExpense = expensesService.createExpense(expense, user);
+      SponsorEntity createExpense = expensesService.createExpense(expense, user);
       return ResponseEntity.status(201).body(Map.of(
           "message", "Expense created successfully",
           "expense", createExpense
@@ -62,7 +61,7 @@ public class ExpensesController {
   }
 
   @PutMapping("/{incomeId}")
-  public ExpensesEntity updateExpense(@PathVariable Long expenseId, @RequestBody ExpensesEntity updateExpense){
+  public SponsorEntity updateExpense(@PathVariable Long expenseId, @RequestBody SponsorEntity updateExpense){
     return expensesService.updateExpense(expenseId, updateExpense);
   }
 

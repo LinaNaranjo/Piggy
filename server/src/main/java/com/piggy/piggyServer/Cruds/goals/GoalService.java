@@ -67,14 +67,21 @@ public class GoalService {
   }
 
 
-  public GoalsEntity updateGoal(Long goalId, GoalsEntity updatedGoal) {
-    GoalsEntity existingGoal = goalRepository.findById(goalId)
+  public GoalsEntity updateGoal(Long goalId, GoalsEntity updateGoal) {
+    GoalsEntity goal = goalRepository.findById(goalId)
         .orElseThrow(() -> new IllegalArgumentException("Goal not found"));
-    existingGoal.setGoalName(updatedGoal.getGoalName());
-    existingGoal.setSavedAmount(updatedGoal.getSavedAmount());
-    existingGoal.setGoalAmount(updatedGoal.getGoalAmount());
 
-    return goalRepository.save(existingGoal);
+    if (updateGoal.getGoalName() != null && !updateGoal.getGoalName().isEmpty()) {
+      goal.setGoalName(updateGoal.getGoalName());
+    }
+    if (updateGoal.getGoalAmount() != null) {
+      goal.setGoalAmount(updateGoal.getSavedAmount());
+    }
+    if (updateGoal.getSavedAmount() != null && updateGoal.getSavedAmount() > 0) {
+      goal.setSavedAmount(updateGoal.getSavedAmount());
+    }
+
+    return goalRepository.save(goal);
   }
 
   public ResponseEntity<?> deleteGoalById(Long goalId){

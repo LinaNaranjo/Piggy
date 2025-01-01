@@ -1,6 +1,5 @@
 package com.piggy.piggyServer.Cruds.sponsors;
 
-import com.piggy.piggyServer.Cruds.expenses.ExpensesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
