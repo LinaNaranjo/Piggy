@@ -84,7 +84,6 @@ public class IncomeService {
     return incomeRepository.save(income);
   }
 
-  //"?": tipo de respuesta flexible, puede ser cualquiera
   public ResponseEntity<?> deleteIncomeById(Long incomeId) {
     if (!incomeRepository.existsById(incomeId)) {
       return ResponseEntity.status(404).body(Map.of(
@@ -96,4 +95,3 @@ public class IncomeService {
         "Message", "Income with ID" + incomeId + "has been successfully deleted"));
   }
 }
-//git
