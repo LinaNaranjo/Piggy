@@ -11,6 +11,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -21,6 +24,11 @@ public class AuthService {
   private final AuthenticationManager authenticationManager;
 
   public RegisterDto register(RegisterRequest registerRequest) {
+    if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
+      throw new RuntimeException("Email already exists: " + registerRequest.getEmail());
+    }
+    //validacion de correo electronico valido
+    validateEmail(registerRequest.getEmail());
     //patrón de diseño builder para la creación de objetos
     UserEntity userEntity = UserEntity.builder()
         .name(registerRequest.getName())
@@ -34,6 +42,14 @@ public class AuthService {
     userRepository.save(userEntity);
     //return AuthResponse.builder().token(jwtTokenProviderService.getToken(userEntity)).build();
     return new RegisterDto(userEntity.getId(), userEntity.getName(), userEntity.getLastName(), userEntity.getAge(), userEntity.getEmail(), userEntity.getRoleUser());
+  }
+
+  public void validateEmail(String email) {
+    Pattern pattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
+    Matcher matcher = pattern.matcher(email);
+    if (!matcher.matches()) {
+      throw new RuntimeException("Invalid email format");
+    }
   }
 
   public LoginDto login(LoginRequest loginRequest){
