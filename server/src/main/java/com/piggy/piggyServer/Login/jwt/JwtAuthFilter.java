@@ -1,7 +1,6 @@
 // Este filtro se encarga de verificar la validez del token en cada petición y autenticar al usuario.
 package com.piggy.piggyServer.Login.jwt;
 
-import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

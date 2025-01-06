@@ -1,6 +1,5 @@
 package com.piggy.piggyServer.Cruds.sponsors;
 
-import com.piggy.piggyServer.Cruds.expenses.SponsorEntity;
 import com.piggy.piggyServer.Cruds.user.UserEntity;
 import com.piggy.piggyServer.Cruds.user.UserRepository;
 import com.piggy.piggyServer.Cruds.user.UserService;
