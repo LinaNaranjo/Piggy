@@ -99,7 +99,7 @@ const Header = ({ onMenuToggle }) => {
         </ul>
       </nav>
       <div className="header-usuario">
-        <img src={usuario} alt="Imagen Usuario" />
+        {/* <img src={usuario} alt="Imagen Usuario" /> */}
         <span
           className="icono-abajo"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import formatoTexto from "../../componentes/FormatoTexto/FormatoTexto";
 import "./modal.scss";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const Modal = ({ goal, onClose, onSave }) => {
   const [goalData, setGoalData] = useState({
@@ -17,12 +17,12 @@ const Modal = ({ goal, onClose, onSave }) => {
     if (goal) {
       setGoalData({
         id: goal.id,
-        name: formatoTexto (goal.name),
+        name: formatoTexto(goal.name),
         amountSaved: goal.amountSaved,
         totalAmount: goal.totalAmount,
         points: goal.points,
       });
-      updatePoints(goal.amountSaved, goal.totalAmount); // Recalcular puntos al editar
+      updatePoints(goal.amountSaved, goal.totalAmount);
     }
   }, [goal]);
 
@@ -54,23 +54,34 @@ const Modal = ({ goal, onClose, onSave }) => {
 
   const handleAddAmount = () => {
     const newAmountValue = parseFloat(newAmount);
-    setGoalData((prevState) => ({
-      ...prevState,
-      amountSaved: prevState.amountSaved + newAmountValue, // Sumar a amountSaved
-    }));
+    if (isNaN(newAmountValue) || newAmountValue <= 0) {
+      Swal.fire("Error", "El monto debe ser un número positivo", "error");
+      return;
+    }
+
+    setGoalData((prevState) => {
+      const updatedAmountSaved = prevState.amountSaved + newAmountValue;
+      return {
+        ...prevState,
+        amountSaved: updatedAmountSaved,
+        points: updatedAmountSaved >= prevState.totalAmount ? 10 : 0,
+      };
+    });
     setNewAmount("");
-    updatePoints(goalData.amountSaved + newAmountValue, goalData.totalAmount); // Recalcular los puntos con el nuevo monto ahorrado
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!goalData.id) {
+      goalData.id = `goal-${Date.now()}`; // Generar un ID único usando el timestamp actual
+    }
     if (!goalData.totalAmount) {
       Swal.fire({
-        title: 'Error',
+        title: "Error",
         text: 'El campo "Valor Total" es obligatorio',
-        icon: 'error',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#ff5733', 
+        icon: "error",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#ff5733",
       });
       return;
     }
@@ -78,19 +89,19 @@ const Modal = ({ goal, onClose, onSave }) => {
     onSave(goalData);
     if (goal) {
       Swal.fire({
-        title: 'Éxito',
-        text: 'Meta editada exitosamente',
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#76d7c4', 
+        title: "Éxito",
+        text: "Meta editada exitosamente",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#76d7c4",
       });
     } else {
       Swal.fire({
-        title: 'Éxito',
-        text: 'Meta agregada exitosamente',
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#76d7c4',
+        title: "Éxito",
+        text: "Meta agregada exitosamente",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#76d7c4",
       });
     }
     onClose();
@@ -147,9 +158,14 @@ const Modal = ({ goal, onClose, onSave }) => {
             onChange={handleChange}
             disabled
           />
-          <button className="boton-guardar" type="submit">
-            Guardar
-          </button>
+          <div className="modal-buttons">
+            <button className="boton-guardar" type="submit">
+              Guardar
+            </button>
+            <button type="button" className="boton-cancelar" onClick={onClose}>
+              Cancelar
+            </button>
+          </div>
         </form>
       </div>
     </div>

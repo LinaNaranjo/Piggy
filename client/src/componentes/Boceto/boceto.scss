@@ -1,58 +1,91 @@
 .skeleton-card {
-    width: 250px;
-    height: 300px;
-    background: #f0f0f0;
-    border-radius: 10px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    animation: pulse 1.5s infinite;
+  width: 250px;
+  height: 300px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  animation: pulse 1.5s infinite;
+
+  @media (max-width: 768px) {
+    width: 220px;
+    height: 280px;
+    padding: 10px;
   }
-  
-  .skeleton-top-icons,
-  .skeleton-title,
-  .skeleton-score,
-  .skeleton-progress {
-    background: #ddd;
-    border-radius: 5px;
-  }
-  
-  .skeleton-top-icons {
-    height: 20px;
-    width: 60px;
-    margin: auto;
-  }
-  
-  .skeleton-title {
-    height: 20px;
-    width: 80%;
-    margin: auto;
-  }
-  
-  .skeleton-score {
-    height: 15px;
-    width: 60%;
-    margin: auto;
-  }
-  
-  .skeleton-progress {
-    height: 100px;
+
+  @media (max-width: 480px) {
     width: 100%;
-    border-radius: 50%;
-    margin: auto;
+    height: auto;
+    padding: 10px;
   }
-  
-  @keyframes pulse {
-    0% {
-      background-color: #f0f0f0;
-    }
-    50% {
-      background-color: #e0e0e0;
-    }
-    100% {
-      background-color: #f0f0f0;
-    }
+}
+
+.skeleton-top-icons,
+.skeleton-title,
+.skeleton-score,
+.skeleton-progress {
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.skeleton-top-icons {
+  height: 20px;
+  width: 60px;
+  margin: auto;
+
+  @media (max-width: 480px) {
+    width: 50px;
   }
-  
+}
+
+.skeleton-title {
+  height: 20px;
+  width: 80%;
+  margin: auto;
+
+  @media (max-width: 480px) {
+    width: 70%;
+  }
+}
+
+.skeleton-score {
+  height: 15px;
+  width: 60%;
+  margin: auto;
+
+  @media (max-width: 480px) {
+    width: 50%;
+  }
+}
+
+.skeleton-progress {
+  height: 100px;
+  width: 100%;
+  border-radius: 50%;
+  margin: auto;
+
+  @media (max-width: 768px) {
+    height: 80px;
+    width: 80px;
+  }
+
+  @media (max-width: 480px) {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #f0f0f0;
+  }
+  50% {
+    background-color: #e0e0e0;
+  }
+  100% {
+    background-color: #f0f0f0;
+  }
+}
