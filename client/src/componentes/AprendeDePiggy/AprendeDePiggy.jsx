@@ -16,7 +16,7 @@ const AprendeDePiggy = ({ videos }) => {
     <div className="aprendeDePiggy">
       <h1 className="componentTitle">¡Aprende de Piggy!</h1>
       <div className="cardsContainer">
-        {videos.map((video, index) => (
+      {videos.map((video, index) => (
           <div
             key={index}
             className="card"

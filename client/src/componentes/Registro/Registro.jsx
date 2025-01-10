@@ -65,7 +65,7 @@ const FormularioRegistro = () => {
       };
 
       try {
-        const response = await axios.post(`${BASE_URL}/register`, payload);
+        const response = await axios.post(`${BASE_URL}/auth/register`, payload);
         console.log("Usuario registrado con éxito:", response.data);
         dispatch(
           login({

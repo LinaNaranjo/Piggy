@@ -5,37 +5,40 @@ import MetasTitulo from "../../componentes/Metas/MetasTitulo";
 import MetasCard from "../../componentes/Metas/MetasCard";
 import Boceto from "../../componentes/Boceto/Boceto";
 import Modal from "../../componentes/Modal/Modal";
+import Swal from "sweetalert2";
+// import { useSelector } from "react-redux";
 
 const MisMetas = () => {
+  // const user = useSelector((state) => state.user);
   const [goals, setGoals] = useState([
-    {
-      id: 1,
-      name: "Bicicleta",
-      totalAmount: 100000,
-      amountSaved: 50000,
-      points: 0,
-    },
-    {
-      id: 2,
-      name: "Viaje de verano",
-      totalAmount: 150000,
-      amountSaved: 150000,
-      points: 10,
-    },
-    {
-      id: 3,
-      name: "Viaje a la playa",
-      totalAmount: 150000,
-      amountSaved: 150000,
-      points: 10,
-    },
-    {
-      id: 4,
-      name: "Cumpleaños mamá",
-      totalAmount: 150000,
-      amountSaved: 110000,
-      points: 0,
-    },
+    // {
+    //   id: 1,
+    //   name: "Bicicleta",
+    //   totalAmount: 100000,
+    //   amountSaved: 50000,
+    //   points: 0,
+    // },
+    // {
+    //   id: 2,
+    //   name: "Viaje de verano",
+    //   totalAmount: 150000,
+    //   amountSaved: 150000,
+    //   points: 10,
+    // },
+    // {
+    //   id: 3,
+    //   name: "Viaje a la playa",
+    //   totalAmount: 150000,
+    //   amountSaved: 150000,
+    //   points: 10,
+    // },
+    // {
+    //   id: 4,
+    //   name: "Cumpleaños mamá",
+    //   totalAmount: 150000,
+    //   amountSaved: 110000,
+    //   points: 0,
+    // },
   ]);
   const [filteredGoals, setFilteredGoals] = useState(goals);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +62,6 @@ const MisMetas = () => {
 
   const handleMenuToggle = (isOpen) => setIsMenuOpen(isOpen);
 
-
   const handleEdit = (id) => {
     const goalToEdit = goals.find((goal) => goal.id === id);
     setSelectedGoal(goalToEdit);
@@ -67,12 +69,31 @@ const MisMetas = () => {
   };
 
   const handleDelete = (id) => {
-    if (window.confirm("¿Estás seguro de que quieres eliminar esta meta?")) {
-      const updatedGoals = goals.filter((goal) => goal.id !== id);
-      setGoals(updatedGoals);
-      setFilteredGoals(updatedGoals);
-      updateTotalPoints(); // Recalcular puntos después de eliminar
-    }
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás recuperar esta meta después de eliminarla.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#fa0606f6",
+      cancelButtonColor: "#76d7c4",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedGoals = goals.filter((goal) => goal.id !== id);
+        setGoals(updatedGoals);
+        setFilteredGoals(updatedGoals);
+        updateTotalPoints(); // Recalcular puntos después de eliminar
+
+        Swal.fire({
+          title: "¡Eliminado!",
+          text: "La meta ha sido eliminada exitosamente.",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "#76d7c4",
+        });
+      }
+    });
   };
 
   // Función para manejar la finalización de una meta
