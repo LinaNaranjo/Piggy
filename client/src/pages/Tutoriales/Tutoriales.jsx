@@ -6,27 +6,27 @@ const Tutoriales = () => {
 
   const videosAprendeCon = [
     {
-      url: "https://youtu.be/GXF6lxAy-Vs",
+      url: "https://youtu.be/VZgFa4YgtfY",
       title: "¿Qué es el Ahorro?",
     },
     {
-      url: "https://youtu.be/GXF6lxAy-Vs",
+      url: "https://youtu.be/SDfbmsO4iYw",
       title: "¿Qué es el Ingreso?",
     },
     {
-      url: "https://youtu.be/GXF6lxAy-Vs",
+      url: "https://youtu.be/YxL-L4kXhCI",
       title: "¿Qué es un Gasto?",
     },
     {
-      url: "https://youtu.be/GXF6lxAy-Vs",
+      url: "https://youtu.be/vrx_JBCHfqI",
       title: "¿Qué es una Deuda?",
     },
     {
-      url: "https://youtu.be/GXF6lxAy-Vs",
+      url: "https://youtu.be/SNhzRxTvknM",
       title: "¿Qué es una Meta Financiera?",
     },
     {
-      url: "https://youtu.be/GXF6lxAy-Vs",
+      url: "https://youtu.be/sSHU8Nh0i_o",
       title: "¿Qué es un Presupuesto?",
     },
   ];
@@ -39,5 +39,4 @@ const Tutoriales = () => {
   );
 };
 
-export default Tutoriales;
-
+export default Tutoriales;

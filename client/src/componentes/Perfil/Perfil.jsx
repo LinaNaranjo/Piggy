@@ -28,7 +28,7 @@ const Perfil = () => {
         <p>{user.email}</p>
         <div className="edit-image">
           <label htmlFor="upload-photo" className="btn-upload">
-            Cambiar Imagen
+            Actualizar Información
           </label>
           <input
             type="file"
