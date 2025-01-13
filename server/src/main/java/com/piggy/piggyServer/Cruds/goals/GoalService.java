@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author santiago
+ * Service class for Goals
+ * This class provide methods to create and manage goals for the users
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Service
@@ -24,6 +29,14 @@ public class GoalService {
   @Autowired
   private UserRepository userRepository;
 
+  /**
+   *
+   * @param goal The {@link GoalsEntity} object containing the details of the goal to be created.
+   * @param user the {@link UserEntity} object containing the details of the user that is creating the goal.
+   * @return the saved {@link GoalsEntity} bject after persisting it in the database.
+   * @throws IllegalArgumentException if the goal name is null or empty, or if the goal amount is null or less than or equal to zero.
+   */
+
   public GoalsEntity createGoal(GoalsEntity goal, UserEntity user){
     if (goal.getGoalName() == null || goal.getGoalName().isEmpty()){
       throw new IllegalArgumentException("Goal name cannot be null or empty");
@@ -31,15 +44,16 @@ public class GoalService {
     if(goal.getGoalAmount() == null || goal.getGoalAmount() <= 0){
       throw new IllegalArgumentException("Goal amount must be greater than 0");
     }
-
+    //Associate the user with the goal
     goal.setUser(user);
+    //save the goal in the database
     GoalsEntity savedGoal = goalRepository.save(goal);
+    //Add points to the user
     userService.addPointsUser(user.getId(), 10);
-
+    //Update the user in the database
     UserEntity updatedUser = userRepository.findById(user.getId())
         .orElseThrow(() -> new IllegalArgumentException("User not found after update"));
-
-    // Actualizar la referencia del usuario en la meta
+    //Associate the user with the goal
     goal.setUser(updatedUser);
     return savedGoal;
   }
