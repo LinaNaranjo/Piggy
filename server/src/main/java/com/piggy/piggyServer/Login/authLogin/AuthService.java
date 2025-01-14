@@ -56,7 +56,6 @@ public class AuthService {
     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
     //UserDetails user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow();//busqueda del usario
     UserEntity userEntity = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow(() -> new RuntimeException("User not found "));
-
     String token = jwtTokenProviderService.getToken(userEntity);//obtención del token
     return new LoginDto(userEntity.getId(), userEntity.getName(), userEntity.getLastName(), userEntity.getAge(), userEntity.getEmail(), userEntity.getRoleUser(), token);
   }
