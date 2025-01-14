@@ -7,7 +7,7 @@ import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 const MetasCard = ({ goal, onEdit, onDelete, onComplete }) => {
-  const progress = (goal.amountSaved / goal.totalAmount) * 100;
+  const progress = (goal.savedAmount / goal.goalAmount) * 100;
 
   return (
     <div className="goal-card">
@@ -40,10 +40,10 @@ const MetasCard = ({ goal, onEdit, onDelete, onComplete }) => {
         )}
       </div>
 
-      <h3 className="nombre-card">{formatoTexto(goal.name)}</h3>
+      <h3 className="nombre-card">{formatoTexto(goal.goalName)}</h3>
       <div className="goal-score">
         <span>
-          {goal.amountSaved} / {goal.totalAmount}
+          {goal.savedAmount} / {goal.goalAmount}
         </span>
       </div>
       <div className="progress-container">

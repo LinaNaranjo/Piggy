@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios"; // Importa Axios
 import "./misMetas.scss";
 import Header from "../../componentes/Header/Header";
 import MetasTitulo from "../../componentes/Metas/MetasTitulo";
@@ -6,45 +7,19 @@ import MetasCard from "../../componentes/Metas/MetasCard";
 import Boceto from "../../componentes/Boceto/Boceto";
 import Modal from "../../componentes/Modal/Modal";
 import Swal from "sweetalert2";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import axiosInstance from "../../api/axiosInstance";
+
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const MisMetas = () => {
-  // const user = useSelector((state) => state.user);
-  const [goals, setGoals] = useState([
-    // {
-    //   id: 1,
-    //   name: "Bicicleta",
-    //   totalAmount: 100000,
-    //   amountSaved: 50000,
-    //   points: 0,
-    // },
-    // {
-    //   id: 2,
-    //   name: "Viaje de verano",
-    //   totalAmount: 150000,
-    //   amountSaved: 150000,
-    //   points: 10,
-    // },
-    // {
-    //   id: 3,
-    //   name: "Viaje a la playa",
-    //   totalAmount: 150000,
-    //   amountSaved: 150000,
-    //   points: 10,
-    // },
-    // {
-    //   id: 4,
-    //   name: "Cumpleaños mamá",
-    //   totalAmount: 150000,
-    //   amountSaved: 110000,
-    //   points: 0,
-    // },
-  ]);
+  const user = useSelector((state) => state.user); // Obtén el usuario logueado
+  const [goals, setGoals] = useState([]); // Inicia un array vacío para las metas
   const [filteredGoals, setFilteredGoals] = useState(goals);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [totalPoints, setTotalPoints] = useState(0); // Estado para los puntos acumulados
+  const [totalPoints, setTotalPoints] = useState(0);
 
   // Función para actualizar los puntos acumulados
   const updateTotalPoints = () => {
@@ -52,13 +27,35 @@ const MisMetas = () => {
       (total, goal) => total + goal.points,
       0
     );
-    setTotalPoints(newTotalPoints); // Actualiza el estado de totalPoints
+    setTotalPoints(newTotalPoints);
   };
+
+  // Obtener metas del usuario logueado al cargar el componente
+  useEffect(() => {
+    console.log(user);
+    if (user?.id) {
+      axiosInstance
+        .get(`/goal/user/${user.id}`)
+        .then((response) => {
+          console.log("Metas del usuario:", response.data);
+          setGoals(response.data);
+          setFilteredGoals(response.data);
+        })
+        .catch((error) => {
+          console.error("Error al obtener las metas:", error);
+          Swal.fire({
+            title: "Error",
+            text: "No se pudieron cargar las metas.",
+            icon: "error",
+          });
+        });
+    }
+  }, [user?.id]);
 
   // Calcular puntos acumulados al cargar
   useEffect(() => {
-    updateTotalPoints(); // Recalcular los puntos cuando la página cargue
-  }, [goals]); // Solo se vuelve a ejecutar cuando goals cambia
+    updateTotalPoints();
+  }, [goals]);
 
   const handleMenuToggle = (isOpen) => setIsMenuOpen(isOpen);
 
@@ -83,7 +80,7 @@ const MisMetas = () => {
         const updatedGoals = goals.filter((goal) => goal.id !== id);
         setGoals(updatedGoals);
         setFilteredGoals(updatedGoals);
-        updateTotalPoints(); // Recalcular puntos después de eliminar
+        updateTotalPoints();
 
         Swal.fire({
           title: "¡Eliminado!",
@@ -96,32 +93,37 @@ const MisMetas = () => {
     });
   };
 
-  // Función para manejar la finalización de una meta
   const handleComplete = (id) => {
     const updatedGoals = goals.map((goal) =>
-      goal.id === id && goal.amountSaved >= goal.totalAmount
-        ? { ...goal, points: 10 } // Asignamos 10 puntos solo si la meta se ha completado
+      goal.id === id && goal.savedAmount >= goal.goalAmount
+        ? { ...goal, points: 10 }
         : goal
     );
     setGoals(updatedGoals);
-    updateTotalPoints(updatedGoals); // Actualiza el total de puntos después de completar la meta
+    updateTotalPoints(updatedGoals);
   };
 
   const handleAddGoal = (newGoal) => {
-    const newGoalWithId = { ...newGoal, id: goals.length + 1, points: 0 }; // Aseguramos que las nuevas metas tengan 0 puntos al inicio
+    const newGoalWithId = { ...newGoal, id: goals.length + 1, points: 0 };
     const updatedGoals = [...goals, newGoalWithId];
     setGoals(updatedGoals);
     setFilteredGoals(updatedGoals);
-    updateTotalPoints(); // Recalcular puntos después de agregar nueva meta
+    updateTotalPoints();
   };
 
-  const handleSave = (updatedGoal) => {
-    const updatedGoals = goals.map((goal) =>
-      goal.id === updatedGoal.id ? { ...goal, ...updatedGoal } : goal
-    );
-    setGoals(updatedGoals);
-    setFilteredGoals(updatedGoals);
-    updateTotalPoints(); // Recalcula los puntos después de editar
+  // const handleSave = (updatedGoal) => {
+  //   const updatedGoals = goals.map((goal) =>
+  //     goal.id === updatedGoal.id ? { ...goal, ...updatedGoal } : goal
+  //   );
+  //   setGoals(updatedGoals);
+  //   setFilteredGoals(updatedGoals);
+  //   updateTotalPoints();
+  // };
+
+  const handleSaveGoal = (newGoal) => {
+    setGoals((prevGoals) => [...prevGoals, newGoal]);
+    setFilteredGoals((prevGoals) => [...prevGoals, newGoal]); // También actualiza las metas filtradas
+    updateTotalPoints(); // Recalcula los puntos
   };
 
   const handleCloseModal = () => {
@@ -167,7 +169,8 @@ const MisMetas = () => {
           <Modal
             goal={selectedGoal}
             onClose={handleCloseModal}
-            onSave={handleSave}
+            onSave={handleSaveGoal}
+            userId={user?.id}
           />
         )}
       </div>

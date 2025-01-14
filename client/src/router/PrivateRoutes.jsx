@@ -1,11 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoutes = ({ redirectPath = "/login" }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn); // Asumiendo que usas Redux para manejar el estado de autenticación
+  const token = localStorage.getItem("authToken"); // Verifica si existe un token
 
-  if (!isLoggedIn) {
+  if (!token) {
     return <Navigate to={redirectPath} />;
   }
 
