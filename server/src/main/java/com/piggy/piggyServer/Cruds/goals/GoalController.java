@@ -24,7 +24,6 @@ public class GoalController {
           "error:", "Forbidden",
           "message", "User is not authenticated"
       ));
-
     }
     try{
       GoalsEntity createGoal = goalService.createGoal(goal, user);
