@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-import formatoTexto from "../../componentes/FormatoTexto/FormatoTexto";
-import "./modal.scss";
+import axios from "axios";
 import Swal from "sweetalert2";
+import "./modal.scss";
+import { useSelector } from "react-redux";
+import axiosInstance from "../../api/axiosInstance";
 
-const Modal = ({ goal, onClose, onSave }) => {
+const BASE_URL = import.meta.env.VITE_API_URL;
+
+const Modal = ({ goal, onClose, onSave, userId }) => {
+  const user = useSelector((state) => state.user);
   const [goalData, setGoalData] = useState({
     id: "",
-    name: "",
-    amountSaved: 0,
-    totalAmount: "",
+    goalName: "",
+    savedAmount: 0,
+    goalAmount: "",
     points: 0,
   });
   const [newAmount, setNewAmount] = useState("");
@@ -17,28 +22,20 @@ const Modal = ({ goal, onClose, onSave }) => {
     if (goal) {
       setGoalData({
         id: goal.id,
-        name: formatoTexto(goal.name),
-        amountSaved: goal.amountSaved,
-        totalAmount: goal.totalAmount,
+        goalName: goal.goalName,
+        savedAmount: goal.savedAmount,
+        goalAmount: goal.goalAmount,
         points: goal.points,
       });
-      updatePoints(goal.amountSaved, goal.totalAmount);
+      updatePoints(goal.savedAmount, goal.goalAmount);
     }
   }, [goal]);
 
-  // Función para actualizar los puntos al modificar la cantidad ahorrada
-  const updatePoints = (amountSaved, totalAmount) => {
-    if (amountSaved >= totalAmount) {
-      setGoalData((prevState) => ({
-        ...prevState,
-        points: 10, // Asignar 10 puntos si la meta se completó
-      }));
-    } else {
-      setGoalData((prevState) => ({
-        ...prevState,
-        points: 0, // Si no está completada, no asignar puntos
-      }));
-    }
+  const updatePoints = (savedAmount, goalAmount) => {
+    setGoalData((prevState) => ({
+      ...prevState,
+      points: savedAmount >= goalAmount ? 10 : 0,
+    }));
   };
 
   const handleChange = (e) => {
@@ -47,8 +44,8 @@ const Modal = ({ goal, onClose, onSave }) => {
       ...prevState,
       [name]: value,
     }));
-    if (name === "amountSaved" || name === "totalAmount") {
-      updatePoints(goalData.amountSaved, goalData.totalAmount); // Recalcular puntos si se cambia amountSaved o totalAmount
+    if (name === "savedAmount" || name === "goalAmount") {
+      updatePoints(goalData.savedAmount, goalData.goalAmount);
     }
   };
 
@@ -60,113 +57,115 @@ const Modal = ({ goal, onClose, onSave }) => {
     }
 
     setGoalData((prevState) => {
-      const updatedAmountSaved = prevState.amountSaved + newAmountValue;
+      const updateSaveddAmount = prevState.savedAmount + newAmountValue;
       return {
         ...prevState,
-        amountSaved: updatedAmountSaved,
-        points: updatedAmountSaved >= prevState.totalAmount ? 10 : 0,
+        savedAmount: updateSaveddAmount,
+        points: updateSaveddAmount >= prevState.goalAmount ? 10 : 0,
       };
     });
     setNewAmount("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!goalData.id) {
-      goalData.id = `goal-${Date.now()}`; // Generar un ID único usando el timestamp actual
-    }
-    if (!goalData.totalAmount) {
-      Swal.fire({
-        title: "Error",
-        text: 'El campo "Valor Total" es obligatorio',
-        icon: "error",
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#ff5733",
-      });
+    if (!goalData.goalAmount) {
+      Swal.fire("Error", 'El campo "Valor Total" es obligatorio', "error");
       return;
     }
-    console.log(goalData);
-    onSave(goalData);
-    if (goal) {
-      Swal.fire({
-        title: "Éxito",
-        text: "Meta editada exitosamente",
-        icon: "success",
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#76d7c4",
+
+    try {
+      //const response = await axios.post(`${BASE_URL}/goal/new`, {
+      const response = await axiosInstance.post(`/goal/new`, {
+        user: { id: userId },
+        goalName: goalData.goalName,
+        savedAmount: goalData.savedAmount,
+        goalAmount: parseFloat(goalData.goalAmount),
       });
-    } else {
-      Swal.fire({
-        title: "Éxito",
-        text: "Meta agregada exitosamente",
-        icon: "success",
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#76d7c4",
-      });
+
+      console.log("Meta agregada:", response.data);
+
+      const newGoal = response.data.goal;
+      Swal.fire("Éxito", response.data.message, "success");
+      onSave(newGoal); // Llamamos a la función de callback
+      onClose(); // Cerramos el modal
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", "Hubo un problema al guardar la meta", "error");
     }
-    onClose();
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal">
+    <div className="contenedor-principal-modal-overlay">
+      <div className="contenedor-modal">
         <div className="contenedor-close">
-          <h2>{goal ? "Editar Meta" : "Agregar Nueva Meta"}</h2>
+          <h2 className="modal-title">
+            {goal ? "Editar Meta" : "Agregar Nueva Meta"}
+          </h2>
           <button className="close-boton" onClick={onClose}>
             X
           </button>
         </div>
-
-        <form onSubmit={handleSubmit}>
-          <label>Nombre de la Meta:</label>
-          <input
-            type="text"
-            name="name"
-            value={goalData.name}
-            onChange={handleChange}
-            required
-          />
-          <label>Valor Total:</label>
-          <input
-            type="number"
-            name="totalAmount"
-            value={goalData.totalAmount}
-            onChange={handleChange}
-            required
-          />
-          <label>Ingresar Aporte:</label>
-          <div className="add-amount">
+        <div>
+          <form onSubmit={handleSubmit}>
+            <label className="modal-label">Nombre de la Meta:</label>
             <input
-              type="number"
-              value={newAmount}
-              onChange={(e) => setNewAmount(e.target.value)}
-              placeholder={goal ? "0" : "0"}
+              className="modal-input"
+              type="text"
+              name="goalName"
+              value={goalData.goalName}
+              onChange={handleChange}
+              required
             />
-            <button
-              type="button"
-              onClick={handleAddAmount}
-              className="boton-agregar-modal"
-            >
-              Agregar
-            </button>
-          </div>
-          <label>Total Ahorrado:</label>
-          <input
-            type="number"
-            name="amountSaved"
-            value={goalData.amountSaved}
-            onChange={handleChange}
-            disabled
-          />
-          <div className="modal-buttons">
-            <button className="boton-guardar" type="submit">
-              Guardar
-            </button>
-            <button type="button" className="boton-cancelar" onClick={onClose}>
-              Cancelar
-            </button>
-          </div>
-        </form>
+            <label className="modal-label">Valor Total:</label>
+            <input
+              className="modal-input"
+              type="number"
+              name="goalAmount"
+              value={goalData.goalAmount}
+              onChange={handleChange}
+              required
+            />
+            <label className="modal-label">Ingresar Aporte:</label>
+            <div className="add-amount">
+              <input
+                className="modal-input"
+                type="number"
+                value={newAmount}
+                onChange={(e) => setNewAmount(e.target.value)}
+                placeholder={goal ? "0" : "0"}
+              />
+              <button
+                type="button"
+                onClick={handleAddAmount}
+                className="boton-agregar-modal"
+              >
+                Agregar
+              </button>
+            </div>
+            <label className="modal-label">Total Ahorrado:</label>
+            <input
+              className="modal-input"
+              type="number"
+              name="savedAmount"
+              value={goalData.savedAmount}
+              onChange={handleChange}
+              disabled
+            />
+            <div className="modal-buttons">
+              <button className="boton-guardar" type="submit">
+                Guardar
+              </button>
+              <button
+                type="button"
+                className="boton-cancelar"
+                onClick={onClose}
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

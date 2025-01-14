@@ -9,7 +9,7 @@ $hover-color: blue;
 $text-primary: "Mochiy Pop One", sans-serif;
 $text-secundary: "Mooli", sans-serif;
 
-.modal-overlay {
+.contenedor-principal-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -20,106 +20,112 @@ $text-secundary: "Mooli", sans-serif;
   justify-content: center;
   align-items: center;
   z-index: 100;
-}
 
-.modal input {
-  border: none;
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.modal {
-  font-family: $text-secundary;
-  background-color: #fcf7f3;
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-
-  @media (max-width: 768px) {
-    width: 300px;
-  }
-  .contenedor-close {
+  .contenedor-modal {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 1rem;
-    .close-boton {
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      color: black;
-      font-size: 16px;
-      background-color: transparent;
-      &:hover {
-        background-color: $mint-green;
+    font-family: $text-secundary;
+    background-color: #fcf7f3;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+
+    @media (max-width: 768px) {
+      width: 300px;
+    }
+    .contenedor-close {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      .close-boton {
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        color: black;
+        font-size: 16px;
+        background-color: transparent;
+        &:hover {
+          background-color: $mint-green;
+        }
       }
     }
-  }
 
-  .add-amount {
-    display: flex;
-    align-items: center;
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-    input {
+    .modal-input {
       flex: 1;
       padding: 8px;
       margin-right: 10px;
-    }
-    .boton-agregar-modal {
-      padding: 8px 12px;
-      color: black;
-      cursor: pointer;
-      font-size: 16px;
-      &:hover {
-        background-color: $mint-green;
-      }
-    }
-  }
-
-  .modal-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-
-    .boton-cancelar {
-      background-color: #f44336;
-      color: #000000;
-      font-family: $text-secundary;
-      font-size: 1rem;
-      font-weight: bolder;
-      padding: 0.8rem;
-      width: 35%;
-      margin: 0 auto;
-      display: block;
       border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      &:hover {
-        transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
-        box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
-        background-color: #d32f2f;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .add-amount {
+      display: flex;
+      align-items: center;
+
+      .boton-agregar-modal {
+        padding: 8px 12px;
+        color: black;
+        cursor: pointer;
+        font-size: 16px;
+        &:hover {
+          background-color: $mint-green;
+        }
       }
     }
 
-    .boton-guardar {
-      color: #000000;
-      font-family: $text-secundary;
-      font-size: 1rem;
-      font-weight: bolder;
-      padding: 0.8rem;
-      width: 35%;
-      margin: 0 auto;
-      display: block;
-      border: none;
-      border-radius: 20px;
-      background-color: $mint-green;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      &:hover {
-        transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
-        box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .boton-cancelar {
+        background-color: #f44336;
+        color: #000000;
+        font-family: $text-secundary;
+        font-size: 1rem;
+        font-weight: bolder;
+        padding: 0.8rem;
+        width: 35%;
+        margin: 0 auto;
+        display: block;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        &:hover {
+          transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
+          box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+          background-color: #d32f2f;
+        }
+      }
+
+      .boton-guardar {
+        color: #000000;
+        font-family: $text-secundary;
+        font-size: 1rem;
+        font-weight: bolder;
+        padding: 0.8rem;
+        width: 35%;
+        margin: 0 auto;
+        display: block;
+        border: none;
+        border-radius: 20px;
         background-color: $mint-green;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        &:hover {
+          transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
+          box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+          background-color: $mint-green;
+        }
       }
     }
   }

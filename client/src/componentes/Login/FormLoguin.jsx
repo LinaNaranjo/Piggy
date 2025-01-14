@@ -7,6 +7,7 @@ import emailIcon from "../../assets/Correo.png";
 import paswordIcon from "../../assets/Candado.png";
 import atrasIcon from "../../assets/Images/ImagesNavbar/atras.png";
 import { useDispatch } from "react-redux";
+import axiosInstance from "../../api/axiosInstance";
 import { login } from "../../redux/userSlice";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -49,13 +50,18 @@ const FormLogin = () => {
     e.preventDefault();
     if (validate()) {
       try {
+        // const response = await axiosInstance.post("/auth/login", { email, password });
+        // localStorage.setItem("authToken", response.data.token);
+
         const response = await axios.post(`${BASE_URL}/auth/login`, {
           email,
           password,
         });
+        localStorage.setItem('authToken', response.data.token);
         const user = response.data;
 
         if (user) {
+          console.log("ID del usuario:", user.id);
           console.log("Datos del usuario logueado:", user);
           dispatch(
             login({

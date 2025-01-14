@@ -56,12 +56,12 @@ const FormularioRegistro = () => {
 
     if (validate()) {
       const payload = {
-        name: formValues.name, 
+        name: formValues.name,
         lastName: formValues.lastName,
-        age: parseInt(formValues.age, 10), 
-        email: formValues.email, 
-        password: formValues.password, 
-        roleUser: formValues.roleUser, 
+        age: parseInt(formValues.age, 10),
+        email: formValues.email,
+        password: formValues.password,
+        roleUser: formValues.roleUser,
       };
 
       try {
@@ -69,8 +69,12 @@ const FormularioRegistro = () => {
         console.log("Usuario registrado con éxito:", response.data);
         dispatch(
           login({
-            name: formValues.name,
-            email: formValues.email,
+            id: response.data.id, // Asegúrate de que el backend devuelve 'id' correctamente
+            name: response.data.name,
+            lastName: response.data.lastName,
+            email: response.data.email,
+            age: response.data.age,
+            roleUser: response.data.roleUser,
           })
         );
         setShowAlert(true);
