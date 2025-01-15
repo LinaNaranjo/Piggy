@@ -49,7 +49,11 @@ public class GoalService {
     //save the goal in the database
     GoalsEntity savedGoal = goalRepository.save(goal);
     //Add points to the user
-    userService.addPointsUser(user.getId(), 10);
+    if (goal.getSavedAmount() >= goal.getGoalAmount()){
+      userService.addPointsUser(user.getId(), 20);
+    }else {
+      userService.addPointsUser(user.getId(), 5);
+    }
     //Update the user in the database
     UserEntity updatedUser = userRepository.findById(user.getId())
         .orElseThrow(() -> new IllegalArgumentException("User not found after update"));
@@ -82,21 +86,41 @@ public class GoalService {
 
 
   public GoalsEntity updateGoal(Long goalId, GoalsEntity updateGoal) {
+    // Buscar la meta existente
     GoalsEntity goal = goalRepository.findById(goalId)
         .orElseThrow(() -> new IllegalArgumentException("Goal not found"));
 
+    // Verificar si se alcanzó la meta antes de actualizar
+    boolean goalAchievedBeforeUpdate =
+        goal.getSavedAmount() >= goal.getGoalAmount();
+
+    // Actualizar los valores de la meta
     if (updateGoal.getGoalName() != null && !updateGoal.getGoalName().isEmpty()) {
       goal.setGoalName(updateGoal.getGoalName());
     }
     if (updateGoal.getGoalAmount() != null) {
-      goal.setGoalAmount(updateGoal.getSavedAmount());
+      goal.setGoalAmount(updateGoal.getGoalAmount());
     }
     if (updateGoal.getSavedAmount() != null && updateGoal.getSavedAmount() > 0) {
       goal.setSavedAmount(updateGoal.getSavedAmount());
     }
 
+    // Verificar si se alcanzó la meta después de actualizar
+    boolean goalAchievedAfterUpdate =
+        goal.getSavedAmount() >= goal.getGoalAmount();
+
+    // Asignar puntos en función de si se alcanzó la meta
+    if (!goalAchievedBeforeUpdate && goalAchievedAfterUpdate) {
+      // Meta alcanzada por primera vez
+      userService.addPointsUser(goal.getUser().getId(), 20);
+    } else {
+      // Actualización normal
+      userService.addPointsUser(goal.getUser().getId(), 5);
+    }
+    // Guardar los cambios en la meta
     return goalRepository.save(goal);
   }
+
 
   public ResponseEntity<?> deleteGoalById(Long goalId){
     if(!goalRepository.existsById(goalId)){
