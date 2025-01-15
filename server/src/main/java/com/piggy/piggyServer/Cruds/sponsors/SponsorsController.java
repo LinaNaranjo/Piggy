@@ -60,12 +60,12 @@ public class SponsorsController {
     return sponsorsService.getSponsorByUserId(userId);
   }
 
-  @PutMapping("/{SponsorId}")
+  @PutMapping("/{sponsorId}")
   public SponsorsEntity updateIncome(@PathVariable Long sponsorId, @RequestBody SponsorsEntity updateSponsor){
     return sponsorsService.updateSponsor(sponsorId, updateSponsor);
   }
 
-  @DeleteMapping("{SponsorId}")
+  @DeleteMapping("{sponsorId}")
   public ResponseEntity<?> deleteBySponsorId(@PathVariable Long sponsorId){
     return sponsorsService.deleteSponsorById(sponsorId);
   }

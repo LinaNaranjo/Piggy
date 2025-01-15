@@ -31,7 +31,7 @@ public class SponsorsService {
     }
     sponsors.setUser(user);
     SponsorsEntity savedSponsor = sponsorsRepository.save(sponsors);
-    userService.addPointsUser(user.getId(), 10);
+    userService.addPointsUser(user.getId(), 5);
 
     UserEntity updatedUser = userRepository.findById(user.getId())
         .orElseThrow(() -> new IllegalArgumentException("User not found after update"));
