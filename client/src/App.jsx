@@ -6,8 +6,9 @@ import FormLogin from "./pages/login/Login";
 import Registro from "./pages/Registro/PageRegistro";
 import Home from "./pages/Home/Home";
 import MisMetas from "./pages/MisMetas/MisMetas";
-import MisIngresos from "./pages/MisIngresos/MisIngresos";
-import MisGastos from "./pages/MisGatos/MisGastos";
+// import MisIngresos from "./pages/MisIngresos/MisIngresos";
+// import MisGastos from "./pages/MisGatos/MisGastos";
+import MisMovimientos from "./pages/MisMovimientos/MisMovimientos";
 import MisPatrocinadores from "./pages/MisPatrocinadores/MisPatrocinadores";
 import MisTareas from "./pages/MisTareas/MisTareas";
 import MiNivel from "./pages/MiNivel/MiNivel";
@@ -29,8 +30,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path="/home" element={<Home />} />
           <Route path="/metas" element={<MisMetas />} />
-          <Route path="/ingresos" element={<MisIngresos />} />
-          <Route path="/gastos" element={<MisGastos />} />
+          <Route path="/Movimientos" element={<MisMovimientos />} />
           <Route path="/patrocinadores" element={<MisPatrocinadores />} />
           <Route path="/tareas" element={<MisTareas />} />
           <Route path="/nivel" element={<MiNivel />} />
