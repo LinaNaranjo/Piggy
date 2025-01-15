@@ -12,7 +12,7 @@ $modalBg: #fcf7f3;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 2rem;
+    margin: 3rem;
 
     h2 {
       font-size: 2rem;
@@ -20,13 +20,16 @@ $modalBg: #fcf7f3;
     }
 
     .btnAgregar {
-      padding: 10px 20px;
-      background-color: $mintGreen;
-      border: none;
-      border-radius: 5px;
-      font-family: "Mochiy Pop One", sans-serif;
-      color: $textColor;
-      cursor: pointer;
+    color: $textColor;
+    font-family: "Mooli", sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.5rem);
+    font-weight: bolder;
+    width: 15%;
+    height: 60px;
+    border: none;
+    border-radius: 20px;
+    background-color: $mintGreen;
+    cursor: pointer;
     }
   }
 
@@ -141,13 +144,15 @@ $modalBg: #fcf7f3;
       }
 
       .btnGuardar {
+        margin-top: 2rem;
         width: 100%;
         padding: 10px;
         background-color: $mintGreen;
-        color: $textColor;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        color: $textColor;
+        font-family: "Mochiy Pop One", sans-serif;
       }
     }
   }
