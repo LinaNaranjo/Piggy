@@ -129,15 +129,23 @@ public class MovementsService {
     return updatedMovement;
   }
 
-
   public ResponseEntity<?> deleteIncomeById(Long movementId) {
-    if (!movementsRepository.existsById(movementId)) {
-      return ResponseEntity.status(404).body(Map.of(
-          "error", "Not Found",
-          "Message", "Movement with ID" + movementId + "does not exist"));
-    }
+    // Verificar si el movimiento existe
+    MovementsEntity movement = movementsRepository.findById(movementId)
+        .orElseThrow(() -> new IllegalArgumentException("Movement with ID " + movementId + " does not exist"));
+
+    // Obtener el ID del usuario asociado
+    Integer userId = movement.getUser().getId();
+
+    // Eliminar el movimiento
     movementsRepository.deleteById(movementId);
+
+    // Recalcular el totalAmount para el usuario
+    Double newTotalAmount = calculateTotalForUser(userId);
+
     return ResponseEntity.ok(Map.of(
-        "Message", "Movement with ID" + movementId + "has been successfully deleted"));
+        "Message", "Movement with ID " + movementId + " has been successfully deleted",
+        "NewTotalAmount", newTotalAmount
+    ));
   }
 }
