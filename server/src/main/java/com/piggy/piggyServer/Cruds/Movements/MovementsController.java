@@ -65,8 +65,8 @@ public class MovementsController {
   }
 
   @DeleteMapping("{movementId}")
-  public ResponseEntity<?> deleteByMovement(@PathVariable Long moevemtId){
-    return movementsService.deleteIncomeById(moevemtId);
+  public ResponseEntity<?> deleteByMovement(@PathVariable Long movementId){
+    return movementsService.deleteIncomeById(movementId);
   }
 
 }
