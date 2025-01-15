@@ -6,6 +6,8 @@ $white: #ffffff;
 $pinkBorder: #fadbd8;
 $textColor: #000000;
 $modalBg: #fcf7f3;
+$deleteRed: rgba(234, 17, 17, 0.652);
+$editBlue: #1e1e1ec5;
 
 .contenedorGeneralPatrocinadores {
   padding: 20px;
@@ -56,8 +58,8 @@ $modalBg: #fcf7f3;
     margin: 2rem;
 
     @media (min-width: 768px) {
-      max-width: 900px; /* Limita el ancho en pantallas grandes */
-      margin: 0 auto; /* Centra el contenedor */
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .patrocinadorIndividual {
@@ -91,10 +93,42 @@ $modalBg: #fcf7f3;
           margin-right: 1px;
         }
       }
+
+      .actions {
+        flex: 0.5;
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+
+        .actionIcon {
+          cursor: pointer;
+          font-size: 1.2rem;
+          transition: transform 0.2s, color 0.3s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        .editIcon {
+          color: $editBlue;
+
+          &:hover {
+            color: darken($editBlue, 10%);
+          }
+        }
+
+        .deleteIcon {
+          color: $deleteRed;
+
+          &:hover {
+            color: darken($deleteRed, 10%);
+          }
+        }
+      }
     }
   }
 
-  // Media Queries para dispositivos móviles
   @media (max-width: 480px) {
     .contenedorPrincipalPatrocinadores {
       padding: 0.1rem;
@@ -123,11 +157,19 @@ $modalBg: #fcf7f3;
             margin-right: 5px;
           }
         }
+
+        .actions {
+          justify-content: flex-start;
+          gap: 10px;
+
+          .actionIcon {
+            font-size: 1rem;
+          }
+        }
       }
     }
   }
 
-  // Modal Estilos
   .modal {
     position: fixed;
     top: 0;
@@ -149,7 +191,7 @@ $modalBg: #fcf7f3;
       text-align: left;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-      position: relative; /* Necesario para posicionar la "X" */
+      position: relative;
 
       h2 {
         margin-bottom: 1rem;
