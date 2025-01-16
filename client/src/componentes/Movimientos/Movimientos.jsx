@@ -10,8 +10,10 @@ const Movimientos = () => {
   const [newMovement, setNewMovement] = useState({
     name: "",
     date: "",
-    type: "",
     amount: "",
+    type: "",
+    TotalAmount: "",
+    
   });
   const [totalGeneral, setTotalGeneral] = useState(0);
 
@@ -33,7 +35,7 @@ const Movimientos = () => {
       })
       .catch((error) => {
         console.error("Error al cargar movimientos:", error);
-        alert("Error al cargar los movimientos. Por favor, inténtalo de nuevo.");
+        // alert("Error al cargar los movimientos. Por favor, inténtalo de nuevo.");
       });
   }, []);
 
