@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
 
@@ -114,7 +116,7 @@ $editBlue: #1e1e1ec5;
           color: $editBlue;
 
           &:hover {
-            color: darken($editBlue, 10%);
+            color: color.adjust($editBlue, $lightness: -10%);
           }
         }
 
@@ -122,7 +124,7 @@ $editBlue: #1e1e1ec5;
           color: $deleteRed;
 
           &:hover {
-            color: darken($deleteRed, 10%);
+            color: color.adjust($deleteRed, $lightness: -10%);
           }
         }
       }
