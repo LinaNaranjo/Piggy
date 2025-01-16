@@ -8,13 +8,13 @@ const FiltrosMetas = ({ goals, setFilteredGoals }) => {
     } else if (filterType === "completed") {
       setFilteredGoals(
         goals.filter(
-          (goal) => (goal.amountSaved / goal.totalAmount) * 100 >= 100
+          (goal) => (goal.savedAmount / goal.goalAmount) * 100 >= 100
         )
       );
     } else if (filterType === "notCompleted") {
       setFilteredGoals(
         goals.filter(
-          (goal) => (goal.amountSaved / goal.totalAmount) * 100 < 100
+          (goal) => (goal.savedAmount / goal.goalAmount) * 100 < 100
         )
       );
     }

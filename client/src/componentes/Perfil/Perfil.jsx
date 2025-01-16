@@ -46,7 +46,7 @@ const Perfil = () => {
             <strong>Edad:</strong> {user.age}
           </p>
           <p>
-            <strong>Fecha de Nacimiento:</strong> {user.birthdate}
+            <strong>Puntos Acomulados:</strong> {user.points}
           </p>
           <p>
             <strong>Dirección:</strong> {user.address}

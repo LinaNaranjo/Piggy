@@ -17,6 +17,8 @@ $text-secundary: "Mooli", sans-serif;
 
   h3 {
     font-family: $text-secundary;
+    padding-bottom: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .progreso-contenedor {
@@ -26,7 +28,7 @@ $text-secundary: "Mooli", sans-serif;
     gap: 10px;
 
     .barra-de-progreso {
-      width: 80%;
+      width: 100%;
       height: 30px;
       background-color: #e0e0e0;
       border-radius: 6px;
@@ -42,17 +44,6 @@ $text-secundary: "Mooli", sans-serif;
         transition: width 0.5s ease-in-out;
       }
     }
-
-    .insignia-derecha {
-      width: 50px;
-      height: 50px;
-      margin-left: 10px;
-      transition: opacity 0.5s ease-in-out;
-      @media (max-width: 768px) {
-        width: 30px;
-        height: 30px;
-      }
-    }
   }
 
   .puntos-acumulados {
@@ -64,8 +55,26 @@ $text-secundary: "Mooli", sans-serif;
       font-size: 0.5rem;
     }
   }
+
+  .insignias {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Espacio entre las insignias */
+    margin-top: 2rem; /* Espacio entre la barra de progreso y las insignias */
+
+    .insignia {
+      width: 80px;
+      height: 80px;
+      transition: opacity 0.5s ease-in-out;
+
+      @media (max-width: 768px) {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
 }
 
-.contenedor-principal-barras{
+.contenedor-principal-barras {
   margin: 2.5rem;
 }

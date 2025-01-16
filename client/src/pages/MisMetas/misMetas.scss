@@ -19,8 +19,40 @@ $text-secundary: "Mooli", sans-serif;
 }
 
 .total-points {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  text-decoration: none;
+  color: black; /* color por defecto */
   font-family: $text-secundary;
   padding-left: 2.5rem;
-  padding-top: 1.5rem;
+  padding-top: 1.8rem;
+  padding-bottom: 2rem;
+  transition: color 0.3s ease; /* Para un efecto suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  a {
+    text-decoration: none;
+    color: inherit; /* Esto hereda el color de .total-points */
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: blue; /* Cambia a azul cuando pasa el mouse por encima */
+    //box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px) scale(1.05) rotateX(3deg) rotateY(5deg);
+  }
+}
+ 
+
+.total-points-importante{
+  
+    font-size: 0.8rem;
+    font-family: $text-secundary;
+     //color: red;
+    padding-left: 2.5rem;
+    //padding-top: 1.5rem;
+  strong{
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
+  }
 }
