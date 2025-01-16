@@ -1,10 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Bronce from "../../assets/Images/ImagenesNivel/Bronce.png";
 import Plata from "../../assets/Images/ImagenesNivel/Plata.png";
 import Oro from "../../assets/Images/ImagenesNivel/Oro.png";
 import "./progresos.scss";
 
 const BarraDeProgreso = ({ progreso, tipo, total }) => {
+  const user = useSelector((state) => state.user);
   const porcentaje = (progreso / total) * 100;
 
   const obtenerInsignia = () => {
@@ -12,7 +14,7 @@ const BarraDeProgreso = ({ progreso, tipo, total }) => {
     if (progreso >= 200) return Plata;
     if (progreso >= 100) return Bronce;
     return null; 
-    };
+  };
 
   const imagenInsignia = obtenerInsignia();
 
@@ -28,62 +30,49 @@ const BarraDeProgreso = ({ progreso, tipo, total }) => {
             }}
           />
         </div>
+      </div>
+      <div className="puntos-acumulados">
+      {user.points} / {total} puntos
+      </div>
+      <div className="insignias">
         <img
           src={Bronce}
           alt="Bronce"
-          className="insignia-derecha"
+          className="insignia"
           style={{
-            opacity: progreso >= 100 ? 1 : 0.3, 
+            opacity: progreso >= 100 ? 1 : 0.3,
           }}
         />
         <img
           src={Plata}
           alt="Plata"
-          className="insignia-derecha"
+          className="insignia"
           style={{
-            opacity: progreso >= 200 ? 1 : 0.3, 
+            opacity: progreso >= 200 ? 1 : 0.3,
           }}
         />
         <img
           src={Oro}
           alt="Oro"
-          className="insignia-derecha"
+          className="insignia"
           style={{
-            opacity: progreso >= 500 ? 1 : 0.3, 
+            opacity: progreso >= 500 ? 1 : 0.3,
           }}
         />
-      </div>
-      <div className="puntos-acumulados">
-        {progreso} / {total} puntos
       </div>
     </div>
   );
 };
 
 const Progresos = ({ totalPoints }) => {
-  //const progresoMetas = totalPoints ;
   const totalMetas = 500;
-  const progresoAhorros = 150;
-  const totalAhorros = 500;
-  const progresoTareas = 300;
-  const totalTareas = 500;
 
   return (
     <div className="contenedor-principal-barras">
       <BarraDeProgreso
         progreso={totalPoints}
         total={totalMetas}
-        tipo="Metas"
-      />
-      <BarraDeProgreso
-        progreso={progresoAhorros}
-        total={totalAhorros}
-        tipo="Ahorros"
-      />
-      <BarraDeProgreso
-        progreso={progresoTareas}
-        total={totalTareas}
-        tipo="Tareas"
+        tipo="Progreso"
       />
     </div>
   );

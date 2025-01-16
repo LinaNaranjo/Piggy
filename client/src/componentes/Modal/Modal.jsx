@@ -14,7 +14,6 @@ const Modal = ({ goal, onClose, onSave, userId }) => {
     goalName: "",
     savedAmount: 0,
     goalAmount: "",
-    points: 0,
   });
   const [newAmount, setNewAmount] = useState("");
 
@@ -25,18 +24,9 @@ const Modal = ({ goal, onClose, onSave, userId }) => {
         goalName: goal.goalName,
         savedAmount: goal.savedAmount,
         goalAmount: goal.goalAmount,
-        points: goal.points,
       });
-      updatePoints(goal.savedAmount, goal.goalAmount);
     }
   }, [goal]);
-
-  const updatePoints = (savedAmount, goalAmount) => {
-    setGoalData((prevState) => ({
-      ...prevState,
-      points: savedAmount >= goalAmount ? 10 : 0,
-    }));
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,11 +34,18 @@ const Modal = ({ goal, onClose, onSave, userId }) => {
       ...prevState,
       [name]: value,
     }));
-    if (name === "savedAmount" || name === "goalAmount") {
-      updatePoints(goalData.savedAmount, goalData.goalAmount);
-    }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!goalData.goalAmount) {
+      Swal.fire("Error", 'El campo "Valor Total" es obligatorio', "error");
+      return;
+    }
+    goal ? handleEditGoal() : handleAddGoal();
+  };
+
+  // Agregar un monto positivo al aporte
   const handleAddAmount = () => {
     const newAmountValue = parseFloat(newAmount);
     if (isNaN(newAmountValue) || newAmountValue <= 0) {
@@ -61,37 +58,49 @@ const Modal = ({ goal, onClose, onSave, userId }) => {
       return {
         ...prevState,
         savedAmount: updateSaveddAmount,
-        points: updateSaveddAmount >= prevState.goalAmount ? 10 : 0,
       };
     });
     setNewAmount("");
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!goalData.goalAmount) {
-      Swal.fire("Error", 'El campo "Valor Total" es obligatorio', "error");
-      return;
-    }
-
+  // Agregar metas
+  const handleAddGoal = async () => {
     try {
-      //const response = await axios.post(`${BASE_URL}/goal/new`, {
       const response = await axiosInstance.post(`/goal/new`, {
         user: { id: userId },
         goalName: goalData.goalName,
         savedAmount: goalData.savedAmount,
         goalAmount: parseFloat(goalData.goalAmount),
       });
-
-      console.log("Meta agregada:", response.data);
-
-      const newGoal = response.data.goal;
       Swal.fire("Éxito", response.data.message, "success");
-      onSave(newGoal); // Llamamos a la función de callback
-      onClose(); // Cerramos el modal
+      onSave(response.data.goal); // Actualiza la lista de metas
+      onClose(); // Cerrar el modal
     } catch (error) {
-      console.error(error);
-      Swal.fire("Error", "Hubo un problema al guardar la meta", "error");
+      console.error(
+        "Error al agregar la meta:",
+        error.response ? error.response.data : error
+      );
+      Swal.fire("Error", "Hubo un problema al agregar la meta", "error");
+    }
+  };
+
+  // Editar metas
+  const handleEditGoal = async () => {
+    try {
+      const response = await axiosInstance.put(`/goal/${goalData.id}`, {
+        goalName: goalData.goalName,
+        savedAmount: goalData.savedAmount,
+        goalAmount: parseFloat(goalData.goalAmount),
+      });
+      Swal.fire("Éxito", response.data.message, "success");
+      onSave(response.data.goal); // Actualiza la meta editada en la lista
+      onClose(); // Cerrar el modal
+    } catch (error) {
+      console.error(
+        "Error al editar la meta:",
+        error.response ? error.response.data : error
+      );
+      Swal.fire("Error", "Hubo un problema al editar la meta", "error");
     }
   };
 
@@ -154,7 +163,7 @@ const Modal = ({ goal, onClose, onSave, userId }) => {
             />
             <div className="modal-buttons">
               <button className="boton-guardar" type="submit">
-                Guardar
+                {goal ? "Actualizar" : "Guardar"}
               </button>
               <button
                 type="button"
