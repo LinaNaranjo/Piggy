@@ -113,9 +113,6 @@ public class GoalService {
     if (!goalAchievedBeforeUpdate && goalAchievedAfterUpdate) {
       // Meta alcanzada por primera vez
       userService.addPointsUser(goal.getUser().getId(), 20);
-    } else {
-      // Actualización normal
-      userService.addPointsUser(goal.getUser().getId(), 5);
     }
     // Guardar los cambios en la meta
     return goalRepository.save(goal);
