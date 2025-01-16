@@ -14,5 +14,5 @@ public class LoginDto {
   private String email;
   private RoleUser roleUser;
   private String token;
-
+  private Integer points;
 }
