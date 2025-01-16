@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
 
-
 $mint-green: #76d7c4;
 $text-color: #000000;
 $text-primary: "Mochiy Pop One", sans-serif;
@@ -34,57 +33,56 @@ $text-secundary: "Mooli", sans-serif;
     position: absolute;
     right: 0;
     margin-right: 2rem;
-    transform: translateY(-120%); 
+    transform: translateY(-120%);
 
     @media (max-width: 768px) {
-        font-size: 0.9rem;
-        height: 2rem;
-        margin-right: 1.3rem;
-        width: 6rem;
+      font-size: 0.9rem;
+      height: 2rem;
+      margin-right: 1.3rem;
+      width: 6rem;
     }
-}
-
-.total-general {
-  background-color: $mint-green;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  margin: 20px 0; 
-  margin-top: 3rem;
-  width: 30%; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  h2 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    font-family: $text-primary;
-    color: $text-color;
   }
 
-  p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: $text-color;
+  .total-general {
+    background-color: $mint-green;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    margin: 20px 0;
+    margin-top: 3rem;
+    width: 30%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      font-family: $text-primary;
+      color: $text-color;
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $text-color;
+    }
+
+    left: 0;
+    margin-left: 20px;
+
+    @media (max-width: 768px) {
+      width: 80%;
+      margin-left: 0;
+    }
+
+    @media (max-width: 480px) {
+      width: 90%;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
   }
-
-  left: 0;
-  margin-left: 20px; 
-
-  @media (max-width: 768px) { 
-    width: 80%; 
-    margin-left: 0; 
-  }
-
-  @media (max-width: 480px) { 
-    width: 90%; 
-  }
-
-
-  &:hover {
-    transform: scale(1.05); 
-    transition: transform 0.3s ease; 
-  }
-}
 
   .modal {
     position: fixed;
@@ -159,6 +157,63 @@ $text-secundary: "Mooli", sans-serif;
             background-color: #63c4ad;
           }
         }
+      }
+    }
+  }
+
+  .movimientos-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: left;
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: $mint-green;
+      color: white;
+    }
+
+    td {
+      font-size: 1rem;
+    }
+
+    .tareaIcons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .iconEdit,
+    .iconDelete {
+      cursor: pointer;
+      color: #76d7c4;
+    }
+
+    .iconDelete {
+      color: red;
+    }
+
+    tr {
+      &:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      &:hover {
+        background-color: #ddd;
+      }
+
+      td.ingreso {
+        color: green;
+      }
+
+      td.gasto {
+        color: red;
       }
     }
   }
