@@ -77,20 +77,13 @@ public class MovementsService {
 
 
   public ResponseEntity<?> getIncomesByUserId(Integer userId) {
-    // Obtener los movimientos del usuario
     List<MovementsEntity> userMovements = movementsRepository.findByUserId(userId);
 
-    // Si no hay movimientos, crear un movimiento vacío con valores nulos o cero
     if (userMovements.isEmpty()) {
-      MovementsEntity emptyMovement = new MovementsEntity();
-      emptyMovement.setId(null);
-      emptyMovement.setName(null);
-      emptyMovement.setDate(null);
-      emptyMovement.setAmount(0.0);
-      emptyMovement.setType(null);
-      emptyMovement.setTotalAmount(0.0);
-      emptyMovement.setUser(null);
-      return ResponseEntity.ok(List.of(emptyMovement));
+      return ResponseEntity.status(404).body(Map.of(
+          "error", "Not found",
+          "message", "No movements found for the user with ID " + userId
+      ));
     }
 
     // Calcular el total acumulado
