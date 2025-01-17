@@ -15,8 +15,8 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 const FormLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("Mateito@gmail.com");
-  const [password, setPassword] = useState("AccenturLoMejor");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -59,6 +59,7 @@ const FormLogin = () => {
         });
         localStorage.setItem('authToken', response.data.token);
         const user = response.data;
+        console.log("Datos completos del usuario recibidos:", user);
 
         if (user) {
           console.log("ID del usuario:", user.id);
@@ -70,6 +71,7 @@ const FormLogin = () => {
               lastName: user.lastName,
               email: user.email,
               age: user.age,
+              points: user.points,
               phone: user.phone,
               birthdate: user.birthdate,
               address: user.address,
