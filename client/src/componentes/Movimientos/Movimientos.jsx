@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import axiosInstance from "../../api/axiosInstance";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import "./Movimientos.scss";
+import { useSelector } from "react-redux";
 
 const Movimientos = () => {
+  const user = useSelector((state) => state.user); // Obtén el usuario logueado
   const [movimientos, setMovimientos] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0); // Estado para el total
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,7 +25,7 @@ const Movimientos = () => {
     const headers = { Authorization: `Bearer ${token}` };
   
     try {
-      const response = await axios.get("http://localhost:8080/movement/user/1", {
+      const response = await axios.get(`http://localhost:8080/movement/user/${user.id}`, {
         headers,
       });
       const data = response.data;
