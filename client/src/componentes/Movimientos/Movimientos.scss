@@ -1,3 +1,227 @@
+// @import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+// $mint-green: #76d7c4;
+// $text-color: #000000;
+// $text-primary: "Mochiy Pop One", sans-serif;
+// $text-secundary: "Mooli", sans-serif;
+
+// .movimientos-container {
+//   padding: 20px;
+//   font-family: $text-secundary;
+
+//   h1 {
+//     text-align: left;
+//     margin-top: 3rem;
+//     margin-bottom: 1rem;
+//     margin-left: 1rem;
+//     font-family: $text-primary;
+//     color: $text-color;
+//   }
+
+//   .add-button {
+//     color: $text-color;
+//     font-family: $text-secundary;
+//     font-size: clamp(0.9rem, 2vw, 1.5rem);
+//     font-weight: bolder;
+//     width: 15%;
+//     height: 60px;
+//     border: none;
+//     border-radius: 20px;
+//     background-color: $mint-green;
+//     cursor: pointer;
+//     position: absolute;
+//     right: 0;
+//     margin-right: 2rem;
+//     transform: translateY(-120%);
+
+//     @media (max-width: 768px) {
+//       font-size: 0.9rem;
+//       height: 2rem;
+//       margin-right: 1.3rem;
+//       width: 6rem;
+//     }
+//   }
+
+//   .total-general {
+//     background-color: $mint-green;
+//     border-radius: 8px;
+//     padding: 10px;
+//     text-align: center;
+//     margin: 20px 0;
+//     margin-top: 3rem;
+//     width: 30%;
+//     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+//     h2 {
+//       margin-bottom: 10px;
+//       font-size: 1.2rem;
+//       font-family: $text-primary;
+//       color: $text-color;
+//     }
+
+//     p {
+//       font-size: 1.5rem;
+//       font-weight: bold;
+//       color: $text-color;
+//     }
+
+//     left: 0;
+//     margin-left: 20px;
+
+//     @media (max-width: 768px) {
+//       width: 80%;
+//       margin-left: 0;
+//     }
+
+//     @media (max-width: 480px) {
+//       width: 90%;
+//     }
+
+//     &:hover {
+//       transform: scale(1.05);
+//       transition: transform 0.3s ease;
+//     }
+//   }
+
+//   .modal {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     z-index: 1000;
+//     width: 100vw;
+//     height: 100vh;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background: rgba(0, 0, 0, 0.5);
+
+//     .modalContent {
+//       position: relative;
+//       background-color: #fff;
+//       padding: 30px;
+//       border-radius: 8px;
+//       width: 350px;
+//       text-align: left;
+
+//       .closeBtn {
+//         position: absolute;
+//         top: 10px;
+//         right: 10px;
+//         background: none;
+//         border: none;
+//         color: #76d7c4;
+//         font-size: 1.5rem;
+//         font-weight: bold;
+//         cursor: pointer;
+//       }
+
+//       h2 {
+//         text-align: center;
+//         margin-bottom: 20px;
+//         color: #444;
+//       }
+
+//       form {
+//         display: flex;
+//         flex-direction: column;
+
+//         label {
+//           margin-bottom: 5px;
+//           color: #333;
+//           font-weight: bold;
+//         }
+
+//         input,
+//         select {
+//           margin-bottom: 15px;
+//           padding: 10px;
+//           border-radius: 5px;
+//           border: 1px solid #ccc;
+//           font-size: 1rem;
+//         }
+
+//         .submit-button {
+//           background-color: #76d7c4;
+//           color: #fff;
+//           border: none;
+//           border-radius: 20px;
+//           padding: 10px;
+//           font-weight: bold;
+//           cursor: pointer;
+//           font-size: 1rem;
+//           text-transform: uppercase;
+//           transition: background 0.3s;
+
+//           &:hover {
+//             background-color: #63c4ad;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   .movimientos-table {
+//     width: 80%;
+//     margin: 20px auto;
+//     border-collapse: collapse;
+//     text-align: left;
+
+//     th,
+//     td {
+//       padding: 10px;
+//       border: 1px solid #ccc;
+//       text-align: center;
+//     }
+
+//     th {
+//       background-color: $mint-green;
+//       color: white;
+//     }
+
+//     td {
+//       font-size: 1rem;
+//     }
+
+//     .tareaIcons {
+//       display: flex;
+//       justify-content: center;
+//       gap: 10px;
+//     }
+
+//     .iconEdit,
+//     .iconDelete {
+//       cursor: pointer;
+//       color: #76d7c4;
+//     }
+
+//     .iconDelete {
+//       color: red;
+//     }
+
+//     tr {
+//       &:nth-child(even) {
+//         background-color: #f2f2f2;
+//       }
+
+//       &:hover {
+//         background-color: #ddd;
+//       }
+
+//       td.ingreso {
+//         color: green;
+//       }
+
+//       td.gasto {
+//         color: red;
+//       }
+//     }
+//   }
+// }
+
+
+
+
 @import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
 
@@ -10,6 +234,10 @@ $text-secundary: "Mooli", sans-serif;
   padding: 20px;
   font-family: $text-secundary;
 
+  @media (max-width: 768px) {
+    flex-direction: column;  
+  }
+
   h1 {
     text-align: left;
     margin-top: 3rem;
@@ -17,31 +245,46 @@ $text-secundary: "Mooli", sans-serif;
     margin-left: 1rem;
     font-family: $text-primary;
     color: $text-color;
+
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+      padding: 0;
+    }
   }
 
   .add-button {
     color: $text-color;
     font-family: $text-secundary;
-    font-size: clamp(0.9rem, 2vw, 1.5rem);
+    font-size: clamp(0.9rem, 2vw, 1.5rem); 
     font-weight: bolder;
-    width: 15%;
+    width: 15%;  
     height: 60px;
     border: none;
     border-radius: 20px;
     background-color: $mint-green;
     cursor: pointer;
-    position: absolute;
+    position: absolute; 
     right: 0;
     margin-right: 2rem;
     transform: translateY(-120%);
+    margin-top: -8rem;  
 
     @media (max-width: 768px) {
-      font-size: 0.9rem;
-      height: 2rem;
-      margin-right: 1.3rem;
-      width: 6rem;
+      font-size: 1.4rem;  
+      margin-top: 1rem;   
+      width: 100%;      
+      margin-right: 0;   
+      transform: none;    
+      position: relative; 
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.2rem;  
+      width: 100%;
     }
   }
+
+
 
   .total-general {
     background-color: $mint-green;
@@ -58,16 +301,29 @@ $text-secundary: "Mooli", sans-serif;
       font-size: 1.2rem;
       font-family: $text-primary;
       color: $text-color;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+      }
     }
 
     p {
       font-size: 1.5rem;
       font-weight: bold;
       color: $text-color;
-    }
 
-    left: 0;
-    margin-left: 20px;
+      @media (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 1rem;
+      }
+    }
 
     @media (max-width: 768px) {
       width: 80%;
@@ -84,6 +340,8 @@ $text-secundary: "Mooli", sans-serif;
     }
   }
 
+ 
+
   .modal {
     position: fixed;
     top: 0;
@@ -97,12 +355,24 @@ $text-secundary: "Mooli", sans-serif;
     background: rgba(0, 0, 0, 0.5);
 
     .modalContent {
-      position: relative;
-      background-color: #fff;
-      padding: 30px;
+      background-color: white;
+      padding: 20px;
       border-radius: 8px;
-      width: 350px;
-      text-align: left;
+      width: 400px;
+      position: relative;
+
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+
+        @media (max-width: 768px) {
+          font-size: 1rem;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
 
       .closeBtn {
         position: absolute;
@@ -110,16 +380,9 @@ $text-secundary: "Mooli", sans-serif;
         right: 10px;
         background: none;
         border: none;
-        color: #76d7c4;
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-size: 24px;
+        color: #333;
         cursor: pointer;
-      }
-
-      h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #444;
       }
 
       form {
@@ -127,34 +390,55 @@ $text-secundary: "Mooli", sans-serif;
         flex-direction: column;
 
         label {
-          margin-bottom: 5px;
-          color: #333;
-          font-weight: bold;
+          font-size: 1rem;
+          margin: 5px 0;
+
+          @media (max-width: 768px) {
+            font-size: 0.9rem;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 0.8rem;
+          }
         }
 
         input,
         select {
-          margin-bottom: 15px;
           padding: 10px;
-          border-radius: 5px;
-          border: 1px solid #ccc;
+          margin-bottom: 10px;
           font-size: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+
+          @media (max-width: 768px) {
+            font-size: 0.9rem;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 0.8rem;
+          }
         }
 
-        .submit-button {
-          background-color: #76d7c4;
-          color: #fff;
-          border: none;
-          border-radius: 20px;
+        button[type="submit"] {
           padding: 10px;
-          font-weight: bold;
+          background-color: $mint-green;
+          color: white;
+          border: none;
+          border-radius: 5px;
           cursor: pointer;
           font-size: 1rem;
-          text-transform: uppercase;
-          transition: background 0.3s;
+          font-weight: bold;
 
           &:hover {
-            background-color: #63c4ad;
+            background-color: $mint-green;
+          }
+
+          @media (max-width: 768px) {
+            font-size: 0.9rem;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 0.8rem;
           }
         }
       }
@@ -162,58 +446,116 @@ $text-secundary: "Mooli", sans-serif;
   }
 
   .movimientos-table {
-    width: 80%;
-    margin: 20px auto;
+    width: 100%;
+    margin-top: 6.5rem;
     border-collapse: collapse;
-    text-align: left;
-
+    table-layout: auto;
+  
     th,
     td {
-      padding: 10px;
-      border: 1px solid #ccc;
+      padding: 12px;
       text-align: center;
+      border-bottom: 1px solid #ccc;
+      word-wrap: break-word;
+      box-sizing: border-box; 
     }
-
+  
     th {
       background-color: $mint-green;
-      color: white;
+      font-family: $text-primary;
     }
-
+  
     td {
-      font-size: 1rem;
+      font-family: $text-secundary;
     }
-
+  
+    .ingreso {
+      color: #00c091;
+    }
+  
+    .gasto {
+      color: red;
+    }
+  
     .tareaIcons {
       display: flex;
       justify-content: center;
       gap: 10px;
-    }
-
-    .iconEdit,
-    .iconDelete {
-      cursor: pointer;
-      color: #76d7c4;
-    }
-
-    .iconDelete {
-      color: red;
-    }
-
-    tr {
-      &:nth-child(even) {
-        background-color: #f2f2f2;
+  
+      .iconEdit,
+      .iconDelete {
+        cursor: pointer;
+        color: #333;
+        transition: color 0.3s ease;
       }
-
-      &:hover {
-        background-color: #ddd;
+  
+      .iconEdit:hover {
+        color: $mint-green;
       }
-
-      td.ingreso {
-        color: green;
-      }
-
-      td.gasto {
+  
+      .iconDelete:hover {
         color: red;
+      }
+    }
+
+    @media (max-width: 768px) {
+      display: block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      overflow-x: hidden; 
+  
+      .movimiento-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        align-items: center;
+        margin-bottom: 5px;
+        box-sizing: border-box; 
+      }
+  
+      .movimiento-item-name {
+        font-weight: bold;
+        flex: 1; 
+      }
+  
+      .movimiento-item-value {
+        text-align: right;
+      }
+  
+      .tareaIcons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      width: 100%; 
+      margin-left: auto;
+      margin-right: auto;
+  
+      /* Diseño adaptado para pantallas pequeñas */
+      .movimiento-item {
+        flex-direction: column; 
+        text-align: center;
+        padding: 6px;
+        border-bottom: 1px solid #ccc;
+      }
+  
+      .movimiento-item-name {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+      }
+  
+      .movimiento-item-value {
+        font-size: 1rem;
+      }
+  
+      .tareaIcons {
+        justify-content: center;
+        margin-top: 10px;
       }
     }
   }
