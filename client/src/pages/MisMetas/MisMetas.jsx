@@ -22,6 +22,7 @@ const MisMetas = () => {
   const [selectedGoal, setSelectedGoal] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [userPoints, setUserPoints] = useState(0); // Estado para los puntos del usuario
 
   // Obtener metas del usuario logueado al cargar el componente
   useEffect(() => {
@@ -33,9 +34,11 @@ const MisMetas = () => {
           if (Array.isArray(response.data) && response.data.length > 0) {
             setGoals(response.data);
             setFilteredGoals(response.data);
+            setUserPoints(response.data[0]?.user?.points || 0); // Asignar los puntos del usuario
           } else {
             setGoals([]);
             setFilteredGoals([]);
+            setUserPoints(0); // Si no hay metas, los puntos serán 0
           }
         })
         .catch((error) => {
@@ -121,37 +124,16 @@ const MisMetas = () => {
     setFilteredGoals(updatedGoals); // También actualizar las metas filtradas
   };
 
-
-
-  
-  // const handleSaveGoal = (newGoal) => {
-  //   if (!newGoal || !newGoal.id) {
-  //     return; // Simplemente retornamos sin hacer nada si newGoal no es válido
-  //   }
-
-  //   // Actualizar la meta en el arreglo de metas, si existe con el mismo ID
-  //   const updatedGoals = goals.map((goal) =>
-  //     goal.id === newGoal.id ? newGoal : goal
-  //   );
-
-  //   // Si es una meta nueva, agregarla
-  //   if (!updatedGoals.find((goal) => goal.id === newGoal.id)) {
-  //     updatedGoals.push(newGoal);
-  //   }
-
-  //   setGoals(updatedGoals); // Actualizar el estado de las metas
-  //   setFilteredGoals(updatedGoals); // Actualizar las metas filtradas
-  // };
   const handleSaveGoal = (newGoal) => {
     if (!newGoal || !newGoal.id) {
       return; // Simplemente retornamos sin hacer nada si newGoal no es válido
     }
-  
+
     // Actualizar la meta en el arreglo de metas, si existe con el mismo ID
     const updatedGoals = goals.map((goal) =>
       goal.id === newGoal.id ? { ...goal, ...newGoal } : goal
     );
-  
+
     setGoals(updatedGoals); // Actualizar el estado de las metas
     setFilteredGoals(updatedGoals); // Actualizar las metas filtradas si es necesario
   };
@@ -183,6 +165,7 @@ const MisMetas = () => {
           <h3>
             <Link to="/nivel">Ver puntos acumulados...</Link>
           </h3>
+          {/* <h3>Puntos: {userPoints}</h3> Mostrar los puntos aquí */}
         </div>
 
         <div className="goal-list">

@@ -92,7 +92,7 @@ const Modal = ({ goal, onClose, onSave, userId }) => {
         savedAmount: goalData.savedAmount,
         goalAmount: parseFloat(goalData.goalAmount),
       });
-      Swal.fire("Éxito", response.data.message, "success");
+      Swal.fire("Éxito", `\nRecarga la página para ver tu meta actualizada`, "success");
       onSave(response.data.goal); // Actualiza la meta editada en la lista
       onClose(); // Cerrar el modal
     } catch (error) {

@@ -17,10 +17,9 @@ const Cartas = () => {
   const formattedName = formatoTexto(name || "Usuario");
   const cardData = [
     { id: 1, title: "Metas", image: misMetas, path: "/metas" },
-    { id: 2, title: "Ingresos", image: misIngresos, path: "/ingresos" },
-    { id: 3, title: "Gastos", image: misGastos, path: "/gastos" },
-    { id: 4, title: "Tareas", image: misTareas, path: "/tareas" },
+    { id: 3, title: "Movimientos", image: misGastos, path: "/Movimientos" },
     { id: 5, title: "Patrocinadores", image: misPatrocinadores, path: "/patrocinadores"  },
+    { id: 4, title: "Tareas", image: misTareas, path: "/tareas" },
     { id: 6, title: "Nivel", image: miNivel, path: "/nivel" },
   ];
 
@@ -30,7 +29,7 @@ const Cartas = () => {
 
   return (
     <div className="contenedor-principal">
-      <h1>Bienvenido {formattedName}</h1>
+      <h1>Bienvenido (a) {formattedName}</h1>
       <div className="cards-container">
         {cardData.map((card) => (
           <div key={card.id} className="card" onClick={() => handleCardClick(card.path)}>

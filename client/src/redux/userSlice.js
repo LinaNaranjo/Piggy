@@ -9,6 +9,7 @@ const initialState = {
   lastName: storedUser?.lastName,
   email: storedUser?.email,
   age: storedUser?.age,
+  points: storedUser?.points,
   phone: storedUser?.phone,
   birthdate: storedUser?.birthdate,
   address: storedUser?.address,
@@ -32,6 +33,7 @@ const userSlice = createSlice({
       state.lastName = action.payload.lastName;
       state.email = action.payload.email;
       state.age = action.payload.age;
+      state.points = action.payload.points;
       state.phone = action.payload.phone;
       state.birthdate = action.payload.birthdate;
       state.address = action.payload.address;
